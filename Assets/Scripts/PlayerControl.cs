@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour
     private Coroutine attackCooldownCoroutine;
 
     private bool isSprinting = false;
-    [SerializeField] private float sprintMultiplier = 2f; // Sprint hýzýnýn normal hýza oraný
+    [SerializeField] private float sprintMultiplier = 2f; // Sprint hÃ½zÃ½nÃ½n normal hÃ½za oranÃ½
     [SerializeField] private float slideTiming;
     private float smoothedVerticalInput;
 
@@ -45,7 +45,7 @@ public class PlayerControl : MonoBehaviour
         playerActionsAsset.Player.F_Button.started += OnFAttackInput;
         move = playerActionsAsset.Player.Move;
 
-        // Sprint giriþi performed olarak deðiþtirildi
+        // Sprint giriÃ¾i performed olarak deÃ°iÃ¾tirildi
         playerActionsAsset.Player.Sprint.performed += OnSprintPerformed;
         playerActionsAsset.Player.Sprint.canceled += OnSprintCanceled;
 
@@ -60,7 +60,7 @@ public class PlayerControl : MonoBehaviour
         playerActionsAsset.Player.E_Button.started -= OnEAttackInput;
         playerActionsAsset.Player.F_Button.started -= OnFAttackInput;
 
-        // Sprint giriþi performed olarak deðiþtirildi
+        // Sprint giriÃ¾i performed olarak deÃ°iÃ¾tirildi
         playerActionsAsset.Player.Sprint.performed -= OnSprintPerformed;
         playerActionsAsset.Player.Sprint.canceled -= OnSprintCanceled;
 
@@ -156,8 +156,8 @@ public class PlayerControl : MonoBehaviour
         {
             forceDirection += Vector3.up * jumpForce;
 
-            // Set the playback speed of the jump animation to make it faster
-            float jumpAnimationSpeed = 3.0f; // Adjust this value as needed
+            
+            float jumpAnimationSpeed = 3.0f; 
             animator.SetFloat("JumpSpeedMultiplier", jumpAnimationSpeed);
 
             animator.SetBool("Jump", true);
@@ -195,14 +195,14 @@ public class PlayerControl : MonoBehaviour
 
     private void OnSprintPerformed(InputAction.CallbackContext obj)
     {
-        // Sprint giriþi performed olduðunda sprint durumunu deðiþtir
+        // Sprint giriÃ¾i performed olduÃ°unda sprint durumunu deÃ°iÃ¾tir
         isSprinting = true;
         Debug.Log("Sprint started");
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext obj)
     {
-        // Sprint giriþi canceled olduðunda sprint durumunu deðiþtir
+        // Sprint giriÃ¾i canceled olduÃ°unda sprint durumunu deÃ°iÃ¾tir
         isSprinting = false;
         Debug.Log("Sprint stopped");
     }
@@ -211,21 +211,21 @@ public class PlayerControl : MonoBehaviour
     {
         isAttacking = true;
 
-        // Baþlangýçta saldýrý animasyonunu oynat
+        // BaÃ¾langÃ½Ã§ta saldÃ½rÃ½ animasyonunu oynat
         animator.SetBool(attackAnimationTrigger, true);
 
-        // Saldýrý animasyonunun uzunluðunu bekleyerek animasyonun tamamlanmasýný saðla
+        // SaldÃ½rÃ½ animasyonunun uzunluÃ°unu bekleyerek animasyonun tamamlanmasÃ½nÃ½ saÃ°la
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-        // Saldýrý animasyonunu kapat
+        // SaldÃ½rÃ½ animasyonunu kapat
         animator.SetBool(attackAnimationTrigger, false);
 
-        // Kooldown süresince bekleyerek tekrar saldýrýya izin ver
+        // Kooldown sÃ¼resince bekleyerek tekrar saldÃ½rÃ½ya izin ver
         yield return new WaitForSeconds(attackCooldown);
 
         isAttacking = false;
 
-        // Saldýrýdan sonra kayma hareketini durdur
+        // SaldÃ½rÃ½dan sonra kayma hareketini durdur
         //StopSliding();
     }
 
