@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,14 +21,17 @@ public class PlayerControl : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackCooldown = 0.25f;
     private bool isAttacking = false;
     private Coroutine attackCooldownCoroutine;
 
     private bool isSprinting = false;
-    [SerializeField] private float sprintMultiplier = 2f; // Sprint hýzýnýn normal hýza oraný
-    [SerializeField] private float slideTiming;
+    [SerializeField] private float sprintMultiplier = 2f;
+    private float slideTiming;
     private float smoothedVerticalInput;
+    private float stopThreshold = 0.01f;
+    [SerializeField] private float fallGravity = 10f;
+    [SerializeField] private float maxFallSpeed = -10f;
 
     private void Awake()
     {
@@ -45,7 +49,6 @@ public class PlayerControl : MonoBehaviour
         playerActionsAsset.Player.F_Button.started += OnFAttackInput;
         move = playerActionsAsset.Player.Move;
 
-        // Sprint giriþi performed olarak deðiþtirildi
         playerActionsAsset.Player.Sprint.performed += OnSprintPerformed;
         playerActionsAsset.Player.Sprint.canceled += OnSprintCanceled;
 
@@ -60,7 +63,6 @@ public class PlayerControl : MonoBehaviour
         playerActionsAsset.Player.E_Button.started -= OnEAttackInput;
         playerActionsAsset.Player.F_Button.started -= OnFAttackInput;
 
-        // Sprint giriþi performed olarak deðiþtirildi
         playerActionsAsset.Player.Sprint.performed -= OnSprintPerformed;
         playerActionsAsset.Player.Sprint.canceled -= OnSprintCanceled;
 
@@ -70,9 +72,13 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateInputs();
-        UpdateMovement();
+        if (!isAttacking)
+        {
+            UpdateMovement();
+        }
         UpdateAnimator();
     }
+
     private void UpdateInputs()
     {
         float rawHorizontalInput = move.ReadValue<Vector2>().x;
@@ -80,31 +86,39 @@ public class PlayerControl : MonoBehaviour
 
         float targetVerticalInput = isSprinting ? rawVerticalInput * sprintMultiplier : rawVerticalInput;
 
-       
         smoothedVerticalInput = Mathf.Lerp(smoothedVerticalInput, targetVerticalInput, Time.deltaTime * 5f);
 
-        
         verticalInput = rawVerticalInput;
-
         horizontalInput = rawHorizontalInput;
     }
 
     private void UpdateMovement()
     {
-        forceDirection += horizontalInput * GetCameraRight(playerCamera) * (isSprinting ? movementForce * sprintMultiplier : movementForce);
-        forceDirection += verticalInput * GetCameraForward(playerCamera) * (isSprinting ? movementForce * sprintMultiplier : movementForce);
+        
+        if (Mathf.Abs(horizontalInput) > stopThreshold || Mathf.Abs(verticalInput) > stopThreshold)
+        {
+            forceDirection += horizontalInput * GetCameraRight(playerCamera) * (isSprinting ? movementForce * sprintMultiplier : movementForce);
+            forceDirection += verticalInput * GetCameraForward(playerCamera) * (isSprinting ? movementForce * sprintMultiplier : movementForce);
 
-        rb.AddForce(forceDirection, ForceMode.Impulse);
-        forceDirection = Vector3.zero;
+            rb.AddForce(forceDirection, ForceMode.Impulse);
+            forceDirection = Vector3.zero;
 
-        if (rb.velocity.y < 0f)
-            rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+            if (rb.velocity.y < 0f)
+                rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
 
-        Vector3 horizontalVelocity = rb.velocity;
-        horizontalVelocity.y = 0;
+            Vector3 horizontalVelocity = rb.velocity;
+            horizontalVelocity.y = 0;
 
-        if (horizontalVelocity.magnitude> maxSpeed)
-            rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
+            if (horizontalVelocity.sqrMagnitude > maxSpeed)
+                rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
+        }
+        else
+        {
+          
+            rb.velocity = Vector3.zero;
+        }
+
+        
 
         LookAt();
     }
@@ -118,12 +132,27 @@ public class PlayerControl : MonoBehaviour
             sprintMultiplier = 2f;
         }
 
-        animator.SetFloat("Horizontal", horizontalInput);
+        bool isGrounded = IsGrounded();
 
-        
-        animator.SetFloat("Vertical", smoothedVerticalInput * sprintMultiplier);
+        animator.SetBool("IsGrounded", isGrounded);
+
+        if (isGrounded)
+        {
+            animator.SetFloat("Horizontal", horizontalInput);
+            animator.SetFloat("Vertical", smoothedVerticalInput * sprintMultiplier);
+            animator.SetBool("IsFalling", false);
+        }
+        else if(!isGrounded)
+        {
+            
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", 0f);
+            animator.SetBool("IsFalling", true);
+            rb.velocity += Vector3.down * fallGravity;
+
+
+        }
     }
-
 
     private void LookAt()
     {
@@ -155,14 +184,14 @@ public class PlayerControl : MonoBehaviour
         if (IsGrounded())
         {
             forceDirection += Vector3.up * jumpForce;
-
-            
-            float jumpAnimationSpeed = 3.0f; 
+            float jumpAnimationSpeed = 3.0f;
             animator.SetFloat("JumpSpeedMultiplier", jumpAnimationSpeed);
-
             animator.SetBool("Jump", true);
+
         }
     }
+
+
 
     private void EndJump(InputAction.CallbackContext obj)
     {
@@ -195,14 +224,12 @@ public class PlayerControl : MonoBehaviour
 
     private void OnSprintPerformed(InputAction.CallbackContext obj)
     {
-        // Sprint giriþi performed olduðunda sprint durumunu deðiþtir
         isSprinting = true;
         Debug.Log("Sprint started");
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext obj)
     {
-        // Sprint giriþi canceled olduðunda sprint durumunu deðiþtir
         isSprinting = false;
         Debug.Log("Sprint stopped");
     }
@@ -210,34 +237,17 @@ public class PlayerControl : MonoBehaviour
     private IEnumerator AttackSequence(string attackAnimationTrigger)
     {
         isAttacking = true;
-
-        // Baþlangýçta saldýrý animasyonunu oynat
         animator.SetBool(attackAnimationTrigger, true);
-
-        // Saldýrý animasyonunun uzunluðunu bekleyerek animasyonun tamamlanmasýný saðla
+        if (isAttacking)
+        {
+            rb.velocity = Vector3.zero;
+        }
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-        // Saldýrý animasyonunu kapat
         animator.SetBool(attackAnimationTrigger, false);
 
-        // Kooldown süresince bekleyerek tekrar saldýrýya izin ver
-        yield return new WaitForSeconds(attackCooldown);
-
         isAttacking = false;
-
-        // Saldýrýdan sonra kayma hareketini durdur
-        //StopSliding();
+       
     }
-
-   /*private void StopSliding()
-    {
-        // Gradually reduce horizontal velocity
-        float dampingFactor = 0.9f;
-        Vector3 horizontalVelocity = rb.velocity;
-        horizontalVelocity.x *= dampingFactor;
-        horizontalVelocity.z *= dampingFactor;
-        rb.velocity = new Vector3(horizontalVelocity.x, rb.velocity.y, horizontalVelocity.z);
-    }*/
 
     private bool IsGrounded()
     {
