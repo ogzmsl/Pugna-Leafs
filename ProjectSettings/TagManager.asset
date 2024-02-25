@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Collide
   - Enemy
+  - CinemachineTarget
+  - HealthSlider
+  - ProjectTile
+  - butterflyLayer
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - butterflyLayer
+  - Enemy
   - 
   - 
   - 
