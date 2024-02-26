@@ -30,6 +30,7 @@ public class NavMeshControl : MonoBehaviour
     public bool isDestroy = false;
     public GameObject Goblin;
     Shield shield;
+    public GoblinAttackOneAnimationEvent goblin;
 
 
     void Start()
@@ -40,6 +41,8 @@ public class NavMeshControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
 
         float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
 
@@ -203,4 +206,7 @@ public class NavMeshControl : MonoBehaviour
     {
         timer = 0f;
     }
+
+
+
 }

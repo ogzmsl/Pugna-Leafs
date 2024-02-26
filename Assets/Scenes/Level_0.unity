@@ -775,7 +775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81832482}
-  m_LocalRotation: {x: 0.0015514676, y: 0.9733269, z: -0.22932297, w: 0.0065849717}
+  m_LocalRotation: {x: 0.0015514755, y: 0.9733269, z: -0.22932297, w: 0.006585005}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6193,7 +6193,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830806082}
-  m_LocalRotation: {x: 0.0015543402, y: 0.9732267, z: -0.22974765, w: 0.0065842913}
+  m_LocalRotation: {x: 0.001554349, y: 0.9732267, z: -0.22974765, w: 0.006584329}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8191,7 +8191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130848310}
-  m_LocalRotation: {x: 0.0015485943, y: 0.9734269, z: -0.22889824, w: 0.0065856474}
+  m_LocalRotation: {x: 0.001548602, y: 0.9734269, z: -0.22889824, w: 0.006585681}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30963,6 +30963,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c96349174f9a44abab3aaab302fbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &919132149022703908 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1484766262999840469, guid: 536e5d0446ade94438081d2528fb1fad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1755166755593205745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7408b7c410c91d4c9c3db4e559e09bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1054072931211713491
 Transform:
   m_ObjectHideFlags: 0
@@ -31268,6 +31280,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 3893294198898138303}
+    - target: {fileID: 1484766262999840466, guid: 536e5d0446ade94438081d2528fb1fad,
+        type: 3}
+      propertyPath: goblin
+      value: 
+      objectReference: {fileID: 919132149022703908}
     - target: {fileID: 1484766262999840469, guid: 536e5d0446ade94438081d2528fb1fad,
         type: 3}
       propertyPath: playerHealthScript
@@ -32993,7 +33010,7 @@ MonoBehaviour:
   healt: {fileID: 1432530058}
   nav: {fileID: 919132149022703907}
   PlayerTransform: {fileID: 165955823}
-  event: {fileID: 0}
+  event: {fileID: 919132149022703908}
   yourRadius: 10
   yourForce: 150
 --- !u!143 &4416926082890581519

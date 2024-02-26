@@ -1,13 +1,20 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class GoblinAttackOneAnimationEvent : MonoBehaviour
 {
     [SerializeField] private PlayerHealt playerHealthScript;
     [SerializeField] private NavMeshControl nav;
     public bool ishield;
+    public bool DamageAnim = false;
+    Animator animator;
 
     private void Start()
     {
+
+
+        animator = GetComponent<Animator>();
         
         if (playerHealthScript == null)
         {
@@ -19,8 +26,24 @@ public class GoblinAttackOneAnimationEvent : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (DamageAnim)
+        {
+            animator.SetTrigger("Damage");
+            StartCoroutine(damagewait());
+        }
+    }
+    IEnumerator damagewait()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+    }
+
+    
     public void OnGoblinAttackAnimationEvent()
     {
+        
         if (playerHealthScript != null)
         {
       
@@ -38,12 +61,15 @@ public class GoblinAttackOneAnimationEvent : MonoBehaviour
 
         if (ishield)
         {
+           
             playerHealthScript.PlayerHealthValue -= 0.1f;
+           
         }
+
       
-        
         playerHealthScript.PlayerHealthValue = Mathf.Clamp01(playerHealthScript.PlayerHealthValue);
        
         playerHealthScript.PlayerHealthImage.fillAmount = playerHealthScript.PlayerHealthValue;
+       
     }
 }
