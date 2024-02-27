@@ -186,7 +186,10 @@ namespace StarterAssets
         //private bool isJumping = false;
 
         public Transform PlayerTransform;
-      public  GoblinAttackOneAnimationEvent @event;
+        public  GoblinAttackOneAnimationEvent @event;
+        public ButterflyControlerNEW butterflyController;
+
+
 
     
 
@@ -739,6 +742,11 @@ namespace StarterAssets
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 _animator.SetBool("Block", true);
+              
+
+
+
+
                 //Shield
                 if (isTabing && shieldforShield.isFilling)
                 {
@@ -766,10 +774,10 @@ namespace StarterAssets
                 }
                 else if (!isTabing)
                 {
-                    
-                    butterFly.GetPullObject();
 
-                  
+                    butterflyController.isRightClicked = true;
+
+
                     nav.uzaklastır = false;
                     uzaklastirSet = false;
                 }
@@ -787,6 +795,7 @@ namespace StarterAssets
                 // Bu durumda uzaklastır'ı false yapıyoruz
                 nav.uzaklastır = false;
                 uzaklastirSet = false;
+                butterflyController.isRightClicked = false;
             }
         }
 

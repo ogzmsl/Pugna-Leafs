@@ -10,6 +10,7 @@ TagManager:
   - HealthSlider
   - ProjectTile
   - butterflyLayer
+  - Butterfly
   layers:
   - Default
   - TransparentFX
