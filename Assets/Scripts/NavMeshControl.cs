@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class NavMeshControl : MonoBehaviour
 {
 
-    public bool uzaklastir;
+    public bool uzaklastýr;
    public  NavMeshAgent agent;
     public Transform Player;
     public Animator animator;
@@ -116,7 +116,7 @@ public class NavMeshControl : MonoBehaviour
 
                 UpdateTimer();
             }
-        if (uzaklastir&&ShieldDistance<1.85f&&shield.isDestroyShield)
+        if (uzaklastýr&&ShieldDistance<1.85f&&shield.isDestroyShield)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
             Vector3 targetPosition = transform.position + directionToPlayer * 3f;
@@ -129,7 +129,7 @@ public class NavMeshControl : MonoBehaviour
 
             if (transform.position == targetPosition)
             {
-                uzaklastir = false;
+                uzaklastýr = false;
             }
         }
 
