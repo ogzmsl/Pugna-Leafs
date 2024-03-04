@@ -176,6 +176,8 @@ namespace StarterAssets
 
         public NavMeshControl nav;
 
+        [SerializeField] private ParticleSystem FootVfxLeft; 
+        [SerializeField] private ParticleSystem FootVfxRight; 
      
 
         
@@ -188,6 +190,7 @@ namespace StarterAssets
         public Transform PlayerTransform;
         public  GoblinAttackOneAnimationEvent @event;
         public ButterflyControlerNEW butterflyController;
+        public ButterflyAttack butterflyAttack;
 
 
 
@@ -289,7 +292,8 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
-
+      
+          
 
         }
 
@@ -513,6 +517,12 @@ namespace StarterAssets
         #endregion
 
 
+        #region FootStep
+
+
+
+        #endregion
+
 
 
 
@@ -527,6 +537,7 @@ namespace StarterAssets
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
                 shieldforShield.isFilling = true;
+             
 
             }
             else
@@ -535,11 +546,13 @@ namespace StarterAssets
 
                 if (_input.sprint)
                 {
-                    
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = SprintSpeed;
+                 
                     // Sprint olduğunda _animIDSpeed değerini 120 olarak ayarla
                     if (_input.move != Vector2.zero)
                     {
+                  
                         float startSpeed = _animator.GetFloat(_animIDSpeed);
                         float LerptargetSpeed = 200;
 
@@ -555,6 +568,7 @@ namespace StarterAssets
                     }
                     else if (_input.move == Vector2.zero)
                     {
+                   
                         float finishSpeed = _animator.GetFloat(_animIDSpeed);
                         float LerpFinishSprintToIdle = 0;
                         float LerfRadio = 0.1f;
@@ -566,6 +580,7 @@ namespace StarterAssets
                 }
                 else if (_input.move != Vector2.zero)
                 {
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = MoveSpeed;
                     float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
                     float LerpTargetSpeedWalk = 100;
@@ -581,6 +596,7 @@ namespace StarterAssets
                 }
                 else if (_input.move == Vector2.zero)
                 {
+            
                     float finishSpeed = _animator.GetFloat(_animIDSpeed);
                     float LerpFinishSprintToIdle = 0;
                     float LerfRadio = 0.1f;
@@ -593,6 +609,7 @@ namespace StarterAssets
 
                 if (_input.move == Vector2.zero)
                 {
+                   
                     targetSpeed = 0.0f;
                     shieldforShield.isFilling = true;
                 }
@@ -622,6 +639,7 @@ namespace StarterAssets
 
                 if (_input.move != Vector2.zero)
                 {
+                   
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
                     float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
@@ -660,9 +678,12 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
+
+          
+
             if (Grounded)
             {
-
+                
                 _fallTimeoutDelta = FallTimeout;
 
 
@@ -681,10 +702,12 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f /*&& JumpConditionMet()*/)
                 {
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
                     if (_hasAnimator)
                     {
+
                         _animator.SetBool(_animIDJump, true);
                     }
 
@@ -695,6 +718,7 @@ namespace StarterAssets
 
                 if (_jumpTimeoutDelta >= 0.0f)
                 {
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     _jumpTimeoutDelta -= Time.deltaTime;
                 }
             }
@@ -706,6 +730,7 @@ namespace StarterAssets
 
                 if (_fallTimeoutDelta >= 0.0f)
                 {
+                   
                     _fallTimeoutDelta -= Time.deltaTime;
                 }
                 else
@@ -713,6 +738,7 @@ namespace StarterAssets
 
                     if (_hasAnimator)
                     {
+                        FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                         _animator.SetBool(_animIDFreeFall, true);
                     }
                 }
@@ -724,6 +750,7 @@ namespace StarterAssets
 
             if (_verticalVelocity < _terminalVelocity)
             {
+         
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
         }
@@ -762,7 +789,7 @@ namespace StarterAssets
 
                         if (!uzaklastirSet) 
                         {
-                            nav.uzaklastır = true;
+                            nav.uzaklastir = true;
                             uzaklastirSet = true;
                         }
                     }
@@ -778,7 +805,7 @@ namespace StarterAssets
                     butterflyController.isRightClicked = true;
 
 
-                    nav.uzaklastır = false;
+                    nav.uzaklastir = false;
                     uzaklastirSet = false;
                 }
 
@@ -792,11 +819,15 @@ namespace StarterAssets
                 _animator.SetBool("Block", false);
                 StartCoroutine(ResetShield());
 
-                // Bu durumda uzaklastır'ı false yapıyoruz
-                nav.uzaklastır = false;
+                // Bu durumda uzaklastır false
+                nav.uzaklastir = false;
                 uzaklastirSet = false;
                 butterflyController.isRightClicked = false;
+            
+                    butterflyAttack.isButterFlyAttacking = false;
+                
             }
+            
         }
 
 

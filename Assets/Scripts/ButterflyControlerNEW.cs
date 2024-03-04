@@ -7,11 +7,16 @@ public class ButterflyControlerNEW : MonoBehaviour
     public float radius = 5.0f; // Yarýçap
     public float moveSpeed = 10.0f;
 
+
+  
     private List<Transform> butterflies;
     private List<Vector3> targetPositions;
     private List<float> angles; //  kelebek için farklý bir açý
     private List<float> yAngles; //kelebek için farklý bir y açýsý
     public bool isRightClicked = false;
+    public ButterflyAttack butterflyAttack;
+    public Transform enemy;
+ 
 
     void Start()
     {
@@ -24,6 +29,7 @@ public class ButterflyControlerNEW : MonoBehaviour
         foreach (GameObject butterflyObject in butterflyObjects)
         {
             Transform butterflyTransform = butterflyObject.transform;
+           
             butterflies.Add(butterflyTransform);
 
             // Rastgele açýö
@@ -43,24 +49,54 @@ public class ButterflyControlerNEW : MonoBehaviour
     {
         if (isRightClicked)
         {
-            MoveButterflies();
+          
+                MoveButterflies();         
+       
+
         }
 
+       else  if (butterflyAttack.RangeAttack)
+        {
+            isRightClicked = false;
+
+
+
+            for (int i = 0; i < butterflies.Count; i++)
+            {
+                centerPoint.position = enemy.transform.position;
+                Transform butterfly = butterflies[i];
+
+                Vector3 randomDirection = Random.insideUnitSphere * radius;
+                Vector3 targetPosition = centerPoint.position + randomDirection;
+
+       
+                butterfly.position = Vector3.MoveTowards(butterfly.position, targetPosition, moveSpeed * Time.deltaTime);
+            }
+        }
     }
+    
 
     private void MoveButterflies()
     {
-        for (int i = 0; i < butterflies.Count; i++)
+        if (!butterflyAttack.isButterFlyAttacking)
         {
-            Transform butterfly = butterflies[i];
+            for (int i = 0; i < butterflies.Count; i++)
+            {
+                Transform butterfly = butterflies[i];
 
-            Vector3 targetPosition = GetPositionFromAngles(angles[i], yAngles[i]);
+                Vector3 targetPosition = GetPositionFromAngles(angles[i], yAngles[i]);
 
-            butterfly.position = Vector3.MoveTowards(butterfly.position, targetPosition, moveSpeed * Time.deltaTime);
+                butterfly.position = Vector3.MoveTowards(butterfly.position, targetPosition, moveSpeed * Time.deltaTime);
 
-            angles[i] += Time.deltaTime * moveSpeed / radius;
+                angles[i] += Time.deltaTime * moveSpeed / radius;
+            }
         }
+
+     
+     
     }
+
+
 
     private Vector3 GetPositionFromAngles(float angle, float yAngle)
     {
@@ -70,4 +106,6 @@ public class ButterflyControlerNEW : MonoBehaviour
         float y = centerPoint.position.y + Mathf.Sin(yAngle * Mathf.Deg2Rad); // fy eksenindeki hareket
         return new Vector3(x, y, z);
     }
+
+
 }
