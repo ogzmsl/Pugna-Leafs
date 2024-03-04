@@ -63755,6 +63755,8 @@ MonoBehaviour:
   isdie: 1
   healt: {fileID: 1851037129}
   nav: {fileID: 2092128221}
+  FootVfxLeft: {fileID: 0}
+  FootVfxRight: {fileID: 0}
   PlayerTransform: {fileID: 965854679}
   event: {fileID: 2092128220}
   butterflyController: {fileID: 0}

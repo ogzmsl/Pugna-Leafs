@@ -190,6 +190,7 @@ namespace StarterAssets
         public Transform PlayerTransform;
         public  GoblinAttackOneAnimationEvent @event;
         public ButterflyControlerNEW butterflyController;
+        public ButterflyAttack butterflyAttack;
 
 
 
@@ -818,11 +819,15 @@ namespace StarterAssets
                 _animator.SetBool("Block", false);
                 StartCoroutine(ResetShield());
 
-                // Bu durumda uzaklastır'ı false yapıyoruz
+                // Bu durumda uzaklastır false
                 nav.uzaklastir = false;
                 uzaklastirSet = false;
                 butterflyController.isRightClicked = false;
+            
+                    butterflyAttack.isButterFlyAttacking = false;
+                
             }
+            
         }
 
 
