@@ -188,6 +188,7 @@ namespace StarterAssets
         public Transform PlayerTransform;
         public  GoblinAttackOneAnimationEvent @event;
         public ButterflyControlerNEW butterflyController;
+        public ButterFlyAttack butterFlyAttack;
 
 
 
@@ -343,9 +344,12 @@ namespace StarterAssets
             if (TabCount % 2 == 0)
             {
                 isTabing = true;
+                butterflyController.isRightClicked = false;
             }
             else if (TabCount % 2 == 1)
             {
+               
+                butterflyController.isRightClicked = true;
                 isTabing = false;
             }
 
@@ -371,7 +375,7 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
-            if (_input.mouseLeft && !isRange && Grounded&&!isDead)
+            if (_input.mouseLeft && !isRange && Grounded&&!isDead&&isTabing)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -795,8 +799,10 @@ namespace StarterAssets
                 // Bu durumda uzaklastır'ı false yapıyoruz
                 nav.uzaklastır = false;
                 uzaklastirSet = false;
-                butterflyController.isRightClicked = false;
+                
+  
             }
+           
         }
 
 

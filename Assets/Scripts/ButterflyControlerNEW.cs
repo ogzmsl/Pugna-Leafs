@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class ButterflyControlerNEW : MonoBehaviour
 {
     public Transform centerPoint; // Merkez noktasý
+    public Transform newcenterpoint;
+    public Transform currentcenterpoint;
     public float radius = 5.0f; // Yarýçap
     public float moveSpeed = 10.0f;
 
@@ -12,6 +14,7 @@ public class ButterflyControlerNEW : MonoBehaviour
     private List<float> angles; //  kelebek için farklý bir açý
     private List<float> yAngles; //kelebek için farklý bir y açýsý
     public bool isRightClicked = false;
+    public ButterFlyAttack butterFlyattack;
 
     void Start()
     {
@@ -39,14 +42,49 @@ public class ButterflyControlerNEW : MonoBehaviour
         }
     }
 
+    private void MoveButterfliesInSphere()
+    {
+        for (int i = 0; i < butterflies.Count; i++)
+        {
+            Transform butterfly = butterflies[i];
+
+            Vector3 targetPosition = GetRandomPointInSphere();
+
+            butterfly.position = Vector3.MoveTowards(butterfly.position, targetPosition, moveSpeed * Time.deltaTime);
+        }
+    }
+
+    private Vector3 GetRandomPointInSphere()
+    {
+        float angle = Random.Range(0f, Mathf.PI * 2f); 
+        float yAngle = Random.Range(0f, Mathf.PI); 
+
+        
+        float x = centerPoint.position.x + radius * Mathf.Sin(yAngle) * Mathf.Cos(angle);
+        float y = centerPoint.position.y + radius * Mathf.Cos(yAngle);
+        float z = centerPoint.position.z + radius * Mathf.Sin(yAngle) * Mathf.Sin(angle);
+
+        return new Vector3(x, y, z);
+    }
+
+
+
+
     void Update()
     {
-        if (isRightClicked)
+        if (isRightClicked && !butterFlyattack.isButterFlyAttacking)
         {
             MoveButterflies();
-        }
+            centerPoint.position = currentcenterpoint.position;
 
+        }
+        else if (isRightClicked && butterFlyattack.isButterFlyAttacking)
+        {
+            MoveButterfliesInSphere();
+            centerPoint.position = newcenterpoint.position;
+        }
     }
+
 
     private void MoveButterflies()
     {

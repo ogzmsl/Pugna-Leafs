@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: River Normal
+  m_Shader: {fileID: 4800000, guid: 065aa44c92439ae439ab70785d341c76, type: 3}
+  m_ShaderKeywords: _USEWAVE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: ed512d00c2b0c0748bcb5cf3fce1a4c8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0.1}
+    - _CausticsTex:
+        m_Texture: {fileID: 2800000, guid: 581fcfd543a4445829bb923bace720da, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0.1, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceDistortion:
+        m_Texture: {fileID: 2800000, guid: 8450e01b421163c4499eab44a7676a2d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0.1, y: 0.1}
+    - _SurfaceNoise:
+        m_Texture: {fileID: 2800000, guid: b9c5043f13ce8284e8072c5a99d13dd4, type: 3}
+        m_Scale: {x: 1, y: 2}
+        m_Offset: {x: 0.1, y: 0}
+    m_Floats:
+    - _BumpScale: 0.5
+    - _CausticsDistortionScale: 0.099
+    - _CausticsScale: 0.5
+    - _DepthMaxDistance: 10
+    - _DistanceDensity: 1
+    - _DunesDistance: 50
+    - _FoamMaxDistance: 5
+    - _FresnelDensity: 30
+    - _GlobalScale: 8.47
+    - _Gloss: 117
+    - _HeightScale: 2
+    - _IntervalDistance: 30
+    - _MaxDistance: 5
+    - _MaxShadowDistance: 5
+    - _NormalDistortionScale: 0.1
+    - _P: 1
+    - _SurfaceDistortionScale: 0.1
+    - _SurfaceNoiseCutoff: 0.6
+    - _UseWave: 1
+    - _Wave1Amplitude: 0.75
+    - _Wave1Direction: 0.5
+    - _Wave1Speed: 1.5
+    - _Wave1Wavelength: 20
+    - _Wave2Amplitude: 1
+    - _Wave2Direction: 0.2
+    - _Wave2Speed: 2
+    - _Wave2Wavelength: 15
+    - _WaveSpeed: 30
+    - _Xm: 0.72
+    m_Colors:
+    - _CausticsColor: {r: 0.8528302, g: 0.9835258, b: 1, a: 1}
+    - _DepthDeepColor: {r: 0.21573515, g: 0.42219886, b: 0.5660378, a: 0.78431374}
+    - _DepthShallowColor: {r: 0.38390887, g: 0.59688514, b: 0.6037736, a: 0.78431374}
+    - _FoamColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    - _ShadowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Specular: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
