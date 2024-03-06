@@ -192,7 +192,12 @@ namespace StarterAssets
 
 
 
-    
+        //FootstepControl
+
+        [SerializeField] private ParticleSystem FootVfxLeft;
+        [SerializeField] private ParticleSystem FootVfxRight;
+
+
 
 
         private bool IsCurrentDeviceMouse
@@ -229,8 +234,7 @@ namespace StarterAssets
         private void Start()
         {
 
-
-
+       
 
             if (nav == null)
             {
@@ -290,6 +294,7 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
+        
 
 
         }
@@ -517,7 +522,13 @@ namespace StarterAssets
         #endregion
 
 
+        #region footsttepVFX
 
+ 
+
+
+
+        #endregion
 
 
 
@@ -539,7 +550,7 @@ namespace StarterAssets
 
                 if (_input.sprint)
                 {
-                    
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = SprintSpeed;
                     // Sprint olduğunda _animIDSpeed değerini 120 olarak ayarla
                     if (_input.move != Vector2.zero)
@@ -556,6 +567,7 @@ namespace StarterAssets
                         // Lineer interpolasyon 
                         float newSpeed = Mathf.Lerp(startSpeed, LerptargetSpeed, lerpRatio);
                         _animator.SetFloat(_animIDSpeed, newSpeed);
+                     
                     }
                     else if (_input.move == Vector2.zero)
                     {
@@ -570,11 +582,13 @@ namespace StarterAssets
                 }
                 else if (_input.move != Vector2.zero)
                 {
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = MoveSpeed;
                     float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
                     float LerpTargetSpeedWalk = 100;
                     shieldforShield.isFilling = true;
 
+          
 
 
                     float lerpRatioWalk = 0.1f;
@@ -687,8 +701,10 @@ namespace StarterAssets
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     if (_hasAnimator)
                     {
+                     
                         _animator.SetBool(_animIDJump, true);
                     }
 
@@ -699,7 +715,9 @@ namespace StarterAssets
 
                 if (_jumpTimeoutDelta >= 0.0f)
                 {
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     _jumpTimeoutDelta -= Time.deltaTime;
+                 
                 }
             }
             else
@@ -717,6 +735,7 @@ namespace StarterAssets
 
                     if (_hasAnimator)
                     {
+                        FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                         _animator.SetBool(_animIDFreeFall, true);
                     }
                 }
