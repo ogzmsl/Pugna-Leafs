@@ -68,7 +68,7 @@ public class FButtonAnimationEvent : MonoBehaviour
 
 
         RaycastHit hit;
-        if (Physics.Raycast(instantiatedPrefab.transform.position, fireDirection, out hit, Mathf.Infinity, enemyLayerMask) && boxCollider.isTrigger)
+        if (Physics.Raycast(instantiatedPrefab.transform.position, fireDirection, out hit, Mathf.Infinity) && boxCollider.isTrigger)
         {
             Debug.Log("Enemy detect oldu");
             isDamaging = true; // Set flag to indicate that the projectile is currently damaging an enemy
@@ -81,7 +81,7 @@ public class FButtonAnimationEvent : MonoBehaviour
             HealtSystem enemyHealthSystem = hit.collider.GetComponent<HealtSystem>();
             if (enemyHealthSystem != null)
             {
-                enemyHealthSystem.TakeDamage(50);
+                enemyHealthSystem.TakeDamage(100);
             }
 
             // Reset the DamageOlabilir flag
