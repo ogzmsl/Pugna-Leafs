@@ -35891,8 +35891,6 @@ MonoBehaviour:
   event: {fileID: 919132149022703908}
   butterflyController: {fileID: 6982812147316442829}
   butterFlyAttack: {fileID: 919132149199487607}
-  FootVfxLeft: {fileID: 0}
-  FootVfxRight: {fileID: 0}
   yourRadius: 10
   yourForce: 150
 --- !u!143 &4416926082890581519
