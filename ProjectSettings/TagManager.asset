@@ -11,6 +11,7 @@ TagManager:
   - ProjectTile
   - butterflyLayer
   - Butterfly
+  - Interactive
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Player
   - butterflyLayer
   - Enemy
-  - 
+  - groundLayer
   - 
   - 
   - 

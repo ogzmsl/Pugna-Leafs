@@ -189,6 +189,7 @@ namespace StarterAssets
         public  GoblinAttackOneAnimationEvent @event;
         public ButterflyControlerNEW butterflyController;
         public ButterFlyAttack butterFlyAttack;
+        public QSpeel speel;
 
 
 
@@ -1052,7 +1053,7 @@ namespace StarterAssets
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
-
+                speel.InstantiateQspell();
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 
@@ -1081,6 +1082,14 @@ namespace StarterAssets
             _animator.SetBool(_animIDRange, false);
 
         }
+
+        IEnumerator waitqspell()
+        {
+            yield return new WaitForSeconds(5f);
+            speel.destroyspeelq();
+
+        }
+    
 
 
         #endregion
@@ -1159,20 +1168,7 @@ namespace StarterAssets
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-            if (Grounded) Gizmos.color = transparentGreen;
-            else Gizmos.color = transparentRed;
-
-
-            Gizmos.DrawSphere(
-                new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-                GroundedRadius);
-        }
-
+      
 
         private void InstantiateVfx()
         {
