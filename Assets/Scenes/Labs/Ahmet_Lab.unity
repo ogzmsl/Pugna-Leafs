@@ -9785,6 +9785,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 828712340}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &317497752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317497753}
+  m_Layer: 6
+  m_Name: Qspell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &317497753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317497752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.345, y: 0, z: 2.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 339429500}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &318632173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10476,6 +10507,7 @@ Transform:
   - {fileID: 1225943563}
   - {fileID: 1925387096}
   - {fileID: 630334852}
+  - {fileID: 317497753}
   m_Father: {fileID: 867202692}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23211,7 +23243,7 @@ GameObject:
   - component: {fileID: 843612239}
   - component: {fileID: 843612241}
   - component: {fileID: 843612240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OrmanYolu_Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32344,7 +32376,7 @@ GameObject:
   - component: {fileID: 1241292884}
   - component: {fileID: 1241292886}
   - component: {fileID: 1241292885}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tapinak_Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36060,6 +36092,7 @@ GameObject:
   - component: {fileID: 1303177628}
   - component: {fileID: 1303177627}
   - component: {fileID: 1303177626}
+  - component: {fileID: 1303177638}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -36394,6 +36427,7 @@ MonoBehaviour:
   event: {fileID: 1881826274}
   butterflyController: {fileID: 1303177626}
   butterFlyAttack: {fileID: 331825380}
+  speel: {fileID: 1303177638}
   FootVfxLeft: {fileID: 1615449594}
   FootVfxRight: {fileID: 1446261981}
   yourRadius: 10
@@ -36436,6 +36470,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1303177638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303177624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5f66f799a41b047bd94949e22a50e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Qspell: {fileID: 741713566313050837, guid: b757beb40eb8c3a4a85d6cf750441000, type: 3}
+  spellSpawnPoint: {fileID: 317497753}
+  terrainLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  offsetY: 0.7
+  mainCamera: {fileID: 1741505489}
 --- !u!4 &1303959701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3254575112387783717, guid: 0e9a345e04a27b1429a9e4dc896b5d1e,
