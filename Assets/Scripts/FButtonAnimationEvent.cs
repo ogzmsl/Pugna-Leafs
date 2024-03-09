@@ -16,7 +16,7 @@ public class FButtonAnimationEvent : MonoBehaviour
     public MouseLeftAnimationEvent mouseLeftAnimationEvent;
 
     private float currentAngle = 0f;
-    private bool isDamaging = false; // New flag to indicate if the projectile is currently damaging an enemy
+    private bool isDamaging = false; 
 
     void Update()
     {
@@ -68,20 +68,20 @@ public class FButtonAnimationEvent : MonoBehaviour
 
 
         RaycastHit hit;
-        if (Physics.Raycast(instantiatedPrefab.transform.position, fireDirection, out hit, Mathf.Infinity, enemyLayerMask) && boxCollider.isTrigger)
+        if (Physics.Raycast(instantiatedPrefab.transform.position, fireDirection, out hit, Mathf.Infinity) && boxCollider.isTrigger)
         {
             Debug.Log("Enemy detect oldu");
-            isDamaging = true; // Set flag to indicate that the projectile is currently damaging an enemy
+            isDamaging = true; 
         }
 
-        // If damage is possible and the projectile is currently damaging an enemy, deduct 50 health from the enemy
+       
         if (isDamaging)
         {
-            // Find the HealtSystem component of the hit enemy
+          
             HealtSystem enemyHealthSystem = hit.collider.GetComponent<HealtSystem>();
             if (enemyHealthSystem != null)
             {
-                enemyHealthSystem.TakeDamage(50);
+                enemyHealthSystem.TakeDamage(100);
             }
 
             // Reset the DamageOlabilir flag

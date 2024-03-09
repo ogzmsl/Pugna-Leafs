@@ -57,7 +57,7 @@ public class GolemNavMesh : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(lookAtPlayer);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
 
-            animator.SetFloat("GolemSpeed", 0.5f); //Koþma
+            animator.SetFloat("GolemSpeed", 0.5f); // Walk 
             ResetTimer();
             gorunusAcisi = 360;
             Golemagent.speed = 2f;

@@ -82,7 +82,7 @@ namespace StarterAssets
         private float _cinemachineTargetPitch;
 
         [Header("Speed Wind")]
-       public  ParticleSystem wind;
+        public ParticleSystem wind;
         private bool isWindSpeed = false;
 
 
@@ -125,7 +125,7 @@ namespace StarterAssets
         public float targetspeed;
 
 
-       public  Vector3 cameraForward;
+        public Vector3 cameraForward;
 
 
 
@@ -176,9 +176,9 @@ namespace StarterAssets
 
         public NavMeshControl nav;
 
-     
 
-        
+
+
 
 
 
@@ -186,9 +186,10 @@ namespace StarterAssets
         //private bool isJumping = false;
 
         public Transform PlayerTransform;
-        public  GoblinAttackOneAnimationEvent @event;
+        public GoblinAttackOneAnimationEvent @event;
         public ButterflyControlerNEW butterflyController;
         public ButterFlyAttack butterFlyAttack;
+        public QSpeel speel;
 
 
 
@@ -220,21 +221,21 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
-        
+
 
             butterFly = GetComponent<ButterflyController>();
             shield = GetComponent<Shield>();
             @event = FindObjectOfType<GoblinAttackOneAnimationEvent>();
-           
+
 
 
         }
-        
+
 
         private void Start()
         {
 
-       
+
 
             if (nav == null)
             {
@@ -246,17 +247,17 @@ namespace StarterAssets
 
             shield = FindObjectOfType<Shield>();
             shieldforShield = FindObjectOfType<ShieldTime>();
-          
 
-       
+
+
             if (shield != null)
             {
-                
+
                 shield.shieldInstance = GetComponent<ParticleSystem>();
             }
             else
             {
-                
+
                 Debug.LogError("Shield yok!");
             }
             _hasAnimator = TryGetComponent(out _animator);
@@ -279,7 +280,7 @@ namespace StarterAssets
 
         private void Update()
         {
-          
+
 
             _hasAnimator = TryGetComponent(out _animator);
 
@@ -294,7 +295,7 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
-        
+
 
 
         }
@@ -353,7 +354,7 @@ namespace StarterAssets
             }
             else if (TabCount % 2 == 1)
             {
-               
+
                 butterflyController.isRightClicked = true;
                 isTabing = false;
             }
@@ -380,15 +381,16 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
-            if (_input.mouseLeft && !isRange && Grounded&&!isDead&&isTabing)
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 
-             
 
-                    if (cameraForward != Vector3.zero) { 
-                
+
+                if (cameraForward != Vector3.zero)
+                {
+
                     transform.forward = cameraForward * Time.deltaTime;
                     if (DashRightConditionMet())
                     {
@@ -414,9 +416,9 @@ namespace StarterAssets
                     {
                         Debug.Log("DashBackConditionMet");
                         _animator.SetFloat(_animIDSpeed, 600);
-                    } 
-                   
-                    if (DashRightConditionMet() || DashLeftConditionMet() || DashBackConditionMet()|| DashLeftBackConditionMet()||DashRightBackConditionMet())
+                    }
+
+                    if (DashRightConditionMet() || DashLeftConditionMet() || DashBackConditionMet() || DashLeftBackConditionMet() || DashRightBackConditionMet())
                     {
                         SprintSpeed = 7;
                         _speed = 2;
@@ -429,10 +431,10 @@ namespace StarterAssets
 
 
                 }
-               // playerCameraRoot.transform.position = AimTransform.transform.position;
+                // playerCameraRoot.transform.position = AimTransform.transform.position;
 
                 _animator.SetBool("AttackOrbball", _input.mouseLeft);
-              
+
 
 
 
@@ -440,10 +442,10 @@ namespace StarterAssets
             else
             {
 
-              
+
 
                 _animator.SetBool("AttackOrbball", false);
-               // playerCameraRoot.transform.position = cmfreelook.transform.position;
+                // playerCameraRoot.transform.position = cmfreelook.transform.position;
             }
         }
 
@@ -513,7 +515,7 @@ namespace StarterAssets
             {
                 wind.Play();
             }
-            else if (!_input.sprint && wind.isPlaying||DashBackConditionMet()||DashLeftBackDiagonalConditionMet()||DashLeftConditionMet()||DashRightConditionMet())
+            else if (!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())
             {
                 wind.Stop();
             }
@@ -524,7 +526,7 @@ namespace StarterAssets
 
         #region footsttepVFX
 
- 
+
 
 
 
@@ -537,7 +539,7 @@ namespace StarterAssets
         #region HAREKET
         private void Move()
         {
-            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange)||isDead)
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
@@ -562,12 +564,12 @@ namespace StarterAssets
 
 
                         // Lerp oranı
-                        float lerpRatio = 0.1f; 
+                        float lerpRatio = 0.1f;
 
                         // Lineer interpolasyon 
                         float newSpeed = Mathf.Lerp(startSpeed, LerptargetSpeed, lerpRatio);
                         _animator.SetFloat(_animIDSpeed, newSpeed);
-                     
+
                     }
                     else if (_input.move == Vector2.zero)
                     {
@@ -588,7 +590,7 @@ namespace StarterAssets
                     float LerpTargetSpeedWalk = 100;
                     shieldforShield.isFilling = true;
 
-          
+
 
 
                     float lerpRatioWalk = 0.1f;
@@ -664,7 +666,7 @@ namespace StarterAssets
                     animationSpeed = Mathf.Lerp(1.0f, 0.5f, (normalizedTime - 0.81f) / (0.98f - 0.81f)); // Normal hızdan 21 
                 }
 
-             
+
                 // Animasyon hızı
                 _animator.speed = animationSpeed;
             }
@@ -704,7 +706,7 @@ namespace StarterAssets
                     FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     if (_hasAnimator)
                     {
-                     
+
                         _animator.SetBool(_animIDJump, true);
                     }
 
@@ -717,7 +719,7 @@ namespace StarterAssets
                 {
                     FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     _jumpTimeoutDelta -= Time.deltaTime;
-                 
+
                 }
             }
             else
@@ -765,7 +767,7 @@ namespace StarterAssets
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 _animator.SetBool("Block", true);
-              
+
 
 
 
@@ -777,13 +779,13 @@ namespace StarterAssets
                     @event.ishield = false;
                     if (shieldforShield.isFilling)
                     {
-                       
+
                         shield.ShieldInstantiate();
                         VfxEnding = false;
                         shieldforShield.isFilling = false;
                         shieldforShield.fillImage.fillAmount -= shieldforShield.decreaseSpeed * Time.deltaTime;
 
-                        if (!uzaklastirSet) 
+                        if (!uzaklastirSet)
                         {
                             nav.uzaklastır = true;
                             uzaklastirSet = true;
@@ -818,10 +820,10 @@ namespace StarterAssets
                 // Bu durumda uzaklastır'ı false yapıyoruz
                 nav.uzaklastır = false;
                 uzaklastirSet = false;
-                
-  
+
+
             }
-           
+
         }
 
 
@@ -892,7 +894,7 @@ namespace StarterAssets
                 hasLoggedJumpAngle = false;
             }
         }
-      
+
         private bool JumpConditionMet()
         {
             float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
@@ -979,7 +981,7 @@ namespace StarterAssets
         {
             if (_input.fire && !isMagicAttack && Grounded)
             {
-              
+
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 
@@ -988,7 +990,7 @@ namespace StarterAssets
                 {
                     transform.forward = cameraForward * Time.deltaTime;
                 }
-               
+
                 Debug.Log("F");
                 _animator.SetBool(_animIDMagicAttack, true);
                 isMagicAttack = true;
@@ -1052,7 +1054,7 @@ namespace StarterAssets
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
-
+                speel.InstantiateQspell();
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 
@@ -1081,6 +1083,14 @@ namespace StarterAssets
             _animator.SetBool(_animIDRange, false);
 
         }
+
+        IEnumerator waitqspell()
+        {
+            yield return new WaitForSeconds(5f);
+            speel.destroyspeelq();
+
+        }
+
 
 
         #endregion
@@ -1159,19 +1169,6 @@ namespace StarterAssets
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-            if (Grounded) Gizmos.color = transparentGreen;
-            else Gizmos.color = transparentRed;
-
-
-            Gizmos.DrawSphere(
-                new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-                GroundedRadius);
-        }
 
 
         private void InstantiateVfx()
