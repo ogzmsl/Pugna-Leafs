@@ -37,6 +37,7 @@ public class QSpeel : MonoBehaviour
     private IEnumerator WaitForAnimations()
     {
         yield return new WaitForSeconds(0.5f);
+        //
 
         Vector3 spawnPosition = spellSpawnPoint.position + new Vector3(0, -offsetY, 0); // Y ekseninde ofset uygulanmasý
         Instantiate(Qspell, spawnPosition, Quaternion.LookRotation(fireDirection));
