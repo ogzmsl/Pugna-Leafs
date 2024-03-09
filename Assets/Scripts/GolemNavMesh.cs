@@ -49,7 +49,7 @@ public class GolemNavMesh : MonoBehaviour
         if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
         {
             Golemagent.isStopped = false;
-            animator.SetInteger("GolemAttackType", 0);
+            animator.SetInteger("AttackTypeGolem", 0);
             Golemagent.destination = Player.position;
 
 
@@ -76,7 +76,7 @@ public class GolemNavMesh : MonoBehaviour
                 isRandomAttackSet = true;
             }
 
-            animator.SetInteger("GolemAttackType", fixedRandomAttack);
+            animator.SetInteger("AttackTypeGolem", 1);
 
             Debug.Log(fixedRandomAttack);
 

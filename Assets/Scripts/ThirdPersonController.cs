@@ -787,7 +787,7 @@ namespace StarterAssets
 
                         if (!uzaklastirSet)
                         {
-                            nav.uzaklastır = true;
+                            nav.uzaklastir = true;
                             uzaklastirSet = true;
                         }
                     }
@@ -803,7 +803,7 @@ namespace StarterAssets
                     butterflyController.isRightClicked = true;
 
 
-                    nav.uzaklastır = false;
+                    nav.uzaklastir = false;
                     uzaklastirSet = false;
                 }
 
@@ -817,8 +817,8 @@ namespace StarterAssets
                 _animator.SetBool("Block", false);
                 StartCoroutine(ResetShield());
 
-                // Bu durumda uzaklastır'ı false yapıyoruz
-                nav.uzaklastır = false;
+              
+                nav.uzaklastir = false;
                 uzaklastirSet = false;
 
 
