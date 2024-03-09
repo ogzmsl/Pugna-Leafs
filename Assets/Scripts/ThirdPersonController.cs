@@ -1054,7 +1054,7 @@ namespace StarterAssets
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
-                speel.InstantiateQspell();
+                speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 

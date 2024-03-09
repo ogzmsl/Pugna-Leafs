@@ -482,15 +482,12 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'B_L_Thigh'
-      : position error = 105.196968 mm\n\t'B_L_Calf' : position error = 389.644714
-      mm\n\t'B_L_Foot' : position error = 389.644592 mm\n\t'B_L_Toe0' : position
-      error = 211.195511 mm\n\t'B_R_Thigh' : position error = 105.196968 mm\n\t'B_R_Calf'
-      : position error = 389.644592 mm\n\t'B_R_Foot' : position error = 389.644623
-      mm\n\t'B_R_Toe0' : position error = 211.195572 mm\n"
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'B_Spine1' has translation animation that
+      will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 1
@@ -525,7 +522,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+      bodyMask: 01000000010000000100000000000000000000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
       - time: 0.4419742
@@ -539,7 +536,7 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Exporter
-        weight: 1
+        weight: 0
       - path: Motion
         weight: 1
       - path: Motion/B_Pelvis
@@ -645,7 +642,7 @@ ModelImporter:
       - path: Motion/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger4/B_R_Finger41/B_R_Finger42
         weight: 1
       maskType: 0
-      maskSource: {instanceID: 0}
+      maskSource: {fileID: 31900000, guid: 5024559b95901ff468f3023c53ed0ffd, type: 2}
       additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:

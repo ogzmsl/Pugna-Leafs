@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class QSpeel : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem Qspell;
+    [SerializeField] private ParticleSystem qSpell;
     [SerializeField] private Transform spellSpawnPoint;
     [SerializeField] private LayerMask terrainLayerMask;
-    [SerializeField] private float offsetY = 1f; // Y eksenindeki ofset deðeri
     public Transform mainCamera;
     private RaycastHit hitInfo;
-    Vector3 fireDirection;
 
-    public void InstantiateQspell()
+    public void InstantiateQSpell()
     {
         StartCoroutine(WaitForAnimations());
     }
@@ -24,23 +21,19 @@ public class QSpeel : MonoBehaviour
         {
             Debug.Log("Target: " + hitInfo.transform.name);
         }
-
-        fireDirection = hitInfo.point - spellSpawnPoint.position;
-        fireDirection.Normalize();
-    }
-
-    public void destroyspeelq()
-    {
-        Destroy(Qspell);
     }
 
     private IEnumerator WaitForAnimations()
     {
         yield return new WaitForSeconds(0.5f);
-        //
 
-        Vector3 spawnPosition = spellSpawnPoint.position + new Vector3(0, -offsetY, 0); // Y ekseninde ofset uygulanmasý
-        Instantiate(Qspell, spawnPosition, Quaternion.LookRotation(fireDirection));
-        Qspell.Play();
+        Vector3 spawnPosition = new Vector3(hitInfo.point.x, spellSpawnPoint.position.y-1.25f, hitInfo.point.z);
+        Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
+        qSpell.Play();
+    }
+
+    public void destroyspeelq()
+    {
+        Destroy(qSpell);
     }
 }
