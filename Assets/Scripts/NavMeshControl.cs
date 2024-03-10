@@ -31,6 +31,7 @@ public class NavMeshControl : MonoBehaviour
     public GameObject Goblin;
     Shield shield;
     public GoblinAttackOneAnimationEvent goblin;
+    [SerializeField] private HealtSystem healt;
 
 
     void Start()
@@ -41,8 +42,9 @@ public class NavMeshControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
 
+      
+    
 
         float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
 
@@ -54,7 +56,10 @@ public class NavMeshControl : MonoBehaviour
             StartCoroutine(GoblinDestroy());
         }
 
-          
+
+        if (!healt.isDamageBlood)
+        {
+
 
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
             {
@@ -114,8 +119,18 @@ public class NavMeshControl : MonoBehaviour
             {
                 animator.SetFloat("speed", 0.5f); // Walk 
 
+
                 UpdateTimer();
             }
+
+
+
+        }
+        else if (healt.isDamageBlood)
+        {
+            agent.isStopped = true;
+            animator.SetFloat("speed", 0f); //idle
+        }
         if (uzaklastir&&ShieldDistance<1.85f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;

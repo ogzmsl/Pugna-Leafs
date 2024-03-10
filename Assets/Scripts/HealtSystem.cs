@@ -14,6 +14,8 @@ public class HealtSystem : MonoBehaviour
     private Animator parentAnimator;
    public  bool isDead;
     NavMeshControl navMesh;
+    public ParticleSystem bloodGoblin;
+    public bool isDamageBlood;
 
     void Start()
     {
@@ -38,23 +40,35 @@ public class HealtSystem : MonoBehaviour
       
         healthSlider.value = currentHealth;
     }
-
     public void TakeDamage(int damageAmount)
     {
+        int previousHealth = currentHealth;
+
         currentHealth -= damageAmount;
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             parentAnimator.SetTrigger("die");
-
             navMesh.isDestroy = true;
-        
+        }
+        else if (previousHealth > currentHealth)
+        {
+       
+            parentAnimator.SetTrigger("Damage");
+            bloodGoblin.Play();
+            isDamageBlood = true;
+            StartCoroutine(waitforblood());
         }
 
         UpdateHealthUI();
     }
 
+    IEnumerator waitforblood()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isDamageBlood = false;
+    }
 
 
 }
