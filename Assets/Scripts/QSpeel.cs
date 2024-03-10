@@ -9,8 +9,6 @@ public class QSpeel : MonoBehaviour
     [SerializeField] private LayerMask terrainLayerMask;
     public Transform mainCamera;
     private RaycastHit hitInfo;
-    public GameObject character;
-    public float maxDistance = 5f; // Maksimum uzaklýk
 
     public void InstantiateQSpell()
     {
@@ -29,20 +27,9 @@ public class QSpeel : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-       
-        float distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
-
-      
-        if (distanceToCharacter <= maxDistance)
-        {
-            Vector3 spawnPosition = new Vector3(hitInfo.point.x, spellSpawnPoint.position.y - 1f, hitInfo.point.z);
-            Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
-            qSpell.Play();
-        }
-        else
-        {
-            Debug.Log("Karakterden uzaklýk 5 birimden fazla.");
-        }
+        Vector3 spawnPosition = new Vector3(hitInfo.point.x, spellSpawnPoint.position.y-1.25f, hitInfo.point.z);
+        Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
+        qSpell.Play();
     }
 
     public void destroyspeelq()
