@@ -12,6 +12,8 @@ TagManager:
   - butterflyLayer
   - Butterfly
   - Interactive
+  - Item
+  - qSpellArea
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - butterflyLayer
   - Enemy
   - groundLayer
-  - 
+  - Intrection
   - 
   - 
   - 
