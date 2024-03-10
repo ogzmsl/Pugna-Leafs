@@ -53,6 +53,7 @@ public class NavMeshControl : MonoBehaviour
 
         if (isDestroy)
         {
+        
             StartCoroutine(GoblinDestroy());
         }
 
@@ -61,7 +62,7 @@ public class NavMeshControl : MonoBehaviour
         {
 
 
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
             {
                 agent.isStopped = false;
                 animator.SetInteger("AttackType", 0);
@@ -80,7 +81,7 @@ public class NavMeshControl : MonoBehaviour
                 isAtRandomPoint = false; // Yeni random deðer 
             }
 
-            else if (mesafeOyuncu < attackDestination)
+            else if (mesafeOyuncu < attackDestination && !isDestroy)
             {
 
                 agent.isStopped = true;
@@ -105,7 +106,7 @@ public class NavMeshControl : MonoBehaviour
             }
             else
             {
-                if (!isAtRandomPoint)
+                if (!isAtRandomPoint && !isDestroy)
                 {
 
                     MoveToRandomPoint();
@@ -115,7 +116,7 @@ public class NavMeshControl : MonoBehaviour
                 }
             }
 
-            if (agent.velocity.magnitude <= idleSpeedThreshold)
+            if (agent.velocity.magnitude <= idleSpeedThreshold && !isDestroy)
             {
                 animator.SetFloat("speed", 0.5f); // Walk 
 
@@ -126,11 +127,12 @@ public class NavMeshControl : MonoBehaviour
 
 
         }
-        else if (healt.isDamageBlood)
+        else if (healt.isDamageBlood && !isDestroy)
         {
-            agent.isStopped = true;
-            animator.SetFloat("speed", 0f); //idle
+
+            StartCoroutine(GoblinWait());
         }
+       
         if (uzaklastir&&ShieldDistance<1.85f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
@@ -152,6 +154,12 @@ public class NavMeshControl : MonoBehaviour
 
     }
 
+    IEnumerator GoblinWait()
+    {
+        yield return new WaitForSeconds(0.3f);
+        agent.speed = 0f;
+        agent.isStopped = true;
+    }
 
 
 
@@ -160,6 +168,7 @@ public class NavMeshControl : MonoBehaviour
     IEnumerator GoblinDestroy()
     {
         yield return new WaitForSeconds(1.7f);
+      
         Destroy(Goblin);
         
     }
