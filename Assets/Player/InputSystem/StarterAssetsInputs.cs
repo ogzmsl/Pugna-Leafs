@@ -16,8 +16,10 @@ namespace StarterAssets
         public bool Project_Tile;
         public bool fire;
         public bool Block;
-        public bool mouseLeft; // Added for mouse left input
-        public bool Tab;//shield or ButterflyControl
+        public bool mouseLeft;
+        public bool Tab;
+        public bool Intraction; 
+
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -28,17 +30,27 @@ namespace StarterAssets
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 
-         public void TabInput(bool newTabState)
+        public void TabInput(bool newTabState)
         {
-        Tab = newTabState;
+            Tab = newTabState;
         }
 
         public void OnTab(InputValue value)
         {
-        TabInput(value.isPressed);
+            TabInput(value.isPressed);
         }
 
-         public void OrbballInput(bool newFireStateorball)
+        public void IntractionInput(bool newIntractionState)
+        {
+            Intraction = newIntractionState;
+        }
+
+        public void OnIntraction(InputValue value)
+        {
+            IntractionInput(value.isPressed);
+        }
+
+        public void OrbballInput(bool newFireStateorball)
         {
             Orbball = newFireStateorball;
         }

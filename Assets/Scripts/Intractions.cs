@@ -1,20 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Intractions : MonoBehaviour
 {
+    public float interactionDistance = 1f; 
+    public GameObject character;
+    public bool isChestIntract;
+    public GameObject IntactUý;
+    public Animator UIanimatorforIntaract;
+    public bool ispressedbuttonI;
+
+
+
+
+    private void Awake()
+    {
+        IntactUý.SetActive(false);
+    }
     void Update()
     {
-        
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
+    
+        Vector3 characterPosition = character.transform.position;
 
-       
-        if (Physics.Raycast(ray, out hit))
+     
+        GameObject[] chests = GameObject.FindGameObjectsWithTag("Chest");
+        foreach (GameObject chest in chests)
         {
-            Debug.Log("Çarptýðý obje: " + hit.collider.gameObject.name);
+            float distanceToCharacter = Vector3.Distance(characterPosition, chest.transform.position);
+
+            if (distanceToCharacter <= interactionDistance)
+            {
+               
+                IntactUý.SetActive(true);
+                UIanimatorforIntaract.SetBool("UIIntract", true);
+                DestroyIntactButton();
+                
+            }
         }
     }
+
+    private void DestroyIntactButton()
+    {
+        if (ispressedbuttonI)
+        {
+            IntactUý.SetActive(false);
+        }
+
+        
+    }
+
+
+
 }

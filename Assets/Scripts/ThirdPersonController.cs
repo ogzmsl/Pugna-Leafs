@@ -197,7 +197,7 @@ namespace StarterAssets
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
-
+        public Intractions intractions;
 
 
 
@@ -295,10 +295,27 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
-
+            Intract();
 
 
         }
+
+
+        #region Intaction
+        private void Intract()
+        {
+            if (_input.Intraction)
+            {
+                Debug.Log("Etkileşim");
+                intractions.isChestIntract = true;
+                _input.Intraction = false;
+                intractions.ispressedbuttonI = true;
+
+            }
+        }
+
+        #endregion
+
 
 
         //Die
@@ -584,7 +601,7 @@ namespace StarterAssets
                 }
                 else if (_input.move != Vector2.zero)
                 {
-                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     targetSpeed = MoveSpeed;
                     float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
                     float LerpTargetSpeedWalk = 100;

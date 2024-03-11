@@ -52,5 +52,5 @@ Material:
     - _QueueOffset: 0
     - _outline_thickness: 0.00225
     m_Colors:
-    - _Outline: {r: 0.6886792, g: 0.6334549, b: 0.6334549, a: 0}
+    - _Outline: {r: 0.49056602, g: 0.4743681, b: 0.4743681, a: 0}
   m_BuildTextureStacks: []

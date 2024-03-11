@@ -21,7 +21,7 @@ public class QSpeel : MonoBehaviour
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitInfo, Mathf.Infinity, terrainLayerMask))
         {
-            Debug.Log("Target: " + hitInfo.transform.name);
+            //Debug.Log("Target: " + hitInfo.transform.name);
         }
     }
 
