@@ -289,7 +289,7 @@ namespace StarterAssets
             Move();
             Orball();
             ProjectTile();
-            MagicAttack();
+            //MagicAttack();
             Blocked();
             Mouseleft();
             ShieldOrButterfly();
@@ -409,27 +409,27 @@ namespace StarterAssets
                     transform.forward = cameraForward * Time.deltaTime;
                     if (DashRightConditionMet())
                     {
-                        Debug.Log("DashRightConditionMet");
+                        
                         _animator.SetFloat(_animIDSpeed, 400);
                     }
                     else if (DashLeftBackConditionMet()) // Sol arkaya doğru hareket koşulunu ilk kontrol edelim
                     {
-                        Debug.Log("DashLeftBackConditionMet");
+                       
                         _animator.SetFloat(_animIDSpeed, 500);
                     }
                     else if (DashRightBackConditionMet())
                     {
-                        Debug.Log("DashRightBackConditionMet");
+                       
                         _animator.SetFloat(_animIDSpeed, 700);
                     }
                     else if (DashLeftConditionMet())
                     {
-                        Debug.Log("DashLeftConditionMet");
+                       
                         _animator.SetFloat(_animIDSpeed, 300);
                     }
                     else if (DashBackConditionMet())
                     {
-                        Debug.Log("DashBackConditionMet");
+                        
                         _animator.SetFloat(_animIDSpeed, 600);
                     }
 

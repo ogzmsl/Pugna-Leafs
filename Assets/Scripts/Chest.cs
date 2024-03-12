@@ -17,7 +17,7 @@ public class Chest : MonoBehaviour
     {
         if (intract&&intractions.distanceObjct)
         {
-            animator.SetBool("ChestOpen", true);
+           animator.SetBool("ChestOpen", true);
         }
        
     }

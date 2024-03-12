@@ -20,7 +20,7 @@ public class FButtonAnimationEvent : MonoBehaviour
 
     void Update()
     {
-        // orbitSpeed'i zamanla arttýr
+        
         if (orbitSpeed < maxOrbitSpeed)
         {
             orbitSpeed += orbitSpeedIncreaseRate * Time.deltaTime;
@@ -34,7 +34,7 @@ public class FButtonAnimationEvent : MonoBehaviour
         Vector3 fireDirection = mouseLeftAnimationEvent.hitInfo.point - characterTransform.position;
         fireDirection.Normalize();
 
-        Vector3 orbitPosition = characterTransform.position + Quaternion.Euler(0, currentAngle, 0) * (Vector3.right * orbitRadius);
+        Vector3 orbitPosition = characterTransform.position;
 
         GameObject instantiatedPrefab = Instantiate(prefabToInstantiate, orbitPosition, Quaternion.identity);
 
@@ -60,7 +60,7 @@ public class FButtonAnimationEvent : MonoBehaviour
 
 
         BoxCollider boxCollider = instantiatedPrefab.AddComponent<BoxCollider>();
-        boxCollider.size = new Vector3(1f, 1f, 1f);
+        boxCollider.size = new Vector3(2f, 2f, 2f);
         boxCollider.isTrigger = true;
 
 

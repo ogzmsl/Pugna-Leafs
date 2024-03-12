@@ -529,7 +529,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.4419742
-        functionName: InstantiatePrefabEvent
+        functionName: InstantiatePrefabEventForFBUTTON
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

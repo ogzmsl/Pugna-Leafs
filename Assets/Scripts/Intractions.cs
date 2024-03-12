@@ -11,8 +11,7 @@ public class Intractions : MonoBehaviour
     public bool ispressedbuttonI;
     public bool distanceObjct;
 
-    public Chest chestref;
- 
+    private Chest currentChest;
 
     private void Awake()
     {
@@ -24,27 +23,30 @@ public class Intractions : MonoBehaviour
         Vector3 characterPosition = character.transform.position;
         GameObject[] chests = GameObject.FindGameObjectsWithTag("Chest");
 
-        foreach (GameObject chest in chests)
+        foreach (GameObject chestGO in chests)
         {
-            float distanceToCharacter = Vector3.Distance(characterPosition, chest.transform.position);
+            Chest chest = chestGO.GetComponent<Chest>(); // Chest bileþenini al
 
-          
-            if (distanceToCharacter <= interactionDistance)
+            if (chest != null)
             {
-                distanceObjct = true;
-                IntactUI.SetActive(true);
-                UIanimatorforIntaract.SetBool("UIIntract", true);
-                ispressedbuttonI = true;
-            
-     
-            }
-            else if (distanceToCharacter >= interactionDistance)
-            {
+                float distanceToCharacter = Vector3.Distance(characterPosition, chestGO.transform.position);
 
-                chestref.intract = false;
-                distanceObjct = false;
-                IntactUI.SetActive(false);
+                if (distanceToCharacter <= interactionDistance)
+                {
+                    distanceObjct = true;
+                    IntactUI.SetActive(true);
+                    UIanimatorforIntaract.SetBool("UIIntract", true);
+                    ispressedbuttonI = true;
+                    currentChest = chest; 
+                }
+                else
+                {
+                    distanceObjct = false;
+                    IntactUI.SetActive(false);
+                }
             }
         }
+
+     
     }
 }
