@@ -190,14 +190,14 @@ namespace StarterAssets
         public ButterflyControlerNEW butterflyController;
         public ButterFlyAttack butterFlyAttack;
         public QSpeel speel;
-
+        public Intractions intactfirst;
 
 
         //FootstepControl
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
-        public Intractions intractions;
+        public Chest chest;
 
 
 
@@ -306,11 +306,9 @@ namespace StarterAssets
         {
             if (_input.Intraction)
             {
-                Debug.Log("Etkileşim");
-                intractions.isChestIntract = true;
+                chest.intract = true;
                 _input.Intraction = false;
-                intractions.ispressedbuttonI = true;
-
+            
             }
         }
 

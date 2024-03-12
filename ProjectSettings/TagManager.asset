@@ -15,6 +15,7 @@ TagManager:
   - Item
   - qSpellArea
   - Chest
+  - Chest1
   layers:
   - Default
   - TransparentFX
