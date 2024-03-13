@@ -16,6 +16,8 @@ public class HealtSystem : MonoBehaviour
     NavMeshControl navMesh;
     public ParticleSystem bloodGoblin;
     public bool isDamageBlood;
+    public GameObject enemy;
+    [SerializeField] private float deadanimationtime;
 
     void Start()
     {
@@ -49,15 +51,17 @@ public class HealtSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            parentAnimator.SetTrigger("die");
-            navMesh.isDestroy = true;
+        parentAnimator.SetTrigger("die");
+            StartCoroutine(waitforDead());
+
+        //navMesh.isDestroy = true;
         }
         else if (previousHealth > currentHealth)
         {
        
-            parentAnimator.SetTrigger("Damage");
-            bloodGoblin.Play();
-            isDamageBlood = true;
+           // parentAnimator.SetTrigger("Damage");
+         //   bloodGoblin.Play();
+           // isDamageBlood = true;
             StartCoroutine(waitforblood());
         }
 
@@ -68,6 +72,10 @@ public class HealtSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         isDamageBlood = false;
+    } IEnumerator waitforDead()
+    {
+        yield return new WaitForSeconds(deadanimationtime);
+        Destroy(enemy);
     }
 
 

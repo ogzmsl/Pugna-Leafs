@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class QSpeel : MonoBehaviour
 {
     [SerializeField] private ParticleSystem qSpell;
@@ -11,6 +11,7 @@ public class QSpeel : MonoBehaviour
     private RaycastHit hitInfo;
     public GameObject character;
     public float maxDistance = 5f; // Maksimum uzaklýk
+    public float sphereRadius = 5f; // Küre yarýçapý
 
     public void InstantiateQSpell()
     {
@@ -21,7 +22,7 @@ public class QSpeel : MonoBehaviour
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitInfo, Mathf.Infinity, terrainLayerMask))
         {
-            //Debug.Log("Target: " + hitInfo.transform.name);
+            // Debug.Log("Target: " + hitInfo.transform.name);
         }
     }
 
@@ -29,20 +30,31 @@ public class QSpeel : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-       
         float distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
 
-      
+
         if (distanceToCharacter <= maxDistance)
         {
+
             Vector3 spawnPosition = new Vector3(hitInfo.point.x, spellSpawnPoint.position.y - 1f, hitInfo.point.z);
             Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
             qSpell.Play();
         }
-        else
-        {
-            Debug.Log("Karakterden uzaklýk 5 birimden fazla.");
-        }
+            Collider[] colliders = Physics.OverlapSphere(hitInfo.point, sphereRadius);
+
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("Enemy"))
+                {
+                    Debug.Log("Temas");
+                
+                    yield break;
+
+                }
+               
+            }
+    
+        
     }
 
     public void destroyspeelq()

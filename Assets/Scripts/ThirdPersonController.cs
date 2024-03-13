@@ -198,7 +198,7 @@ namespace StarterAssets
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
         public Chest chest;
-
+        
 
 
         private bool IsCurrentDeviceMouse
@@ -754,6 +754,7 @@ namespace StarterAssets
                     {
                         FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                         _animator.SetBool(_animIDFreeFall, true);
+                       
                     }
                 }
 
@@ -766,9 +767,14 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
+
+         
         }
 
         #endregion
+
+
+     
 
         //Sağ Tık
         #region BLOKLAMA
@@ -1051,7 +1057,7 @@ namespace StarterAssets
 
         private IEnumerator ResetProjectTile()
         {
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(2f);
 
             isProjectTileAttack = false;
             _animator.SetBool(_animIDProjectTile, false);

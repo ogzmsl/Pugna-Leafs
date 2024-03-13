@@ -16,6 +16,8 @@ TagManager:
   - qSpellArea
   - Chest
   - Chest1
+  - Platform
+  - LeftPlatform
   layers:
   - Default
   - TransparentFX
