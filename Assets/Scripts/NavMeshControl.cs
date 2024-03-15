@@ -1,11 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using StarterAssets;
 
 public class NavMeshControl : MonoBehaviour
 {
 
-    public bool uzaklastir;
+    
+
+    public  bool uzaklastir;
+
    public  NavMeshAgent agent;
     public Transform Player;
     public Animator animator;
@@ -31,7 +35,7 @@ public class NavMeshControl : MonoBehaviour
     public GameObject Goblin;
     Shield shield;
     public GoblinAttackOneAnimationEvent goblin;
-    [SerializeField] private HealtSystem healt;
+    public HealtSystem healt;
 
 
     void Start()
@@ -86,6 +90,7 @@ public class NavMeshControl : MonoBehaviour
 
                 agent.isStopped = true;
 
+
                 if (!isRandomAttackSet)
                 {
                     // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
@@ -93,9 +98,9 @@ public class NavMeshControl : MonoBehaviour
                     isRandomAttackSet = true;
                 }
 
-                animator.SetInteger("AttackType", fixedRandomAttack);
+                animator.SetInteger("AttackType", 1);
 
-                Debug.Log(fixedRandomAttack);
+         
 
                 if (fixedRandomAttack == 1)
                 {
@@ -140,14 +145,8 @@ public class NavMeshControl : MonoBehaviour
             targetPosition.y = transform.position.y;
             animator.SetInteger("AttackType", 1);
           
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
-            
-          
-
-            if (transform.position == targetPosition)
-            {
-                uzaklastir = false;
-            }
+           transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
+           
         }
 
 

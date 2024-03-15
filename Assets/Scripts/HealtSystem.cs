@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class HealtSystem : MonoBehaviour
 {
     [SerializeField]
     private Slider healthSlider;  // Slider referansý
 
-    private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 100;
     public int currentHealth;
     private Animator parentAnimator;
    public  bool isDead;
@@ -18,6 +20,9 @@ public class HealtSystem : MonoBehaviour
     public bool isDamageBlood;
     public GameObject enemy;
     [SerializeField] private float deadanimationtime;
+
+
+
 
     void Start()
     {
@@ -51,7 +56,7 @@ public class HealtSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-        parentAnimator.SetTrigger("die");
+          parentAnimator.SetTrigger("die");
             StartCoroutine(waitforDead());
 
         //navMesh.isDestroy = true;
@@ -59,10 +64,11 @@ public class HealtSystem : MonoBehaviour
         else if (previousHealth > currentHealth)
         {
        
-           // parentAnimator.SetTrigger("Damage");
+          parentAnimator.SetTrigger("Damage");
          //   bloodGoblin.Play();
            // isDamageBlood = true;
             StartCoroutine(waitforblood());
+       
         }
 
         UpdateHealthUI();
@@ -72,6 +78,7 @@ public class HealtSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         isDamageBlood = false;
+  
     } IEnumerator waitforDead()
     {
         yield return new WaitForSeconds(deadanimationtime);

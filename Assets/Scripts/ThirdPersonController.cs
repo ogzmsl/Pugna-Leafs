@@ -175,6 +175,13 @@ namespace StarterAssets
         public PlayerHealt healt;
 
         public NavMeshControl nav;
+        public NavMeshControlTwo navtwo;
+        public NavMeshControlthree navthree;
+        public NavMeshControlFour navFour;
+        public NavMeshControlFive navFive;
+
+
+        public bool isDamaged;
 
 
 
@@ -785,30 +792,39 @@ namespace StarterAssets
         {
             if (_input.Block && Grounded && !isDead)
             {
+
+                healt.isdamage = false;
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 _animator.SetBool("Block", true);
 
 
-
+                
 
 
                 //Shield
                 if (isTabing && shieldforShield.isFilling)
                 {
 
+
                     @event.ishield = false;
                     if (shieldforShield.isFilling)
                     {
 
+
                         shield.ShieldInstantiate();
+                        navFive.uzaklastirfive = true;
+                        navFour.uzaklasyirFour = true;
+                        navthree.uzaklasyirthree = true;
+                        navtwo.uzaklasyirtwo = true;
+                        nav.uzaklastir = true;
                         VfxEnding = false;
                         shieldforShield.isFilling = false;
                         shieldforShield.fillImage.fillAmount -= shieldforShield.decreaseSpeed * Time.deltaTime;
 
                         if (!uzaklastirSet)
                         {
-                            nav.uzaklastir = true;
+                          
                             uzaklastirSet = true;
                         }
                     }
@@ -823,9 +839,12 @@ namespace StarterAssets
 
                     butterflyController.isRightClicked = true;
 
-
+                    navFive.uzaklastirfive = false;
+                    navFour.uzaklasyirFour = false;
+                    navtwo.uzaklasyirtwo = false;
                     nav.uzaklastir = false;
                     uzaklastirSet = false;
+                    navthree.uzaklasyirthree = false;
                 }
 
                 // shieldforShield.shieldTimer += Time.deltaTime / shieldforShield.totalTime;
@@ -838,9 +857,14 @@ namespace StarterAssets
                 _animator.SetBool("Block", false);
                 StartCoroutine(ResetShield());
 
-              
+                navFive.uzaklastirfive = false;
+                navFour.uzaklasyirFour = false;
+                navtwo.uzaklasyirtwo = false;
                 nav.uzaklastir = false;
                 uzaklastirSet = false;
+                navthree.uzaklasyirthree = false;
+
+                healt.isdamage = true;
 
 
             }
@@ -852,7 +876,9 @@ namespace StarterAssets
 
         IEnumerator ResetShield()
         {
+           
             yield return new WaitForSeconds(0.01f);
+            isBlocked = false;
             shield.ShieldDestroy();
         }
 
@@ -860,7 +886,8 @@ namespace StarterAssets
         private IEnumerator ResetBlock()
         {
             yield return new WaitForSeconds(1.5f);
-            isBlocked = false;
+          
+        
             _animator.SetBool(_animIDBlock, false);
 
         }

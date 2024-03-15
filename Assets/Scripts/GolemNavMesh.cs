@@ -65,7 +65,7 @@ public class GolemNavMesh : MonoBehaviour
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination && !isDestroy)
             {
                 agent.isStopped = false;
-                animator.SetInteger("AttackType", 0);
+                animator.SetInteger("AttackTypeGolem", 0);
                 agent.destination = Player.position;
 
 
@@ -93,7 +93,7 @@ public class GolemNavMesh : MonoBehaviour
                     isRandomAttackSet = true;
                 }
 
-                animator.SetInteger("AttackTypeGolem", fixedRandomAttack);
+                animator.SetInteger("AttackTypeGolem", 1);
 
                 Debug.Log(fixedRandomAttack);
 
@@ -198,7 +198,7 @@ public class GolemNavMesh : MonoBehaviour
         yield return new WaitUntil(() => agent.remainingDistance < 0.1f);
 
 
-        animator.SetFloat("GolemSpeed", 0f);
+        animator.SetFloat("GolemSpeed", 0.5f);
         isAtRandomPoint = false;
     }
 

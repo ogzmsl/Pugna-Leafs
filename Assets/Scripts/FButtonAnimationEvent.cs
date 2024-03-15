@@ -81,7 +81,7 @@ public class FButtonAnimationEvent : MonoBehaviour
             HealtSystem enemyHealthSystem = hit.collider.GetComponent<HealtSystem>();
             if (enemyHealthSystem != null)
             {
-                enemyHealthSystem.TakeDamage(100);
+                enemyHealthSystem.TakeDamage(30);
             }
 
             // Reset the DamageOlabilir flag
