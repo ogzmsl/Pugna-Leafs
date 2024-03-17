@@ -42,7 +42,14 @@ public class NavMeshControlFive : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (healt.isDamageBlood || isDestroy)
+        {
 
+            StartCoroutine(GoblinWait());
+
+
+
+        }
 
 
         float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
@@ -125,12 +132,6 @@ public class NavMeshControlFive : MonoBehaviour
 
 
         }
-        else if (healt.isDamageBlood && !isDestroy)
-        {
-
-            StartCoroutine(GoblinWait());
-        }
-
         if (uzaklastirfive && ShieldDistance < 1.85f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
@@ -148,9 +149,9 @@ public class NavMeshControlFive : MonoBehaviour
 
     IEnumerator GoblinWait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         agent.speed = 0f;
-        agent.isStopped = true;
+        agent.isStopped = false;
     }
 
 

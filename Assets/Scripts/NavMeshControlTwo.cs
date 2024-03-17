@@ -44,6 +44,14 @@ public class NavMeshControlTwo : MonoBehaviour
     {
 
 
+        if (healt.isDamageBlood || isDestroy)
+        {
+
+            StartCoroutine(GoblinWait());
+
+
+
+        }
 
 
         float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
@@ -126,11 +134,7 @@ public class NavMeshControlTwo : MonoBehaviour
 
 
         }
-        else if (healt.isDamageBlood && !isDestroy)
-        {
 
-            StartCoroutine(GoblinWait());
-        }
 
         if (uzaklasyirtwo && ShieldDistance < 1.85f)
         {
@@ -149,9 +153,9 @@ public class NavMeshControlTwo : MonoBehaviour
 
     IEnumerator GoblinWait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         agent.speed = 0f;
-        agent.isStopped = true;
+        agent.isStopped = false;
     }
 
 
@@ -161,7 +165,7 @@ public class NavMeshControlTwo : MonoBehaviour
     IEnumerator GoblinDestroy()
     {
         yield return new WaitForSeconds(1.7f);
-
+      
         Destroy(Goblin);
 
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-  Animator animator;
+    Animator animator;
     public bool intract;
     public Intractions intractions;
 

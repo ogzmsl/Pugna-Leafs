@@ -17,10 +17,11 @@ public class HealtSystem : MonoBehaviour
    public  bool isDead;
     NavMeshControl navMesh;
     public ParticleSystem bloodGoblin;
-    public bool isDamageBlood;
+    public bool isDamageBlood = false;
     public GameObject enemy;
     [SerializeField] private float deadanimationtime;
 
+    
 
 
 
@@ -36,11 +37,14 @@ public class HealtSystem : MonoBehaviour
 
     private void Update()
     {
-       
+        if (isDamageBlood == true)
+        {
+            StartCoroutine(ResetWait());
+        }
            
         healthSlider.transform.LookAt(Camera.main.transform.position, Vector3.up);
-        
-        
+
+       
     }
     void UpdateHealthUI()
     {
@@ -65,21 +69,29 @@ public class HealtSystem : MonoBehaviour
         {
        
           parentAnimator.SetTrigger("Damage");
-         //   bloodGoblin.Play();
-           // isDamageBlood = true;
-            StartCoroutine(waitforblood());
-       
+            //   bloodGoblin.Play();
+
+
+            isDamageBlood = true;
+
+
         }
 
         UpdateHealthUI();
     }
 
-    IEnumerator waitforblood()
+
+    IEnumerator ResetWait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1.5f);
         isDamageBlood = false;
-  
-    } IEnumerator waitforDead()
+    }
+
+
+
+    
+    
+    IEnumerator waitforDead()
     {
         yield return new WaitForSeconds(deadanimationtime);
         Destroy(enemy);

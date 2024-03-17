@@ -184,10 +184,12 @@ namespace StarterAssets
         public bool isDamaged;
 
 
+        //stamina
+        public Stamina stamina;
 
 
-
-
+        //Camera Shake
+        public CameraShake shake;
 
 
         //private bool isJumping = false;
@@ -198,6 +200,7 @@ namespace StarterAssets
         public ButterFlyAttack butterFlyAttack;
         public QSpeel speel;
         public Intractions intactfirst;
+        public ChestTwo chestTwo;
 
 
         //FootstepControl
@@ -303,6 +306,9 @@ namespace StarterAssets
             WindSpeed();
             Die();
             Intract();
+            StaminaControl();
+            shakeInput();
+
 
 
         }
@@ -314,9 +320,19 @@ namespace StarterAssets
             if (_input.Intraction)
             {
                 chest.intract = true;
-                _input.Intraction = false;
-            
+             
+
             }
+
+            if (_input.Intraction && chestTwo.isChestTwo)
+            {
+                chestTwo.Intract = true;
+
+            }
+
+
+
+            _input.Intraction = false;
         }
 
         #endregion
@@ -533,11 +549,11 @@ namespace StarterAssets
 
         private void WindSpeed()
         {
-            if (_input.sprint && !wind.isPlaying)
+            if (_input.sprint && !wind.isPlaying&&stamina.Staminabool&&_input.move!=Vector2.zero)
             {
                 wind.Play();
             }
-            else if (!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())
+            else if ((!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())||!stamina.isSprint)
             {
                 wind.Stop();
             }
@@ -550,6 +566,29 @@ namespace StarterAssets
 
 
 
+
+
+        #endregion
+
+
+        #region Stanina
+
+        private void StaminaControl()
+        {
+            if (_input.sprint)
+            {
+                stamina.Staminabool = true;
+
+            }
+            else
+            {
+                stamina.Staminabool = false;
+            }
+                    
+                    
+
+
+        }
 
 
         #endregion
@@ -572,8 +611,11 @@ namespace StarterAssets
             {
                 float targetSpeed = 0.0f;
 
-                if (_input.sprint)
+                if (_input.sprint&&stamina.isSprint)
                 {
+
+
+
                     FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = SprintSpeed;
                     // Sprint olduğunda _animIDSpeed değerini 120 olarak ayarla
@@ -962,7 +1004,7 @@ namespace StarterAssets
         #endregion
 
 
-        //Kendi yazdığım 2D freeform directional animator
+        //yazdığım 2D freeform directional animator
         #region Manuel olarak yapılmış 2D freeform directional
         private bool DashBackConditionMet()
         {
@@ -1101,6 +1143,7 @@ namespace StarterAssets
         {
             if (_input.Orbball && !isAttacking && Grounded)
             {
+              
 
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
@@ -1125,7 +1168,6 @@ namespace StarterAssets
             yield return new WaitForSeconds(1.25f);
 
 
-
             isAttacking = false;
 
             _animator.SetBool(_animIDRange, false);
@@ -1143,8 +1185,27 @@ namespace StarterAssets
 
         #endregion
 
+        //Camera Shake
+
+        private void shakeInput()
+        {
+            if (_input.Orbball)
+            {
+                StartCoroutine(waitq());
+            }
+            else if (_input.Orbball == false)
+            {
+                shake.ShakeCamera(0, 1);
+            }
+
+        }
 
 
+        IEnumerator waitq()
+        {
+            yield return new WaitForSeconds(0.7f);
+            shake.ShakeCamera(2.5f, 2);
+        }
 
 
 

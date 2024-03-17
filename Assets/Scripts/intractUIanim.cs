@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class intractUIanim : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    public ChestTwo chestTwo;
+    public Animator animator;
+  
     // Update is called once per frame
     void Update()
     {
-        
+        if (chestTwo.isChestTwo)
+        {
+           
+            animator.SetBool("UIIntractTwo", true);
+        }
     }
 }

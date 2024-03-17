@@ -16,7 +16,7 @@ public class FButtonAnimationEvent : MonoBehaviour
     public MouseLeftAnimationEvent mouseLeftAnimationEvent;
 
     private float currentAngle = 0f;
-    private bool isDamaging = false; 
+    public bool isDamaging = false;
 
     void Update()
     {
@@ -83,6 +83,7 @@ public class FButtonAnimationEvent : MonoBehaviour
             {
                 enemyHealthSystem.TakeDamage(30);
             }
+          
 
             // Reset the DamageOlabilir flag
             isDamaging = false;

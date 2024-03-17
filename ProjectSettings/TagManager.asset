@@ -18,6 +18,7 @@ TagManager:
   - Chest1
   - Platform
   - LeftPlatform
+  - ChestOne
   layers:
   - Default
   - TransparentFX

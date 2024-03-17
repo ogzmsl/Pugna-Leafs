@@ -43,6 +43,14 @@ public class NavMeshControlthree : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (healt.isDamageBlood || isDestroy)
+        {
+
+            StartCoroutine(GoblinWait());
+
+
+
+        }
 
 
 
@@ -126,12 +134,7 @@ public class NavMeshControlthree : MonoBehaviour
 
 
         }
-        else if (healt.isDamageBlood && !isDestroy)
-        {
-
-            StartCoroutine(GoblinWait());
-        }
-
+ 
         if (uzaklasyirthree && ShieldDistance < 1.85f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
@@ -149,9 +152,9 @@ public class NavMeshControlthree : MonoBehaviour
 
     IEnumerator GoblinWait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         agent.speed = 0f;
-        agent.isStopped = true;
+        agent.isStopped = false;
     }
 
 

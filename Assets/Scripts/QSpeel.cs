@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 public class QSpeel : MonoBehaviour
 {
     [SerializeField] private ParticleSystem qSpell;
@@ -11,7 +12,10 @@ public class QSpeel : MonoBehaviour
     private RaycastHit hitInfo;
     public GameObject character;
     public float maxDistance = 5f; // Maksimum uzaklýk
-    public float sphereRadius = 5f; // Küre yarýçapý
+    public float minDistance = 1f; // Minimum uzaklýk
+
+    public float sphereRadius = 2f; // Küre yarýçapý
+    [SerializeField] private float damageAmount = 50f;
 
     public void InstantiateQSpell()
     {
@@ -33,32 +37,43 @@ public class QSpeel : MonoBehaviour
         float distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
 
 
-        if (distanceToCharacter <= maxDistance)
+        if (distanceToCharacter >= minDistance&&distanceToCharacter <= maxDistance)
         {
 
             Vector3 spawnPosition = new Vector3(hitInfo.point.x, spellSpawnPoint.position.y - 1f, hitInfo.point.z);
             Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
             qSpell.Play();
+           
+         
+            // Bekleme süresi sonrasýnda düþmanlarý say
+            yield return new WaitForSeconds(0.5f);
+
+       
+            
+            DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);
         }
-            Collider[] colliders = Physics.OverlapSphere(hitInfo.point, sphereRadius);
+    }
 
-            foreach (Collider col in colliders)
+    private void DamageEnemiesNear(Vector3 center, float radius, float damageAmount)
+    {
+        Collider[] colliders = Physics.OverlapSphere(center, radius);
+
+        foreach (Collider col in colliders)
+        {
+            if (col.CompareTag("Enemy"))
             {
-                if (col.CompareTag("Enemy"))
+                HealtSystem enemyHealth = col.GetComponentInChildren<HealtSystem>();
+                if (enemyHealth != null)
                 {
-                    Debug.Log("Temas");
-                
-                    yield break;
-
+                    enemyHealth.TakeDamage((int)damageAmount);
                 }
-               
             }
-    
-        
+        }
     }
 
     public void destroyspeelq()
     {
+
         Destroy(qSpell);
     }
 }

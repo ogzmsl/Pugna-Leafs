@@ -38,6 +38,8 @@ public class NavMeshControl : MonoBehaviour
     public HealtSystem healt;
 
 
+
+
     void Start()
     {
         shield = FindObjectOfType<Shield>();
@@ -47,8 +49,15 @@ public class NavMeshControl : MonoBehaviour
     private void FixedUpdate()
     {
 
-      
-    
+        if (healt.isDamageBlood||isDestroy)
+        {
+
+        StartCoroutine(GoblinWait());
+          
+
+
+        }
+
 
         float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
 
@@ -132,11 +141,7 @@ public class NavMeshControl : MonoBehaviour
 
 
         }
-        else if (healt.isDamageBlood && !isDestroy)
-        {
-
-            StartCoroutine(GoblinWait());
-        }
+      
        
         if (uzaklastir&&ShieldDistance<1.85f)
         {
@@ -155,9 +160,9 @@ public class NavMeshControl : MonoBehaviour
 
     IEnumerator GoblinWait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         agent.speed = 0f;
-        agent.isStopped = true;
+        agent.isStopped = false;
     }
 
 
