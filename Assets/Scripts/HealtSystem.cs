@@ -37,7 +37,7 @@ public class HealtSystem : MonoBehaviour
 
     private void Update()
     {
-        if (isDamageBlood == true)
+        if (isDamageBlood == true||currentHealth<=0)
         {
             StartCoroutine(ResetWait());
         }
