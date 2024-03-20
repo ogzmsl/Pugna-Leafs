@@ -114,6 +114,7 @@ namespace StarterAssets
         private int _animIDRange;
         private int _animIDashRight;
         private int _animIDdie;
+        private int _animIDHorizpntalDamage;
 
 
 
@@ -201,6 +202,7 @@ namespace StarterAssets
         public QSpeel speel;
         public Intractions intactfirst;
         public ChestTwo chestTwo;
+        public EButtonEffect ESpell;
 
 
         //FootstepControl
@@ -208,7 +210,10 @@ namespace StarterAssets
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
         public Chest chest;
-        
+
+        public lightControl light;
+        [SerializeField] private AudioSource LightSound;
+
 
 
         private bool IsCurrentDeviceMouse
@@ -308,8 +313,11 @@ namespace StarterAssets
             Intract();
             StaminaControl();
             shakeInput();
-
-
+            LightController();
+            if (light.azalıyor)
+            {
+                StartCoroutine(waitLightCam());
+            }
 
         }
 
@@ -360,6 +368,55 @@ namespace StarterAssets
         #endregion
 
 
+
+        //LightController
+
+        IEnumerator waitLightCam()
+        {
+            yield return new WaitForSeconds(1.5f);
+
+            shake.ShakeCamera(2f,5);
+        }
+
+
+
+        private void LightController()
+        {
+            if (_input.Project_Tile)
+            {
+                Debug.Log("IŞIK AZALIYOR");
+                light.azalıyor = true;
+
+
+                StartCoroutine(waitvoice());
+                StartCoroutine(waitUp());
+            }
+          
+
+            IEnumerator waitUp()
+            {
+                yield return new WaitForSeconds(2);
+                light.artıyor = true;
+                light.azalıyor = false;
+                StartCoroutine(waitdown());
+                _input.Project_Tile = false;
+            }
+
+            IEnumerator waitdown()
+            {
+                yield return new WaitForSeconds(2);
+                light.artıyor = false;
+
+            }
+
+            IEnumerator waitvoice()
+            {
+                yield return new WaitForSeconds(0.35f);
+                LightSound.Play();
+            }
+
+
+        }
 
 
 
@@ -1109,7 +1166,7 @@ namespace StarterAssets
 
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
-
+                ESpell.InstantiateESpell();
 
                 if (cameraForward != Vector3.zero)
                 {
@@ -1120,6 +1177,7 @@ namespace StarterAssets
                 _animator.SetBool(_animIDProjectTile, true);
                 isProjectTileAttack = true;
                 StartCoroutine(ResetProjectTile());
+                
             }
         }
 
@@ -1130,8 +1188,15 @@ namespace StarterAssets
 
             isProjectTileAttack = false;
             _animator.SetBool(_animIDProjectTile, false);
+            _input.Project_Tile = false;
+ 
+        }
 
-
+        IEnumerator waitqEspell()
+        {
+            yield return new WaitForSeconds(5f);
+            ESpell.destroyspeelE();
+            
         }
         #endregion
 

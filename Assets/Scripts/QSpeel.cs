@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class QSpeel : MonoBehaviour
 {
@@ -37,19 +36,25 @@ public class QSpeel : MonoBehaviour
         float distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
 
 
-        if (distanceToCharacter >= minDistance&&distanceToCharacter <= maxDistance)
+        if (distanceToCharacter >= minDistance && distanceToCharacter <= maxDistance)
         {
 
-            Vector3 spawnPosition = new Vector3(hitInfo.point.x, spellSpawnPoint.position.y - 1f, hitInfo.point.z);
+            Vector3 spawnPosition = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+            RaycastHit groundHit;
+            if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
+            {
+                spawnPosition.y = groundHit.point.y; // Zeminin yüksekliðiyle eþleþtir.
+            }
+
             Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
             qSpell.Play();
-           
-         
+
+
             // Bekleme süresi sonrasýnda düþmanlarý say
             yield return new WaitForSeconds(0.5f);
 
-       
-            
+
+
             DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);
         }
     }
@@ -73,7 +78,6 @@ public class QSpeel : MonoBehaviour
 
     public void destroyspeelq()
     {
-
         Destroy(qSpell);
     }
 }

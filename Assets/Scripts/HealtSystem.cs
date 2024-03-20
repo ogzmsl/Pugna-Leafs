@@ -11,8 +11,8 @@ public class HealtSystem : MonoBehaviour
     [SerializeField]
     private Slider healthSlider;  // Slider referansý
 
-    [SerializeField] private int maxHealth = 100;
-    public int currentHealth;
+    [SerializeField] private float maxHealth = 100;
+    public float currentHealth;
     private Animator parentAnimator;
    public  bool isDead;
     NavMeshControl navMesh;
@@ -53,7 +53,7 @@ public class HealtSystem : MonoBehaviour
     }
     public void TakeDamage(int damageAmount)
     {
-        int previousHealth = currentHealth;
+        float previousHealth = currentHealth;
 
         currentHealth -= damageAmount;
 
