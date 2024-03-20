@@ -15,6 +15,7 @@ public class EButtonEffect : MonoBehaviour
 
     public float sphereRadius = 2f; // Küre yarýçapý
     [SerializeField] private float damageAmount = 100f;
+    public bool isInstantiate = false;
 
 
     public void InstantiateESpell()
@@ -48,7 +49,7 @@ public class EButtonEffect : MonoBehaviour
 
             Instantiate(eSpell, spawnPosition, Quaternion.Euler(-90, 0, 0));
             eSpell.Play();
-
+            isInstantiate = true;
             yield return new WaitForSeconds(1.2f);
 
             DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);

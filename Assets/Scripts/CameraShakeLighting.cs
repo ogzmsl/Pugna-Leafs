@@ -26,7 +26,7 @@ public class CameraShakeLighting : MonoBehaviour
 
     void StopShake()
     {
-        CancelInvoke("Shake"); // Sarsýntýyý durdur
-        transform.localPosition = originalPosition; // Kamerayý orijinal konumuna geri getir
+        CancelInvoke("Shake"); 
+        transform.localPosition = originalPosition; 
     }
 }

@@ -1261,6 +1261,7 @@ namespace StarterAssets
             else if (_input.Orbball == false)
             {
                 shake.ShakeCamera(0, 1);
+               
             }
 
         }
