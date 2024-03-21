@@ -17,6 +17,7 @@ public class QSpeel : MonoBehaviour
 
     [SerializeField] private float damageAmount = 50f;
 
+
     public void InstantiateQSpell()
     {
         StartCoroutine(WaitForAnimations());
@@ -44,7 +45,7 @@ public class QSpeel : MonoBehaviour
             RaycastHit groundHit;
             if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
             {
-                spawnPosition.y = groundHit.point.y; // Zeminin yüksekliðiyle eþleþtir.
+                spawnPosition.y = groundHit.point.y; 
             }
 
             Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
@@ -58,6 +59,7 @@ public class QSpeel : MonoBehaviour
 
             DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);
         }
+     
     }
 
     private void DamageEnemiesNear(Vector3 center, float radius, float damageAmount)

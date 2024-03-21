@@ -189,8 +189,6 @@ namespace StarterAssets
         public Stamina stamina;
 
 
-        //Camera Shake
-        public CameraShake shake;
 
 
         //private bool isJumping = false;
@@ -212,7 +210,7 @@ namespace StarterAssets
         public Chest chest;
 
         public lightControl light;
-        [SerializeField] private AudioSource LightSound;
+        public EButtonEffect effectE;
 
 
 
@@ -312,12 +310,7 @@ namespace StarterAssets
             Die();
             Intract();
             StaminaControl();
-            shakeInput();
-            LightController();
-            if (light.azalıyor)
-            {
-                StartCoroutine(waitLightCam());
-            }
+
 
         }
 
@@ -373,9 +366,14 @@ namespace StarterAssets
 
         IEnumerator waitLightCam()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3f);
+            if (effectE.isRange)
+            {
+             
 
-            shake.ShakeCamera(2f,5);
+            }
+
+           
         }
 
 
@@ -385,10 +383,10 @@ namespace StarterAssets
             if (_input.Project_Tile)
             {
                 Debug.Log("IŞIK AZALIYOR");
+
                 light.azalıyor = true;
 
 
-                StartCoroutine(waitvoice());
                 StartCoroutine(waitUp());
             }
           
@@ -396,24 +394,13 @@ namespace StarterAssets
             IEnumerator waitUp()
             {
                 yield return new WaitForSeconds(2);
-                light.artıyor = true;
-                light.azalıyor = false;
-                StartCoroutine(waitdown());
+                effectE.isRange = false;
                 _input.Project_Tile = false;
             }
 
-            IEnumerator waitdown()
-            {
-                yield return new WaitForSeconds(2);
-                light.artıyor = false;
 
-            }
-
-            IEnumerator waitvoice()
-            {
-                yield return new WaitForSeconds(0.35f);
-                LightSound.Play();
-            }
+       
+     
 
 
         }
@@ -1161,13 +1148,13 @@ namespace StarterAssets
         #region ProjectTile
         private void ProjectTile()
         {
-            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
             {
 
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 ESpell.InstantiateESpell();
-
+                ESpell.Lightimage.fillAmount = 0;
                 if (cameraForward != Vector3.zero)
                 {
                     transform.forward = cameraForward * Time.deltaTime;
@@ -1185,10 +1172,11 @@ namespace StarterAssets
         private IEnumerator ResetProjectTile()
         {
             yield return new WaitForSeconds(2f);
-
+            ESpell.isWaitLight = true;
             isProjectTileAttack = false;
             _animator.SetBool(_animIDProjectTile, false);
             _input.Project_Tile = false;
+            light.azalıyor = true;
  
         }
 
@@ -1250,28 +1238,7 @@ namespace StarterAssets
 
         #endregion
 
-        //Camera Shake
 
-        private void shakeInput()
-        {
-            if (_input.Orbball)
-            {
-                StartCoroutine(waitq());
-            }
-            else if (_input.Orbball == false)
-            {
-                shake.ShakeCamera(0, 1);
-               
-            }
-
-        }
-
-
-        IEnumerator waitq()
-        {
-            yield return new WaitForSeconds(0.7f);
-            shake.ShakeCamera(2.5f, 2);
-        }
 
 
 
