@@ -1,32 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraShakeLighting : MonoBehaviour
 {
-    public float shakeMagnitude = 0.1f; // Sarsýntý miktarý
 
-    private Vector3 originalPosition;
+    private CinemachineVirtualCamera cinemachineVirtualCamera;
+    private float ShakeTimer;
+    public QSpeel speel;
 
-    void Start()
+
+    private void Awake()
     {
-        originalPosition = transform.localPosition;
-        Invoke("StopShake", 5f); // Sarsýntýyý 5 saniye sonra durdur
-        InvokeRepeating("Shake", 0, 0.1f); // 0.1 saniye aralýklarla sarsýntý yap
+        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+
     }
 
-    void Shake()
+    public void ShakeCamera(float intensity, float time)
     {
-        float offsetX = Random.Range(-shakeMagnitude, shakeMagnitude);
-        float offsetY = Random.Range(-shakeMagnitude, shakeMagnitude);
-        float offsetZ = Random.Range(-shakeMagnitude, shakeMagnitude);
 
-        transform.localPosition = originalPosition + new Vector3(offsetX, offsetY, offsetZ);
+        if (speel.sarsizni)
+        {
+
+
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
+          cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+
+        }
     }
 
-    void StopShake()
+    private void Update()
     {
-        CancelInvoke("Shake"); // Sarsýntýyý durdur
-        transform.localPosition = originalPosition; // Kamerayý orijinal konumuna geri getir
+        if (ShakeTimer > 0)
+        {
+            ShakeTimer -= Time.deltaTime;
+            if (ShakeTimer <= 0)
+            {
+
+                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
+                    cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+            }
+        }
+
     }
 }

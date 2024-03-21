@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using StarterAssets;
 
 public class QSpeel : MonoBehaviour
 {
@@ -16,18 +18,33 @@ public class QSpeel : MonoBehaviour
     public float sphereRadius = 2f; // Küre yarýçapý
     [SerializeField] private float damageAmount = 50f;
 
+    public Image QSpellImage;
+    public ThirdPersonController controller;
+
+    public bool isQWait=true;
+
+    public bool sarsizni;
+    
+    
 
     public void InstantiateQSpell()
     {
         StartCoroutine(WaitForAnimations());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitInfo, Mathf.Infinity, terrainLayerMask))
         {
             // Debug.Log("Target: " + hitInfo.transform.name);
+        }  
+            QSpellImage.fillAmount += Time.fixedDeltaTime / 20;
+        if (QSpellImage.fillAmount >= 0.98f)
+        {
+            QSpellImage.fillAmount = 1;
         }
+     
+      
     }
 
     private IEnumerator WaitForAnimations()
@@ -39,7 +56,7 @@ public class QSpeel : MonoBehaviour
 
         if (distanceToCharacter >= minDistance && distanceToCharacter <= maxDistance)
         {
-
+            
             Vector3 spawnPosition = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
             RaycastHit groundHit;
             if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
@@ -51,13 +68,13 @@ public class QSpeel : MonoBehaviour
             qSpell.Play();
 
 
-            // Bekleme süresi sonrasýnda düþmanlarý say
             yield return new WaitForSeconds(0.5f);
 
 
 
             DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);
         }
+
      
     }
 

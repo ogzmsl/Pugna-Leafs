@@ -9783,7 +9783,6 @@ GameObject:
   - component: {fileID: 697337079}
   - component: {fileID: 697337078}
   - component: {fileID: 697337077}
-  - component: {fileID: 697337080}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -9901,23 +9900,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &697337080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697337075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0169c341bdb4474488445e6d7bc6f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  light: {fileID: 697337079}
-  "azal\u0131yor": 0
-  "art\u0131sOrani": 0.4
-  audioLight: {fileID: 1318506302}
-  effect: {fileID: 1303177641}
 --- !u!1 &701557275
 GameObject:
   m_ObjectHideFlags: 0
@@ -13316,6 +13298,8 @@ GameObject:
   m_Component:
   - component: {fileID: 972028732}
   - component: {fileID: 972028733}
+  - component: {fileID: 972028734}
+  - component: {fileID: 972028735}
   m_Layer: 0
   m_Name: PlayerFollowCam
   m_TagString: Untagged
@@ -13377,6 +13361,32 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2109373157}
+--- !u!114 &972028734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972028731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69554c35860f2846a70aa911f9ba4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speel: {fileID: 1303177638}
+--- !u!114 &972028735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972028731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74719b0910023814bb250ae9c69a66a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShking: 0
 --- !u!1 &978532765
 GameObject:
   m_ObjectHideFlags: 0
@@ -13407,7 +13417,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 877c538ed56cfaa419eb897df7b5ae90, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.279
+  m_Volume: 0.066
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -19213,6 +19223,7 @@ GameObject:
   - component: {fileID: 1303177640}
   - component: {fileID: 1303177641}
   - component: {fileID: 1303177642}
+  - component: {fileID: 1303177643}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -19552,7 +19563,7 @@ MonoBehaviour:
   isDamaged: 0
   stamina: {fileID: 136771000}
   PlayerTransform: {fileID: 734929822}
-  event: {fileID: 0}
+  event: {fileID: 708781056}
   butterflyController: {fileID: 1303177626}
   butterFlyAttack: {fileID: 331825380}
   speel: {fileID: 1303177638}
@@ -19562,8 +19573,12 @@ MonoBehaviour:
   FootVfxLeft: {fileID: 1615449594}
   FootVfxRight: {fileID: 1446261981}
   chest: {fileID: 1986407628}
-  light: {fileID: 697337080}
   effectE: {fileID: 1303177641}
+  LightContoller: 0
+  QController: 0
+  speelQ: {fileID: 1303177638}
+  lighting: {fileID: 972028734}
+  cam: {fileID: 972028735}
   yourRadius: 10
   yourForce: 150
 --- !u!143 &1303177636
@@ -19627,6 +19642,10 @@ MonoBehaviour:
   minDistance: 5
   sphereRadius: 5
   damageAmount: 25
+  QSpellImage: {fileID: 1840437897}
+  controller: {fileID: 1303177635}
+  isQWait: 0
+  sarsizni: 0
 --- !u!114 &1303177639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19701,6 +19720,22 @@ MonoBehaviour:
   enemyTag: Enemy
   detectionDistance: 5
   isDetect: 0
+--- !u!114 &1303177643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303177624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7aee4580c27b2443a59caaec20f6483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DirectionalLight: {fileID: 697337079}
+  controller: {fileID: 1303177635}
+  virtualCamera: {fileID: 972028733}
+  lightChangeSpeed: 0.2
 --- !u!1 &1305914313
 GameObject:
   m_ObjectHideFlags: 0
@@ -41553,7 +41588,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -45008,8 +45043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 1}
-  m_AmplitudeGain: 2
-  m_FrequencyGain: 0.3
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: -451.37964, y: 684.7062, z: 648.0488}
 --- !u!114 &2109373160
 MonoBehaviour:

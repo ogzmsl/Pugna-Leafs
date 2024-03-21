@@ -209,11 +209,16 @@ namespace StarterAssets
         [SerializeField] private ParticleSystem FootVfxRight;
         public Chest chest;
 
-        public lightControl light;
+        
         public EButtonEffect effectE;
 
+        public bool LightContoller;
 
+        public bool QController;
+        public QSpeel speelQ;
+        public CameraShakeLighting lighting;
 
+        public CamShake cam;
         private bool IsCurrentDeviceMouse
         {
             get
@@ -312,6 +317,7 @@ namespace StarterAssets
             StaminaControl();
 
 
+
         }
 
 
@@ -359,52 +365,6 @@ namespace StarterAssets
 
 
         #endregion
-
-
-
-        //LightController
-
-        IEnumerator waitLightCam()
-        {
-            yield return new WaitForSeconds(3f);
-            if (effectE.isRange)
-            {
-             
-
-            }
-
-           
-        }
-
-
-
-        private void LightController()
-        {
-            if (_input.Project_Tile)
-            {
-                Debug.Log("IŞIK AZALIYOR");
-
-                light.azalıyor = true;
-
-
-                StartCoroutine(waitUp());
-            }
-          
-
-            IEnumerator waitUp()
-            {
-                yield return new WaitForSeconds(2);
-                effectE.isRange = false;
-                _input.Project_Tile = false;
-            }
-
-
-       
-     
-
-
-        }
-
 
 
 
@@ -1150,7 +1110,7 @@ namespace StarterAssets
         {
             if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
             {
-
+                LightContoller = true;
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 ESpell.InstantiateESpell();
@@ -1164,6 +1124,7 @@ namespace StarterAssets
                 _animator.SetBool(_animIDProjectTile, true);
                 isProjectTileAttack = true;
                 StartCoroutine(ResetProjectTile());
+                StartCoroutine(LİghtBoolResetTime());
                 
             }
         }
@@ -1176,8 +1137,15 @@ namespace StarterAssets
             isProjectTileAttack = false;
             _animator.SetBool(_animIDProjectTile, false);
             _input.Project_Tile = false;
-            light.azalıyor = true;
+           
  
+        }
+
+
+        private IEnumerator LİghtBoolResetTime()
+        {
+            yield return new WaitForSeconds(5);
+            LightContoller = false;
         }
 
         IEnumerator waitqEspell()
@@ -1194,15 +1162,14 @@ namespace StarterAssets
 
         private void Orball()
         {
-            if (_input.Orbball && !isAttacking && Grounded)
+            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
             {
-              
-
+                
+                speel.QSpellImage.fillAmount = 0;
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
-
-
+                cam.isShking = true;
                 if (cameraForward != Vector3.zero)
                 {
                     transform.forward = cameraForward * Time.deltaTime;
@@ -1213,13 +1180,23 @@ namespace StarterAssets
                 isAttacking = true;
 
                 StartCoroutine(ResetAttackFlag());
+                StartCoroutine(ResetFlag());
             }
         }
         private IEnumerator ResetAttackFlag()
         {
 
             yield return new WaitForSeconds(1.25f);
+            cam.isShking = false;
 
+
+        }  
+        
+        private IEnumerator ResetFlag()
+        {
+
+            yield return new WaitForSeconds(0.1f);
+            cam.isShking = false;
 
             isAttacking = false;
 
