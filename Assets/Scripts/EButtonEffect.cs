@@ -16,6 +16,7 @@ public class EButtonEffect : MonoBehaviour
 
     public float sphereRadius = 2f; // Küre yarýçapý
     [SerializeField] private float damageAmount = 100f;
+<<<<<<< HEAD
 
     public bool isRange;
 
@@ -29,6 +30,8 @@ public class EButtonEffect : MonoBehaviour
     {
         isWaitLight = true;
     }
+=======
+>>>>>>> parent of 3ee2e86 (sars)
 
 
     public void InstantiateESpell()
@@ -90,7 +93,11 @@ public class EButtonEffect : MonoBehaviour
 
             Instantiate(eSpell, spawnPosition, Quaternion.Euler(-90, 0, 0));
             eSpell.Play();
+<<<<<<< HEAD
             isRange = true;
+=======
+
+>>>>>>> parent of 3ee2e86 (sars)
             yield return new WaitForSeconds(1.2f);
 
             DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);

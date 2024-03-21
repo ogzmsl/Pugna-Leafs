@@ -14,7 +14,6 @@ public class QSpeel : MonoBehaviour
     public float minDistance = 1f; // Minimum uzaklýk
 
     public float sphereRadius = 2f; // Küre yarýçapý
-
     [SerializeField] private float damageAmount = 50f;
 
 
@@ -51,7 +50,7 @@ public class QSpeel : MonoBehaviour
             Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
             qSpell.Play();
 
-           
+
             // Bekleme süresi sonrasýnda düþmanlarý say
             yield return new WaitForSeconds(0.5f);
 
