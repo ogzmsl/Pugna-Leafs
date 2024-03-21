@@ -1239,28 +1239,9 @@ namespace StarterAssets
         #endregion
 
 
-<<<<<<< HEAD
-=======
-        private void shakeInput()
-        {
-            if (_input.Orbball)
-            {
-                StartCoroutine(waitq());
-            }
-            else if (_input.Orbball == false)
-            {
-                shake.ShakeCamera(0, 1);
-            }
-
-        }
 
 
-        IEnumerator waitq()
-        {
-            yield return new WaitForSeconds(0.7f);
-            shake.ShakeCamera(2.5f, 2);
-        }
->>>>>>> parent of 3ee2e86 (sars)
+     
 
 
 
