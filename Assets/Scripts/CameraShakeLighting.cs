@@ -22,13 +22,14 @@ public class CameraShakeLighting : MonoBehaviour
 
         if (speel.sarsizni)
         {
-
-
+            Debug.Log("sars");
             CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
           cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
 
+
         }
+
     }
 
     private void Update()

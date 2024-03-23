@@ -34,20 +34,7 @@ public class MegaBookControl : MonoBehaviour
 
 	void Update()
 	{
-		if ( Input.GetKeyDown(KeyCode.Escape) )
-			ShowGui = !ShowGui;
-
-		if ( Input.GetKeyDown(KeyCode.RightArrow) )
-			book.NextPage();
-
-		if ( Input.GetKeyDown(KeyCode.LeftArrow) )
-			book.PrevPage();
-
-		//if ( Input.GetKeyDown(KeyCode.D) )
-		//{
-			//StartCoroutine(book.DownloadTexture("file:///d:/fraps/morph.jpg", (int)page, true));
-			//Debug.Log("downloading");
-		//}
+	
 	}
 
 	void DoWindow(int windowID)

@@ -19,6 +19,8 @@ TagManager:
   - Platform
   - LeftPlatform
   - ChestOne
+  - 2D
+  - Collectible
   layers:
   - Default
   - TransparentFX

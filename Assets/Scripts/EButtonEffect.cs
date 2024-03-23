@@ -14,15 +14,14 @@ public class EButtonEffect : MonoBehaviour
     public float maxDistance = 5f; // Maksimum uzaklýk
     public float minDistance = 1f; // Minimum uzaklýk
 
+
+
+    [SerializeField] private AudioSource audioLight;
     public float sphereRadius = 2f; // Küre yarýçapý
     [SerializeField] private float damageAmount = 100f;
 
-
     public bool isRange;
-
-
     public bool isWaitLight;
-   
     public bool isSpellingLight;
     public Image Lightimage;
 
@@ -30,8 +29,6 @@ public class EButtonEffect : MonoBehaviour
     {
         isWaitLight = true;
     }
-
-
 
     public void InstantiateESpell()
     {
@@ -47,31 +44,20 @@ public class EButtonEffect : MonoBehaviour
 
         if (isWaitLight)
         {
-
-            Lightimage.fillAmount += Time.fixedDeltaTime/30;
-
+            Lightimage.fillAmount += Time.fixedDeltaTime / 30;
+            
         }
 
         ResetTimer();
-
-
-
     }
-
 
     private void ResetTimer()
     {
-        if (Lightimage.fillAmount>=1)
+        if (Lightimage.fillAmount >= 1)
         {
             isWaitLight = false;
-
         }
-       
     }
-
-
-
-
 
     private IEnumerator WaitForAnimations()
     {
@@ -79,10 +65,9 @@ public class EButtonEffect : MonoBehaviour
 
         float distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
 
-
         if (distanceToCharacter >= minDistance && distanceToCharacter <= maxDistance)
         {
-           
+         
             Vector3 spawnPosition = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
             RaycastHit groundHit;
             if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
@@ -91,10 +76,12 @@ public class EButtonEffect : MonoBehaviour
             }
 
             Instantiate(eSpell, spawnPosition, Quaternion.Euler(-90, 0, 0));
+            StartCoroutine(LightSound());
             eSpell.Play();
 
             isRange = true;
 
+            yield return new WaitForSeconds(1.5f); // Bekleme süresi ekledik.
 
             DamageEnemiesNear(hitInfo.point, sphereRadius, damageAmount);
         }
@@ -102,7 +89,6 @@ public class EButtonEffect : MonoBehaviour
         {
             isRange = false;
         }
-     
     }
 
     private void DamageEnemiesNear(Vector3 center, float radius, float damageAmount)
@@ -128,4 +114,11 @@ public class EButtonEffect : MonoBehaviour
     {
         Destroy(eSpell);
     }
+    private IEnumerator LightSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        audioLight.Play();
+
+    }
+
 }

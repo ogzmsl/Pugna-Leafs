@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -88,8 +89,8 @@ namespace StarterAssets
 
 
         // player
-        private float _speed;
-        private float _animationBlend;
+        public float _speed;
+        public float _animationBlend;
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
         public float _verticalVelocity;
@@ -146,7 +147,7 @@ namespace StarterAssets
 #endif
         private Animator _animator;
         private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        public StarterAssetsInputs _input;
         private GameObject _mainCamera;
         private ProjectTile tile;
         ButterflyController butterFly;
@@ -207,6 +208,7 @@ namespace StarterAssets
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
+        [SerializeField] private ParticleSystem IdleVfx;
         public Chest chest;
 
         
@@ -219,6 +221,15 @@ namespace StarterAssets
         public CameraShakeLighting lighting;
 
         public CamShake cam;
+        private float timerIdle;
+        private bool resetIdlevfx;
+
+
+
+  
+        
+
+        
         private bool IsCurrentDeviceMouse
         {
             get
@@ -252,8 +263,8 @@ namespace StarterAssets
 
         private void Start()
         {
-
-
+            IdleVfx.gameObject.SetActive(false);
+      
 
             if (nav == null)
             {
@@ -315,10 +326,36 @@ namespace StarterAssets
             Die();
             Intract();
             StaminaControl();
-
+            idleVfxControl();
 
 
         }
+
+
+     private void idleVfxControl()
+        {
+            if (_speed==0)
+            {
+                timerIdle += Time.deltaTime;
+                if (timerIdle > 30&&!resetIdlevfx)
+                {
+                    IdleVfx.gameObject.SetActive(true);
+                    IdleVfx.Play();
+                    resetIdlevfx = true;
+                }
+                
+            }
+            else if (_speed!=0)
+            {
+                timerIdle = 0;
+                IdleVfx.gameObject.SetActive(false);
+                resetIdlevfx = false;
+            }
+        }
+
+
+
+
 
 
         #region Intaction
@@ -610,14 +647,15 @@ namespace StarterAssets
                 _animationBlend = 0.0f;
                 shieldforShield.isFilling = true;
 
+
             }
             else
             {
+               
                 float targetSpeed = 0.0f;
 
                 if (_input.sprint&&stamina.isSprint)
                 {
-
 
 
                     FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
@@ -641,6 +679,7 @@ namespace StarterAssets
                     }
                     else if (_input.move == Vector2.zero)
                     {
+                      
                         float finishSpeed = _animator.GetFloat(_animIDSpeed);
                         float LerpFinishSprintToIdle = 0;
                         float LerfRadio = 0.1f;
@@ -652,7 +691,8 @@ namespace StarterAssets
                 }
                 else if (_input.move != Vector2.zero)
                 {
-                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
+                   
+               FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     targetSpeed = MoveSpeed;
                     float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
                     float LerpTargetSpeedWalk = 100;
@@ -669,6 +709,7 @@ namespace StarterAssets
                 }
                 else if (_input.move == Vector2.zero)
                 {
+                 
                     float finishSpeed = _animator.GetFloat(_animIDSpeed);
                     float LerpFinishSprintToIdle = 0;
                     float LerfRadio = 0.1f;
@@ -681,6 +722,7 @@ namespace StarterAssets
 
                 if (_input.move == Vector2.zero)
                 {
+              
                     targetSpeed = 0.0f;
                     shieldforShield.isFilling = true;
                 }
@@ -1110,7 +1152,9 @@ namespace StarterAssets
         {
             if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
             {
+         
                 LightContoller = true;
+              
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 ESpell.InstantiateESpell();
@@ -1125,7 +1169,23 @@ namespace StarterAssets
                 isProjectTileAttack = true;
                 StartCoroutine(ResetProjectTile());
                 StartCoroutine(LİghtBoolResetTime());
+                StartCoroutine(waitEspell());
                 
+            }
+      
+        }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+           
+            if (other.CompareTag("2D"))
+            {
+              
+                Destroy(other.gameObject);
+
+              
+                Debug.Log("Collectible collected!");
             }
         }
 
@@ -1148,11 +1208,12 @@ namespace StarterAssets
             LightContoller = false;
         }
 
-        IEnumerator waitqEspell()
+        IEnumerator waitEspell()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(7f);
             ESpell.destroyspeelE();
-            
+    
+
         }
         #endregion
 
@@ -1166,6 +1227,7 @@ namespace StarterAssets
             {
                 
                 speel.QSpellImage.fillAmount = 0;
+              
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -1181,6 +1243,7 @@ namespace StarterAssets
 
                 StartCoroutine(ResetAttackFlag());
                 StartCoroutine(ResetFlag());
+                StartCoroutine(waitqspell());
             }
         }
         private IEnumerator ResetAttackFlag()
@@ -1208,6 +1271,7 @@ namespace StarterAssets
         {
             yield return new WaitForSeconds(5f);
             speel.destroyspeelq();
+
 
         }
 

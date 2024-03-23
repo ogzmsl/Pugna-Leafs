@@ -24,7 +24,8 @@ public class QSpeel : MonoBehaviour
     public bool isQWait=true;
 
     public bool sarsizni;
-    
+
+
     
 
     public void InstantiateQSpell()
@@ -56,7 +57,7 @@ public class QSpeel : MonoBehaviour
 
         if (distanceToCharacter >= minDistance && distanceToCharacter <= maxDistance)
         {
-            
+      
             Vector3 spawnPosition = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
             RaycastHit groundHit;
             if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))

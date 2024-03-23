@@ -146,7 +146,7 @@ AnimatorStateMachine:
     m_Position: {x: -160, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5173582729685741693}
-    m_Position: {x: -410, y: -330, z: 0}
+    m_Position: {x: -100, y: -370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8408559843454197883}
     m_Position: {x: 480, y: -120, z: 0}
@@ -909,7 +909,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: Hit
     m_Type: 4

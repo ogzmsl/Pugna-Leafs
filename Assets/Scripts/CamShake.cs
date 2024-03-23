@@ -10,6 +10,7 @@ public class CamShake : MonoBehaviour
     private float ShakeTime = 0.08f;
 
 
+
     private float timer;
 
     public bool isShking;
@@ -36,6 +37,7 @@ public class CamShake : MonoBehaviour
         perlin.m_AmplitudeGain =ShakeInstentity;
         perlin.m_FrequencyGain = 1;
         timer = ShakeTime;
+  
     
     }
 
