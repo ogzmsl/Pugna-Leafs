@@ -18,6 +18,7 @@ public class lightControl : MonoBehaviour
 
     public EButtonEffect effect;
 
+
     void Update()
     {
         if (azalýyor)
@@ -33,7 +34,7 @@ public class lightControl : MonoBehaviour
         }
         else
         {
-            if (light.intensity < 1.7f)
+            if (light.intensity < 2.3f)
             {
                 light.intensity += artýsOrani * Time.deltaTime;
             }

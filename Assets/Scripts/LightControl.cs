@@ -29,7 +29,7 @@ public class LightControl : MonoBehaviour
             DirectionalLight.intensity -= Time.deltaTime * lightChangeSpeed;
             Invoke("StartCameraShake", 1.5f);
         }
-        else if (DirectionalLight.intensity >= 0.2f && DirectionalLight.intensity <= 1.7f)
+        else if (DirectionalLight.intensity >= 0.2f && DirectionalLight.intensity <= 2.1f)
         {
             DirectionalLight.intensity += Time.deltaTime * lightChangeSpeed;
         }

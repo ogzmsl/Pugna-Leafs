@@ -9786,7 +9786,7 @@ GameObject:
   - component: {fileID: 5710629524178148132}
   m_Layer: 0
   m_Name: Florescence
-  m_TagString: Untagged
+  m_TagString: leaf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9817,7 +9817,7 @@ ParticleSystem:
   m_GameObject: {fileID: 5710629524178148315}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 1
+  simulationSpeed: 3
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0

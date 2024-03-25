@@ -39,7 +39,7 @@ public class QSpeel : MonoBehaviour
         {
             // Debug.Log("Target: " + hitInfo.transform.name);
         }  
-            QSpellImage.fillAmount += Time.fixedDeltaTime / 20;
+            QSpellImage.fillAmount += Time.fixedDeltaTime / 40;
         if (QSpellImage.fillAmount >= 0.98f)
         {
             QSpellImage.fillAmount = 1;
@@ -96,8 +96,5 @@ public class QSpeel : MonoBehaviour
         }
     }
 
-    public void destroyspeelq()
-    {
-        Destroy(qSpell);
-    }
+   
 }

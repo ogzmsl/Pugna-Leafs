@@ -33,7 +33,7 @@ public class NavMeshControlFour : MonoBehaviour
     public GoblinAttackOneAnimationEvent goblin;
     public HealtSystem healt;
 
-
+    public FButtonEffectDistance effectDistance;
     void Start()
     {
         shield = FindObjectOfType<Shield>();
@@ -144,6 +144,15 @@ public class NavMeshControlFour : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
 
+        }
+        if (effectDistance.isDistanceFButton && ShieldDistance < 7f)
+        {
+            Vector3 directionToPlayer = (transform.position - Player.position).normalized;
+            Vector3 targetPosition = transform.position + directionToPlayer * 3f;
+            targetPosition.y = transform.position.y;
+            animator.SetFloat("speed", 0f);//idle
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed * 6);
         }
 
 

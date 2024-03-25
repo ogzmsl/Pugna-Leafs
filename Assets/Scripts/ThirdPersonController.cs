@@ -224,7 +224,9 @@ namespace StarterAssets
         private float timerIdle;
         private bool resetIdlevfx;
 
+        public FButtonEffectDistance effectDistance;
 
+        public EnemyDetection detection;
 
   
         
@@ -318,7 +320,7 @@ namespace StarterAssets
             Move();
             Orball();
             ProjectTile();
-            //MagicAttack();
+            MagicAttack();
             Blocked();
             Mouseleft();
             ShieldOrButterfly();
@@ -512,7 +514,12 @@ namespace StarterAssets
                 }
                 // playerCameraRoot.transform.position = AimTransform.transform.position;
 
-                _animator.SetBool("AttackOrbball", _input.mouseLeft);
+
+              
+                
+                    _animator.SetBool("AttackOrbball", _input.mouseLeft);
+               
+             
 
 
 
@@ -526,6 +533,7 @@ namespace StarterAssets
                 _animator.SetBool("AttackOrbball", false);
                 // playerCameraRoot.transform.position = cmfreelook.transform.position;
             }
+            
         }
 
         private IEnumerator WaitForMouseRelease()
@@ -1118,6 +1126,8 @@ namespace StarterAssets
             if (_input.fire && !isMagicAttack && Grounded)
             {
 
+                StartCoroutine(instantiatewait());
+
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 
@@ -1144,6 +1154,14 @@ namespace StarterAssets
         }
 
 
+        private IEnumerator instantiatewait()
+        {
+            yield return new WaitForSeconds(1.2f);
+            effectDistance.InstantiateFbuttonparticle();
+            _input.fire = false;
+
+        }
+
         #endregion
 
         //E
@@ -1169,7 +1187,7 @@ namespace StarterAssets
                 isProjectTileAttack = true;
                 StartCoroutine(ResetProjectTile());
                 StartCoroutine(LİghtBoolResetTime());
-                StartCoroutine(waitEspell());
+
                 
             }
       
@@ -1208,13 +1226,7 @@ namespace StarterAssets
             LightContoller = false;
         }
 
-        IEnumerator waitEspell()
-        {
-            yield return new WaitForSeconds(7f);
-            ESpell.destroyspeelE();
-    
-
-        }
+  
         #endregion
 
         //Q
@@ -1230,6 +1242,8 @@ namespace StarterAssets
               
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
+
+                _animator.SetBool(_animIDRange, true);
                 cameraForward.y = 0.0f;
                 cam.isShking = true;
                 if (cameraForward != Vector3.zero)
@@ -1238,18 +1252,17 @@ namespace StarterAssets
                 }
                 Debug.Log("Q");
 
-                _animator.SetBool(_animIDRange, true);
                 isAttacking = true;
 
                 StartCoroutine(ResetAttackFlag());
                 StartCoroutine(ResetFlag());
-                StartCoroutine(waitqspell());
+           
             }
         }
         private IEnumerator ResetAttackFlag()
         {
 
-            yield return new WaitForSeconds(1.25f);
+            yield return new WaitForSeconds(1.2f);
             cam.isShking = false;
 
 
@@ -1264,14 +1277,6 @@ namespace StarterAssets
             isAttacking = false;
 
             _animator.SetBool(_animIDRange, false);
-
-        }
-
-        IEnumerator waitqspell()
-        {
-            yield return new WaitForSeconds(5f);
-            speel.destroyspeelq();
-
 
         }
 

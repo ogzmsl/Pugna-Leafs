@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Labs/Ahmet_Lab.unity
     guid: cb0d29e0d1166124cb15734d1a855cee
   - enabled: 1
+    path: Assets/Scenes/Labs/Book.unity
+    guid: afe37d203e8ee4e4482d68147ba0d26f
+  - enabled: 1
     path: Assets/Scenes/Labs/Final_Lab_Tapinak/final_Lab.unity
     guid: 0a78e8dd1f7ae314fa23bbfe1560eef9
   m_configObjects:

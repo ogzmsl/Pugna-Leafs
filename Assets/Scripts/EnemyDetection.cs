@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class EnemyDetection : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemyDetection : MonoBehaviour
     private Transform player;
 
     public bool isDetect;
+    public ThirdPersonController controller;
 
     private void Start()
     {
@@ -34,6 +36,7 @@ public class EnemyDetection : MonoBehaviour
             }
             else if (distance >= detectionDistance)
             {
+              
                 isDetect = false;
             }
         }

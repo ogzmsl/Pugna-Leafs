@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class MegaBookControl : MonoBehaviour
@@ -21,12 +22,13 @@ public class MegaBookControl : MonoBehaviour
 	public float			topspace	= 30.0f;
 	public GUISkin			skin;
 	public MegaBookBuilder	book;
-	public Vector2			guipos		= Vector2.zero;
-	public Vector2			guisize1	= Vector2.zero;
+	public Vector2 guipos = new Vector2(100, 100); 
+	public Vector2 guisize1 = new Vector2(200, 100); // GUI'nin boyutunu belirler (width, height)
 	static public float		mousesensi	= 1.0f;
 	public bool				ShowGui		= false;
 	static public bool		mouseover	= false;
 	float					lastscreenheight = 0.0f;
+	public Button nextButton;
 
 	void Start()
 	{
@@ -34,9 +36,7 @@ public class MegaBookControl : MonoBehaviour
 
 	void Update()
 	{
-	
 	}
-
 	void DoWindow(int windowID)
 	{
 		ShowGUI();
@@ -51,6 +51,7 @@ public class MegaBookControl : MonoBehaviour
 	public void NextPage()
 	{
 		book.NextPage();
+		
 	}
 
 	public void PrevPage()
@@ -75,27 +76,32 @@ public class MegaBookControl : MonoBehaviour
 		GUI.color = col;
 
 		GUI.skin = skin;
-		GUILayout.BeginArea(new Rect(Screen.width - guipos.x, Screen.height - guipos.y, guisize1.x, guisize1.y));
+		GUILayout.BeginArea(new Rect(Screen.width - guipos.x-10050, Screen.height - guipos.y-1000, guisize1.x, guisize1.y));
 
 		GUILayout.BeginHorizontal();
 
 		GUILayout.BeginVertical();
 		if ( book )
 		{
-			GUILayout.Label("Page " + book.page);
-			GUI.color = col;
-			book.page = GUILayout.HorizontalSlider(book.page, book.MinPageVal(), book.MaxPageVal(), GUILayout.Width(400), GUILayout.Height(30));
+		//	GUILayout.Label("Page " + book.page);
+		//	GUI.color = col;
+			//book.page = GUILayout.HorizontalSlider(book.page, book.MinPageVal(), book.MaxPageVal(), GUILayout.Width(400), GUILayout.Height(30));
 
 			GUILayout.EndVertical();
 
-			if ( GUILayout.Button("Prev", GUILayout.Width(100)) )
+			if ( GUILayout.Button("Prev", GUILayout.Width(100)))
+            
 				book.PrevPage();
+			
+
+			
+
 
 			if ( GUILayout.Button("Next", GUILayout.Width(100)) )
 				book.NextPage();
 		}
 
-		ShowGui = GUILayout.Toggle(ShowGui, "Options");
+		//ShowGui = GUILayout.Toggle(ShowGui, "Options");
 
 		GUILayout.EndHorizontal();
 		GUILayout.EndArea();
@@ -135,7 +141,7 @@ public class MegaBookControl : MonoBehaviour
 				book.Turn_CCenterChange(book.Turn_CCenter);
 
 			if ( Slider("Max Angle", ref book.Turn_maxAngle, -180.0f, 180.0f) )
-				book.Turn_maxAngleChange(book.Turn_maxAngle);
+				book.Turn_maxAngleChange(book.Turn_maxAngle); 
 
 			if ( Slider("Min Angle", ref book.Turn_minAngle, -270.0f, 90.0f) )
 				book.Turn_minAngleChange(book.Turn_minAngle);

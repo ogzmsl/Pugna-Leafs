@@ -44,7 +44,7 @@ public class EButtonEffect : MonoBehaviour
 
         if (isWaitLight)
         {
-            Lightimage.fillAmount += Time.fixedDeltaTime / 30;
+            Lightimage.fillAmount += Time.fixedDeltaTime / 70;
             
         }
 
@@ -110,10 +110,6 @@ public class EButtonEffect : MonoBehaviour
         }
     }
 
-    public void destroyspeelE()
-    {
-        Destroy(eSpell);
-    }
     private IEnumerator LightSound()
     {
         yield return new WaitForSeconds(0.8f);

@@ -99,7 +99,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 8f77fdec4c3d2c64fa764fe53c93b944,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 33de92843a73cbb429b41044a0092582,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -634,11 +634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &29670221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5774,6 +5774,7 @@ Transform:
   - {fileID: 630334852}
   - {fileID: 979372071}
   - {fileID: 1210818624}
+  - {fileID: 1476912775}
   m_Father: {fileID: 867202692}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10460,17 +10461,17 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.8889838, b: 0.7688679, a: 1}
-  m_Intensity: 1.7
+  m_Color: {r: 1, g: 0.9126959, b: 0.8160377, a: 1}
+  m_Intensity: 2.1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 40
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: 1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.828
     m_Bias: 0.03
     m_NormalBias: 0
     m_NearPlane: 0.2
@@ -10500,7 +10501,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0.6
@@ -10653,7 +10654,9 @@ GameObject:
   - component: {fileID: 708781052}
   - component: {fileID: 708781055}
   - component: {fileID: 708781054}
+  - component: {fileID: 708781058}
   - component: {fileID: 708781056}
+  - component: {fileID: 708781057}
   m_Layer: 8
   m_Name: Golem
   m_TagString: Enemy
@@ -10764,6 +10767,38 @@ MonoBehaviour:
   ishield: 0
   DamageAnim: 0
   animator: {fileID: 0}
+--- !u!114 &708781057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708781051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca89d21e55692e4e90ed8a59aef394d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1303177635}
+  healt: {fileID: 1194218348}
+  isdamaged: 0
+  PlayerReaction: 0
+  playerTransform: {fileID: 1303177625}
+--- !u!114 &708781058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708781051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86ea7ea331a1924199c0ca938c4503c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1303177635}
+  healt: {fileID: 0}
+  isdamaged: 0
 --- !u!1 &709236756
 GameObject:
   m_ObjectHideFlags: 0
@@ -13926,7 +13961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972028731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 124.93807, y: 15.414574, z: 128.6967}
+  m_LocalPosition: {x: 124.982666, y: 15.414574, z: 128.6903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15823,12 +15858,13 @@ MonoBehaviour:
   kalkan_mesafesi: 2
   patrolRadius: 10
   timeAtRandomPoint: 10
-  attackDestination: 1
+  attackDestination: 2.5
   GoblinDamage: 0
   isDestroy: 0
   Goblin: {fileID: 1065037068}
   goblin: {fileID: 708781056}
   healt: {fileID: 1540478459}
+  effectDistance: {fileID: 1303177644}
 --- !u!1 &1067852211
 GameObject:
   m_ObjectHideFlags: 0
@@ -20236,6 +20272,7 @@ GameObject:
   - component: {fileID: 1303177641}
   - component: {fileID: 1303177642}
   - component: {fileID: 1303177643}
+  - component: {fileID: 1303177644}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -20251,7 +20288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303177624}
   m_LocalRotation: {x: -0, y: 0.6855767, z: -0, w: 0.72800046}
-  m_LocalPosition: {x: 127.159, y: 14.24, z: 129.35936}
+  m_LocalPosition: {x: 127.31, y: 14.24, z: 129.35936}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20595,6 +20632,8 @@ MonoBehaviour:
   speelQ: {fileID: 1303177638}
   lighting: {fileID: 972028734}
   cam: {fileID: 972028735}
+  effectDistance: {fileID: 1303177644}
+  detection: {fileID: 1303177642}
   yourRadius: 10
   yourForce: 150
 --- !u!143 &1303177636
@@ -20737,6 +20776,7 @@ MonoBehaviour:
   enemyTag: Enemy
   detectionDistance: 5
   isDetect: 0
+  controller: {fileID: 1303177635}
 --- !u!114 &1303177643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20752,7 +20792,22 @@ MonoBehaviour:
   DirectionalLight: {fileID: 697337079}
   controller: {fileID: 1303177635}
   virtualCamera: {fileID: 972028733}
-  lightChangeSpeed: 0.15
+  lightChangeSpeed: 0.3
+--- !u!114 &1303177644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303177624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d664651fd034e81269d6f63b9546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fparticle: {fileID: 5710629524178148133, guid: da70b3b2bf79e1d4fba23913c3af19cf,
+    type: 3}
+  isDistanceFButton: 0
 --- !u!1 &1305914313
 GameObject:
   m_ObjectHideFlags: 0
@@ -32626,6 +32681,37 @@ Transform:
   m_Father: {fileID: 580480300}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1476912774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476912775}
+  m_Layer: 6
+  m_Name: ReactPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476912775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476912774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.23, y: -0.47, z: -3.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 339429500}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1477534291
 GameObject:
   m_ObjectHideFlags: 0
@@ -33303,12 +33389,13 @@ MonoBehaviour:
   kalkan_mesafesi: 2
   patrolRadius: 10
   timeAtRandomPoint: 10
-  attackDestination: 1
+  attackDestination: 2.5
   GoblinDamage: 0
   isDestroy: 0
   Goblin: {fileID: 1511058273}
   goblin: {fileID: 708781056}
   healt: {fileID: 307820981}
+  effectDistance: {fileID: 1303177644}
 --- !u!114 &1511058275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41372,7 +41459,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741505484}
   m_LocalRotation: {x: -0, y: 0.6855767, z: -0, w: 0.72800046}
-  m_LocalPosition: {x: 124.93807, y: 15.414574, z: 128.6967}
+  m_LocalPosition: {x: 124.982666, y: 15.414574, z: 128.6903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46956,12 +47043,13 @@ MonoBehaviour:
   kalkan_mesafesi: 2
   patrolRadius: 10
   timeAtRandomPoint: 10
-  attackDestination: 1
+  attackDestination: 2.5
   GoblinDamage: 0
   isDestroy: 0
   Goblin: {fileID: 2126928515}
   goblin: {fileID: 708781056}
   healt: {fileID: 829727444}
+  effectDistance: {fileID: 1303177644}
 --- !u!114 &2126928517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48029,12 +48117,13 @@ MonoBehaviour:
   kalkan_mesafesi: 0.5
   patrolRadius: 10
   timeAtRandomPoint: 10
-  attackDestination: 1
+  attackDestination: 2.5
   GoblinDamage: 0
   isDestroy: 0
   Goblin: {fileID: 1484766263127064228}
   goblin: {fileID: 708781056}
   healt: {fileID: 7046587504427322545}
+  effectDistance: {fileID: 1303177644}
 --- !u!195 &1484766263127064231
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -49398,12 +49487,13 @@ MonoBehaviour:
   kalkan_mesafesi: 2
   patrolRadius: 10
   timeAtRandomPoint: 10
-  attackDestination: 1
+  attackDestination: 2.5
   GoblinDamage: 0
   isDestroy: 0
   Goblin: {fileID: 1484766263941029997}
   goblin: {fileID: 708781056}
   healt: {fileID: 7046587505239691896}
+  effectDistance: {fileID: 1303177644}
 --- !u!114 &2292652857322650329
 MonoBehaviour:
   m_ObjectHideFlags: 0

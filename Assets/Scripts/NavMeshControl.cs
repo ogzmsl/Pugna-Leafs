@@ -19,7 +19,7 @@ public class NavMeshControl : MonoBehaviour
     private float idleSpeedThreshold = 0.1f;
     public float patrolRadius = 10f; //devriye
     public float timeAtRandomPoint = 10f;
-    public float attackDestination = 1.5f;
+    public float attackDestination =4f;
 
     private bool isRandomAttackSet = false;
     private int fixedRandomAttack;
@@ -36,7 +36,7 @@ public class NavMeshControl : MonoBehaviour
     Shield shield;
     public GoblinAttackOneAnimationEvent goblin;
     public HealtSystem healt;
-
+    public FButtonEffectDistance effectDistance;
 
 
 
@@ -152,6 +152,15 @@ public class NavMeshControl : MonoBehaviour
           
            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
            
+        }
+        if (effectDistance.isDistanceFButton&&ShieldDistance<7f)
+        {
+            Vector3 directionToPlayer = (transform.position - Player.position).normalized;
+            Vector3 targetPosition = transform.position + directionToPlayer * 3f;
+            targetPosition.y = transform.position.y;
+            animator.SetFloat("speed", 0f);//idle
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed*6);
         }
 
 

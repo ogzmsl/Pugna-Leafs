@@ -21,6 +21,8 @@ TagManager:
   - ChestOne
   - 2D
   - Collectible
+  - Leaf
+  - leaf
   layers:
   - Default
   - TransparentFX
