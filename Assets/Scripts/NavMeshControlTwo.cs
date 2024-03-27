@@ -159,7 +159,7 @@ public class NavMeshControlTwo : MonoBehaviour
         if (effectDistance.isDistanceFButton && ShieldDistance < 7f || playerHealt.PlayerHealthValue < 0.01f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
-            Vector3 targetPosition = transform.position + directionToPlayer * 3f;
+            Vector3 targetPosition = transform.position + directionToPlayer * 6f;
             targetPosition.y = transform.position.y;
             animator.SetFloat("speed", 0f);//idle
 

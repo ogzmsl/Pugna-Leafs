@@ -20756,13 +20756,13 @@ MonoBehaviour:
   butterflyController: {fileID: 1303177626}
   butterFlyAttack: {fileID: 331825380}
   speel: {fileID: 1303177638}
-  intactfirst: {fileID: 0}
-  chestTwo: {fileID: 0}
+  intactfirst: {fileID: 1303177639}
+  chestTwo: {fileID: 1648232229}
   ESpell: {fileID: 1303177641}
   FootVfxLeft: {fileID: 1615449594}
   FootVfxRight: {fileID: 1446261981}
   IdleVfx: {fileID: 8589380280701444092}
-  chest: {fileID: 0}
+  chest: {fileID: 1986407628}
   effectE: {fileID: 1303177641}
   LightContoller: 0
   QController: 0
@@ -45893,7 +45893,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
