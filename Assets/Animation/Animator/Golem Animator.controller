@@ -49,7 +49,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackTypeGolem
-    m_EventTreshold: 1
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5332484616860211047}
   m_Solo: 0
@@ -121,7 +121,7 @@ AnimatorController:
   - m_Name: AttackTypeGolem
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 1
+    m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: GolemSpeed
@@ -281,7 +281,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 7c516b56c5026c94eb6191bbaed467b7,
+  m_Motion: {fileID: 1827226128182048838, guid: 314dd774ea8d1ef47ac5f4d9a7260266,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

@@ -387,7 +387,7 @@ namespace StarterAssets
 
         //Die
         #region Die
-        private bool isDead = false;
+        public bool isDead = false;
         [SerializeField]
         private float yourRadius;
         [SerializeField]
@@ -462,7 +462,7 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
-            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+            if (_input.mouseLeft && !isRange && Grounded && isTabing)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -572,9 +572,7 @@ namespace StarterAssets
             InstantiateVfx();
         }
 
-
-
-        private IEnumerator Ranged()
+     private IEnumerator Ranged()
         {
 
 
@@ -590,6 +588,8 @@ namespace StarterAssets
 
 
 
+
+   
 
         #endregion
 
@@ -649,7 +649,7 @@ namespace StarterAssets
         #region HAREKET
         private void Move()
         {
-            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
@@ -886,7 +886,7 @@ namespace StarterAssets
 
         private void Blocked()
         {
-            if (_input.Block && Grounded && !isDead)
+            if (_input.Block && Grounded)
             {
 
                 healt.isdamage = false;
@@ -1156,7 +1156,7 @@ namespace StarterAssets
 
         private IEnumerator instantiatewait()
         {
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(0.9f);
             effectDistance.InstantiateFbuttonparticle();
             _input.fire = false;
 

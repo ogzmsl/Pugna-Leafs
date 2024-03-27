@@ -14,12 +14,6 @@ public class GolemDamage : MonoBehaviour
     public Transform playerTransform;
 
 
-    private void Update()
-    {
-        
-    }
-
-
 
 
 

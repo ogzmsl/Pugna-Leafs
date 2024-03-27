@@ -33,6 +33,9 @@ public class NavMeshControlthree : MonoBehaviour
     public GoblinAttackOneAnimationEvent goblin;
     public HealtSystem healt;
     public FButtonEffectDistance effectDistance;
+    public PlayerHealt playerHealt;
+    public PlayerBirth birth;
+    public Transform newTransform;
 
     void Start()
     {
@@ -43,7 +46,18 @@ public class NavMeshControlthree : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (healt.isDamageBlood || isDestroy)
+
+        if (birth.goblinThreeSpawn)
+        {
+            transform.position = newTransform.position;
+            birth.goblinThreeSpawn = false;
+        }
+
+
+
+
+
+        if (healt.isDamageBlood)
         {
 
             StartCoroutine(GoblinWait());
@@ -89,7 +103,7 @@ public class NavMeshControlthree : MonoBehaviour
                 isAtRandomPoint = false; // Yeni random de�er 
             }
 
-            else if (mesafeOyuncu < attackDestination && !isDestroy)
+            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01f)
             {
 
                 agent.isStopped = true;
@@ -101,7 +115,7 @@ public class NavMeshControlthree : MonoBehaviour
                     isRandomAttackSet = true;
                 }
 
-                animator.SetInteger("AttackType", 1);
+                animator.SetInteger("AttackType", fixedRandomAttack);
 
 
                 if (fixedRandomAttack == 1)
@@ -145,7 +159,7 @@ public class NavMeshControlthree : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
 
         }
-        if (effectDistance.isDistanceFButton && ShieldDistance < 7f)
+        if (effectDistance.isDistanceFButton && ShieldDistance < 7f || playerHealt.PlayerHealthValue < 0.01f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
             Vector3 targetPosition = transform.position + directionToPlayer * 3f;

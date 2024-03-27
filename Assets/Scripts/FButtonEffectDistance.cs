@@ -12,7 +12,8 @@ public class FButtonEffectDistance : MonoBehaviour
 
     public void InstantiateFbuttonparticle()
     {
-        instantiatedParticle = Instantiate(Fparticle, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
+        
+        instantiatedParticle = Instantiate(Fparticle, transform.position + new Vector3(0, 0.35f, 0), Quaternion.Euler(90,0,0));
         isDistanceFButton = true;
         StartCoroutine(DestroyParticleAfterDelay(5f));
         StartCoroutine(ResetBool());

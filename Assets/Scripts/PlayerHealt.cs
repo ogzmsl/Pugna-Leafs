@@ -30,6 +30,7 @@ public class PlayerHealt : MonoBehaviour
     public float currentValue;
 
     public float speed = 0.5f;
+    public PlayerBirth birth;
 
     void Start()
     {
@@ -67,18 +68,33 @@ public class PlayerHealt : MonoBehaviour
     {
         if (PlayerHealthValue < 0.01f)
         {
+            if (birth.hasRespawned)
+            {
+                PlayerHealthValue = 1;
+            }
+            birth.hasRespawned = false;
             die = true;
+            controller.isDead = false;
+
+            
+           
+          
         }
     }
+
+
+
+
+
+
 
     private void DamageEffectPlayer()
     {
         if (vinyetbool)
         {
-            if (!die)
-            {
+            
                 animator.SetBool("Hit", true);
-            }
+            
          
             vignette.intensity.value = 0.3f;
             StartCoroutine(ResetVignette());

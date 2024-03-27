@@ -17,8 +17,8 @@ public class GolemNavMesh : MonoBehaviour
     public float timeAtRandomPoint = 10f;
     public float attackDestination = 1.5f;
 
-    private bool isRandomAttackSet = false;
-    private int fixedRandomAttack;
+    public bool isRandomAttackSet = false;
+    public int fixedRandomAttack;
 
     public bool GoblinDamage = false;
     public delegate void GoblinAttackEventHandler();
@@ -26,27 +26,37 @@ public class GolemNavMesh : MonoBehaviour
 
 
     private float timer = 0f;
-    private bool isAtRandomPoint = false;
+    public bool isAtRandomPoint = false;
     public bool isDestroy = false;
     public GameObject Goblin;
     Shield shield;
     public GoblinAttackOneAnimationEvent goblin;
     [SerializeField] private HealtSystem healt;
-
-
+    public PlayerBirth birth;
+    public PlayerHealt playerHealt;
+    private float mesafeOyuncu = 0f;
+    private bool spawn;
+    public Transform newTransform;
     void Start()
     {
         shield = FindObjectOfType<Shield>();
         agent = GetComponent<NavMeshAgent>();
+       
+
     }
 
     private void FixedUpdate()
     {
 
+        if (birth.goblinOneSpawn)
+        {
+            transform.position = newTransform.position;
+            birth.goblinOneSpawn=false;
+        }
+   
 
 
-
-        float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
+        UpdatePlayerDistance();
 
         float ShieldDistance = Vector3.Distance(Goblin.transform.position, Player.transform.position);
 
@@ -57,6 +67,8 @@ public class GolemNavMesh : MonoBehaviour
             StartCoroutine(GoblinDestroy());
         }
 
+
+        
 
         if (!healt.isDamageBlood)
         {
@@ -76,24 +88,27 @@ public class GolemNavMesh : MonoBehaviour
                 animator.SetFloat("GolemSpeed", 0.5f); //Koþma
                 ResetTimer();
                 gorunusAcisi = 360;
-                agent.speed = 4f;
+                agent.speed = 6f;
                 isRandomAttackSet = false; // Yeni random deðer 
                 isAtRandomPoint = false; // Yeni random deðer 
             }
 
-            else if (mesafeOyuncu < attackDestination && !isDestroy)
+            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01f) 
             {
-
                 agent.isStopped = true;
 
                 if (!isRandomAttackSet)
                 {
                     // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
                     fixedRandomAttack = Random.Range(1, 3);
+                    animator.SetInteger("AttackTypeGolem", fixedRandomAttack);
                     isRandomAttackSet = true;
+                  
                 }
 
-                animator.SetInteger("AttackTypeGolem", 1);
+
+               
+                    
 
                 Debug.Log(fixedRandomAttack);
 
@@ -138,7 +153,7 @@ public class GolemNavMesh : MonoBehaviour
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
             Vector3 targetPosition = transform.position + directionToPlayer * 3f;
             targetPosition.y = transform.position.y;
-            animator.SetInteger("AttackTypeGolem", 1);
+            animator.SetInteger("AttackTypeGolem", fixedRandomAttack);
 
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
 
@@ -152,6 +167,12 @@ public class GolemNavMesh : MonoBehaviour
 
 
 
+    }
+
+    void UpdatePlayerDistance()
+    {
+        // Her güncelleme sýrasýnda oyuncu ile mesafeyi güncelle
+        mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
     }
 
     IEnumerator GoblinWait()
