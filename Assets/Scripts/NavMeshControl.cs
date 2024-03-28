@@ -5,7 +5,7 @@ using StarterAssets;
 
 public class NavMeshControl : MonoBehaviour
 {
-
+    
     
 
     public  bool uzaklastir;
@@ -43,18 +43,25 @@ public class NavMeshControl : MonoBehaviour
     public PlayerHealt playerHealt;
 
 
+
     void Start()
     {
         shield = FindObjectOfType<Shield>();
         agent = GetComponent<NavMeshAgent>();
+        
     }
+
+
 
     private void FixedUpdate()
     {
 
+     
+
 
         if (birth.Spawn)
         {
+           
             transform.position = newTransform.position;
             birth.Spawn = false;
         }
@@ -104,7 +111,7 @@ public class NavMeshControl : MonoBehaviour
                 isAtRandomPoint = false; // Yeni random deðer 
             }
 
-            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01f)
+            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
             {
 
                 agent.isStopped = true;
@@ -151,6 +158,8 @@ public class NavMeshControl : MonoBehaviour
 
 
         }
+
+        
       
        
         if (uzaklastir&&ShieldDistance<1.85f)
@@ -163,16 +172,20 @@ public class NavMeshControl : MonoBehaviour
            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
            
         }
-        if (effectDistance.isDistanceFButton&&ShieldDistance<100f || playerHealt.PlayerHealthValue < 0.01f)
+       if (effectDistance.isDistanceFButton&&ShieldDistance<100f || playerHealt.PlayerHealthValue < 0.01f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
             Vector3 targetPosition = transform.position + directionToPlayer * 6f;
             targetPosition.y = transform.position.y;
             animator.SetFloat("speed", 0f);//idle
 
+   
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed*6);
+            
         }
 
+
+       
 
 
     }
@@ -182,8 +195,16 @@ public class NavMeshControl : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         agent.speed = 0f;
         agent.isStopped = false;
-    }
+    }  
+  IEnumerator GoblinSpawn()
+    {
+        yield return new WaitForSeconds(4f);
+        animator.enabled = true;
+        animator.SetInteger("AttackType", 0);
+        agent.speed = 0f;
 
+    }  
+ 
 
 
 

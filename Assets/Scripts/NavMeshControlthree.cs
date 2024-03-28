@@ -165,11 +165,11 @@ public class NavMeshControlthree : MonoBehaviour
             Vector3 targetPosition = transform.position + directionToPlayer * 6f;
             targetPosition.y = transform.position.y;
             animator.SetFloat("speed", 0f);//idle
-
+          
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed * 6);
         }
 
-
+       
 
     }
 
@@ -180,7 +180,14 @@ public class NavMeshControlthree : MonoBehaviour
         agent.isStopped = false;
     }
 
+    IEnumerator GoblinSpawn()
+    {
+        yield return new WaitForSeconds(4f);
+        animator.enabled = true;
+        animator.SetInteger("AttackType", 0);
+        agent.speed = 0f;
 
+    }
 
 
 

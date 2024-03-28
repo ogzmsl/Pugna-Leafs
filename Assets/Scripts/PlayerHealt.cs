@@ -32,6 +32,8 @@ public class PlayerHealt : MonoBehaviour
     public float speed = 0.5f;
     public PlayerBirth birth;
 
+    public GameObject Goblin;
+
     void Start()
     {
         globalVolume.profile.TryGet(out vignette);
@@ -80,6 +82,7 @@ public class PlayerHealt : MonoBehaviour
            
           
         }
+      
     }
 
 

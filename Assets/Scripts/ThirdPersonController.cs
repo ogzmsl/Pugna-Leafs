@@ -228,7 +228,10 @@ namespace StarterAssets
 
         public EnemyDetection detection;
 
-  
+
+        public GameObject Panel;
+
+        private int PanelCounter = 0;
         
 
         
@@ -265,6 +268,10 @@ namespace StarterAssets
 
         private void Start()
         {
+            Panel.SetActive(false);
+
+
+
             IdleVfx.gameObject.SetActive(false);
       
 
@@ -329,6 +336,7 @@ namespace StarterAssets
             Intract();
             StaminaControl();
             idleVfxControl();
+            EscapeButton();
 
 
         }
@@ -1286,7 +1294,26 @@ namespace StarterAssets
 
 
 
+        //Escape
+        public void EscapeButton()
+        {
+            if (_input.Escape)
+            {
+                PanelCounter++;
+                if (PanelCounter % 2 == 0)
+                {
+                    Panel.SetActive(false);
+                }
 
+                else
+                {
+                    Panel.SetActive(true);
+                }
+                _input.Escape = false;
+            }
+
+
+        }
      
 
 

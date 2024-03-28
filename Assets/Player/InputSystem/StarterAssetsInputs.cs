@@ -18,7 +18,8 @@ namespace StarterAssets
         public bool Block;
         public bool mouseLeft;
         public bool Tab;
-        public bool Intraction; 
+        public bool Intraction;
+        public bool Escape;
 
 
         [Header("Movement Settings")]
@@ -29,6 +30,24 @@ namespace StarterAssets
         public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+
+
+        public void OnEscape(InputValue value)
+        {
+            EscapeInput(value.isPressed);
+        }
+
+        public void EscapeInput(bool newEscapeState)
+        {
+            Escape = newEscapeState;
+        }
+
+
+
+
+
+
+
 
         public void TabInput(bool newTabState)
         {
