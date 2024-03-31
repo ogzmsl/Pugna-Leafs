@@ -23,6 +23,7 @@ TagManager:
   - Collectible
   - Leaf
   - leaf
+  - Arrow
   layers:
   - Default
   - TransparentFX

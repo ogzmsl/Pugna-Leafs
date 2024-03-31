@@ -164,7 +164,9 @@ namespace StarterAssets
         private bool isBlocked;
         private bool isRange;
         private bool hasLoggedJumpAngle = false;
+        private bool hasLoggedJumpAngleTwo = false;
         private bool isRightDash;
+        private bool isLeftDash;
         private bool isSpawningVFX = false;
         public bool AimChance;
         public GameObject spineAiming;
@@ -232,9 +234,15 @@ namespace StarterAssets
         public GameObject Panel;
 
         private int PanelCounter = 0;
-        
 
-        
+
+        public Text TwoDCounter;
+        private int TwoDCounterValue;
+        public Animator UIanimator;
+
+
+
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -268,6 +276,9 @@ namespace StarterAssets
 
         private void Start()
         {
+
+
+            Cursor.visible = false;
             Panel.SetActive(false);
 
 
@@ -337,6 +348,9 @@ namespace StarterAssets
             StaminaControl();
             idleVfxControl();
             EscapeButton();
+           // DashRight();
+           // DashLeft();
+            DasBack(); //Back DEĞİL HEPSİ VAR İÇİNDE
 
 
         }
@@ -470,7 +484,7 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
-            if (_input.mouseLeft && !isRange && Grounded && isTabing)
+            if (_input.mouseLeft && !isRange && Grounded && isTabing )
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -524,10 +538,15 @@ namespace StarterAssets
 
 
               
+                   // _animator.SetBool("Combat", _input.mouseLeft);
                 
+      
                     _animator.SetBool("AttackOrbball", _input.mouseLeft);
+          
+                   
                
              
+
 
 
 
@@ -537,7 +556,7 @@ namespace StarterAssets
             {
 
 
-
+               // _animator.SetBool("Combat", false);
                 _animator.SetBool("AttackOrbball", false);
                 // playerCameraRoot.transform.position = cmfreelook.transform.position;
             }
@@ -657,7 +676,7 @@ namespace StarterAssets
         #region HAREKET
         private void Move()
         {
-            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack))
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
@@ -825,9 +844,9 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f /*&& JumpConditionMet()*/)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f/* && !DashRightConditionMet()&&!DashLeftConditionMet()&&!DashBackConditionMet()*/)
                 {
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                  _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
                     FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     if (_hasAnimator)
@@ -1020,27 +1039,26 @@ namespace StarterAssets
 
 
         //Dash
-        #region Dash Sistemi
+        #region Dash Sistemi right
 
         private void DashRight()
         {
             float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
 
-            if (DashRightConditionMet() && _input.jump && !hasLoggedJumpAngle)
+            if (DashRightConditionMet() && _input.Dodge)
             {
+                Debug.Log("takla");
+              //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
 
-                _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -2f * Gravity);
-
-
-                _animator.SetBool(_animIDashRight, true);
+                _animator.SetBool("DashRight", true);
                 isRightDash = true;
-                _input.jump = false;
+                _input.Dodge = false;
                 StartCoroutine(Dashed());
 
 
                 hasLoggedJumpAngle = true;
             }
-            else if (!_input.jump)
+            else if (!_input.Dodge)
             {
 
                 hasLoggedJumpAngle = false;
@@ -1056,14 +1074,98 @@ namespace StarterAssets
 
         private IEnumerator Dashed()
         {
-            yield return
+            yield return new WaitForSeconds(1f);
 
             isRightDash = false;
             _animator.SetBool(_animIDashRight, false);
         }
 
-
         #endregion
+        #region Dash Sistemi BACK
+
+        private void DashLeft()
+        {
+            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+            if (DashLeftConditionMet() && _input.Dodge)
+            {
+                Debug.Log("takla");
+              //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
+
+                _animator.SetBool("DashLeft", true);
+                isLeftDash = true;
+                _input.Dodge = false;
+                StartCoroutine(DashedLeft());
+
+
+                hasLoggedJumpAngleTwo = true;
+            }
+            else if (!_input.Dodge)
+            {
+
+                hasLoggedJumpAngleTwo = false;
+            }
+        }
+
+        private bool JumpConditionMetTwo()
+        {
+            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return inputAngleJump == 0;
+        }
+
+
+        private IEnumerator DashedLeft()
+        {
+            yield return new WaitForSeconds(1f);
+
+            isLeftDash = false;
+            _animator.SetBool("DashLeft", false);
+        }
+
+
+        #endregion #region Dash Sistemi left
+        #region DashFulll
+        private void DasBack()
+        {
+            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+            if (_input.Dodge)
+            {
+                Debug.Log("takla");
+              //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
+
+                _animator.SetBool("DashBack", true);
+                isLeftDash = true;
+                _input.Dodge = false;
+                StartCoroutine(DashedBack());
+
+
+                hasLoggedJumpAngleTwo = true;
+            }
+            else if (!_input.Dodge)
+            {
+
+                hasLoggedJumpAngleTwo = false;
+            }
+        }
+
+        private bool JumpConditionMetThree()
+        {
+            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return inputAngleJump == 0;
+        }
+
+
+        private IEnumerator DashedBack()
+        {
+            yield return new WaitForSeconds(1f);
+
+            isLeftDash = false;
+            _animator.SetBool("DashBack", false);
+        }
+        #endregion
+
+
 
 
         //yazdığım 2D freeform directional animator
@@ -1078,6 +1180,7 @@ namespace StarterAssets
         private bool DashRightConditionMet()
         {
             float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            
             return inputAngleRight >= 45f && inputAngleRight <= 90f;
         }
 
@@ -1176,7 +1279,7 @@ namespace StarterAssets
         #region ProjectTile
         private void ProjectTile()
         {
-            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f&&effectE.isDoit)
             {
          
                 LightContoller = true;
@@ -1202,19 +1305,7 @@ namespace StarterAssets
         }
 
 
-        private void OnTriggerEnter(Collider other)
-        {
-           
-            if (other.CompareTag("2D"))
-            {
-              
-                Destroy(other.gameObject);
-
-              
-                Debug.Log("Collectible collected!");
-            }
-        }
-
+     
 
         private IEnumerator ResetProjectTile()
         {
@@ -1243,15 +1334,16 @@ namespace StarterAssets
 
         private void Orball()
         {
-            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
+            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f&&speelQ.isDoit && !_animator.GetBool(_animIDOrbball))
             {
-                
+               
+                _animator.SetBool("RangeAttack", true);
                 speel.QSpellImage.fillAmount = 0;
               
-                speel.InstantiateQSpell();
+               // speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
 
-                _animator.SetBool(_animIDRange, true);
+               
                 cameraForward.y = 0.0f;
                 cam.isShking = true;
                 if (cameraForward != Vector3.zero)
@@ -1292,23 +1384,47 @@ namespace StarterAssets
 
         #endregion
 
+        private void OnTriggerEnter(Collider other)
+        {
+
+            if (other.CompareTag("2D"))
+            {
+
+               
+                TwoDCounterValue++;
+                TwoDCounter.text = "" + TwoDCounterValue;
+                UIanimator.SetTrigger("TwoD");
+                Destroy(other.gameObject);
+
+
+                Debug.Log("Collectible collected!");
+            }
+        }
 
 
         //Escape
+
+
         public void EscapeButton()
         {
             if (_input.Escape)
             {
                 PanelCounter++;
+
                 if (PanelCounter % 2 == 0)
                 {
                     Panel.SetActive(false);
+                 
+                   
                 }
 
                 else
                 {
                     Panel.SetActive(true);
+                   
+                   
                 }
+              
                 _input.Escape = false;
             }
 

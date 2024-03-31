@@ -6,8 +6,8 @@ using Cinemachine;
 public class CamShake : MonoBehaviour
 {
     private CinemachineVirtualCamera CinemachineVirtualCamera;
-    private float ShakeInstentity = 0.3f;
-    private float ShakeTime = 0.08f;
+    private float ShakeInstentity = 3f;
+    private float ShakeTime = 0.25f;
 
 
 
@@ -54,7 +54,7 @@ public class CamShake : MonoBehaviour
     {
         if (isShking)
         {
-            Invoke("ShakeCamera", 0.65f);
+            Invoke("ShakeCamera", 0.24f);
         }
 
 

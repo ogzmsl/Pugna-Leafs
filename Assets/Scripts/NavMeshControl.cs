@@ -42,7 +42,8 @@ public class NavMeshControl : MonoBehaviour
     public Transform newTransform;
     public PlayerHealt playerHealt;
 
-
+    public GoblinTetikleme tetikleme;
+   // public AudioSource MainMusic;
 
     void Start()
     {
@@ -83,7 +84,7 @@ public class NavMeshControl : MonoBehaviour
 
         if (isDestroy)
         {
-        
+            agent.speed = 0;
             StartCoroutine(GoblinDestroy());
         }
 
@@ -92,12 +93,12 @@ public class NavMeshControl : MonoBehaviour
         {
 
 
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy&&tetikleme.GoblinTetiklemeBool)
             {
                 agent.isStopped = false;
                 animator.SetInteger("AttackType", 0);
                 agent.destination = Player.position;
-
+               // MainMusic.Stop();
 
                 Vector3 lookAtPlayer = new Vector3(Player.position.x - transform.position.x, 0, Player.position.z - transform.position.z);
                 Quaternion rotation = Quaternion.LookRotation(lookAtPlayer);
@@ -111,11 +112,11 @@ public class NavMeshControl : MonoBehaviour
                 isAtRandomPoint = false; // Yeni random deðer 
             }
 
-            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
+            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01&&tetikleme.GoblinTetiklemeBool)
             {
 
                 agent.isStopped = true;
-
+              //  MainMusic.Stop();
 
                 if (!isRandomAttackSet)
                 {
@@ -172,7 +173,7 @@ public class NavMeshControl : MonoBehaviour
            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
            
         }
-       if (effectDistance.isDistanceFButton&&ShieldDistance<100f || playerHealt.PlayerHealthValue < 0.01f)
+       if (effectDistance.isDistanceFButton&&ShieldDistance<5f || playerHealt.PlayerHealthValue < 0.01f)
         {
             Vector3 directionToPlayer = (transform.position - Player.position).normalized;
             Vector3 targetPosition = transform.position + directionToPlayer * 6f;

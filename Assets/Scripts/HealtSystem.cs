@@ -21,6 +21,8 @@ public class HealtSystem : MonoBehaviour
     public GameObject enemy;
     [SerializeField] private float deadanimationtime;
 
+    //Golem için sayaç
+    public int RangeCounter = 0;
     
 
 
@@ -63,7 +65,7 @@ public class HealtSystem : MonoBehaviour
           parentAnimator.SetTrigger("die");
             StartCoroutine(waitforDead());
 
-        //navMesh.isDestroy = true;
+        navMesh.isDestroy = true;
         }
         else if (previousHealth > currentHealth)
         {
@@ -71,7 +73,7 @@ public class HealtSystem : MonoBehaviour
           parentAnimator.SetTrigger("Damage");
             //   bloodGoblin.Play();
 
-
+            RangeCounter++;
             isDamageBlood = true;
 
 

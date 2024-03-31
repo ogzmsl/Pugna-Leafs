@@ -25,12 +25,23 @@ public class QSpeel : MonoBehaviour
 
     public bool sarsizni;
 
+    public bool isDoit;
 
-    
+    public float distanceToCharacter;
+    public float offset;
+    public AudioSource QspeelAudio;
+
+
+    public void PlaySoundsQ()
+    {
+        QspeelAudio.Play();
+    }
+
+
 
     public void InstantiateQSpell()
     {
-        StartCoroutine(WaitForAnimations());
+       // StartCoroutine(WaitForAnimations());
     }
 
     private void FixedUpdate()
@@ -39,7 +50,8 @@ public class QSpeel : MonoBehaviour
         {
             // Debug.Log("Target: " + hitInfo.transform.name);
         }  
-            QSpellImage.fillAmount += Time.fixedDeltaTime / 40;
+        //bekleme süresi 20 saniye
+            QSpellImage.fillAmount += Time.fixedDeltaTime / 5;
         if (QSpellImage.fillAmount >= 0.98f)
         {
             QSpellImage.fillAmount = 1;
@@ -48,9 +60,34 @@ public class QSpeel : MonoBehaviour
       
     }
 
-    private IEnumerator WaitForAnimations()
+    private void Update() { 
+        distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
+
+
+        if (distanceToCharacter >= minDistance && distanceToCharacter <= maxDistance)
+        {
+
+            Vector3 spawnPosition = new Vector3(hitInfo.point.x, 1f, hitInfo.point.z);
+            RaycastHit groundHit;
+            isDoit = true;
+        
+         
+            if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
+            {
+                spawnPosition.y = groundHit.point.y;
+            }
+        }
+        else
+        {
+            isDoit = false;
+       
+
+
+        }
+    }
+    public void instantiateQ()
     {
-        yield return new WaitForSeconds(0.5f);
+      
 
         float distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
 
@@ -62,14 +99,12 @@ public class QSpeel : MonoBehaviour
             RaycastHit groundHit;
             if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
             {
-                spawnPosition.y = groundHit.point.y; 
+                spawnPosition.y = groundHit.point.y+offset; 
             }
 
             Instantiate(qSpell, spawnPosition, Quaternion.LookRotation(mainCamera.forward));
             qSpell.Play();
 
-
-            yield return new WaitForSeconds(0.5f);
 
 
 

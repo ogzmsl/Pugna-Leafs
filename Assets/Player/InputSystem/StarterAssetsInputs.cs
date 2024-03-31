@@ -1,5 +1,6 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+using StarterAssets;
 using UnityEngine.InputSystem;
 #endif
 
@@ -20,6 +21,8 @@ namespace StarterAssets
         public bool Tab;
         public bool Intraction;
         public bool Escape;
+        public bool Dodge;
+     
 
 
         [Header("Movement Settings")]
@@ -29,9 +32,12 @@ namespace StarterAssets
         public bool cursorLocked = true;
         public bool cursorInputForLook = true;
 
+        public ThirdPersonController controller;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 
 
+     
         public void OnEscape(InputValue value)
         {
             EscapeInput(value.isPressed);
@@ -41,13 +47,6 @@ namespace StarterAssets
         {
             Escape = newEscapeState;
         }
-
-
-
-
-
-
-
 
         public void TabInput(bool newTabState)
         {
@@ -73,7 +72,6 @@ namespace StarterAssets
         {
             Orbball = newFireStateorball;
         }
-
 
         public void OnOrbball(InputValue value)
         {
@@ -137,6 +135,12 @@ namespace StarterAssets
         {
             SprintInput(value.isPressed);
         }
+
+        public void OnDodge(InputValue value)
+        {
+            DodgeInput(value.isPressed);
+        }
+
 #endif
 
         public void MoveInput(Vector2 newMoveDirection)
@@ -159,14 +163,39 @@ namespace StarterAssets
             sprint = newSprintState;
         }
 
+        public void DodgeInput(bool newDodgeState)
+        {
+            Dodge = newDodgeState;
+        }
+
         private void OnApplicationFocus(bool hasFocus)
         {
-            SetCursorState(cursorLocked);
+            if (controller.Panel.activeSelf == false)
+            {
+                SetCursorState(cursorLocked);
+            }
+           
         }
 
         private void SetCursorState(bool newState)
         {
-            Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+           
+                
+        }
+        private void Update()
+        {
+            if (controller.Panel.activeSelf == true)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else if (controller.Panel.activeSelf == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
+    
+   
 }
