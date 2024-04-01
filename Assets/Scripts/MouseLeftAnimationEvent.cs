@@ -18,7 +18,7 @@ public class MouseLeftAnimationEvent : MonoBehaviour
        
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitInfo, Mathf.Infinity))
         {
-           // Debug.Log("HEDEF: " + hitInfo.transform.name);
+           // Debug.Log("Target: " + hitInfo.transform.name);
         }
     }
 }

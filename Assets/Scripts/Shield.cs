@@ -58,14 +58,9 @@ public class Shield : MonoBehaviour
 
     IEnumerator ShiledSeconds()
     {
+        shieldInstance.Play();
         yield return new WaitForSeconds(Seconds);
-       // shieldInstance.Play();
-    
-       shieldInstance.Pause();
+        shieldInstance.Pause();
 
     }
-
-
-
-
 }

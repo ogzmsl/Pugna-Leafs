@@ -2,7 +2,6 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using TMPro;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -89,8 +88,8 @@ namespace StarterAssets
 
 
         // player
-        public float _speed;
-        public float _animationBlend;
+        private float _speed;
+        private float _animationBlend;
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
         public float _verticalVelocity;
@@ -115,7 +114,6 @@ namespace StarterAssets
         private int _animIDRange;
         private int _animIDashRight;
         private int _animIDdie;
-        private int _animIDHorizpntalDamage;
 
 
 
@@ -147,7 +145,7 @@ namespace StarterAssets
 #endif
         private Animator _animator;
         private CharacterController _controller;
-        public StarterAssetsInputs _input;
+        private StarterAssetsInputs _input;
         private GameObject _mainCamera;
         private ProjectTile tile;
         ButterflyController butterFly;
@@ -164,9 +162,7 @@ namespace StarterAssets
         private bool isBlocked;
         private bool isRange;
         private bool hasLoggedJumpAngle = false;
-        private bool hasLoggedJumpAngleTwo = false;
         private bool isRightDash;
-        private bool isLeftDash;
         private bool isSpawningVFX = false;
         public bool AimChance;
         public GameObject spineAiming;
@@ -179,17 +175,10 @@ namespace StarterAssets
         public PlayerHealt healt;
 
         public NavMeshControl nav;
-        public NavMeshControlTwo navtwo;
-        public NavMeshControlthree navthree;
-        public NavMeshControlFour navFour;
-        public NavMeshControlFive navFive;
 
 
-        public bool isDamaged;
 
 
-        //stamina
-        public Stamina stamina;
 
 
 
@@ -201,44 +190,13 @@ namespace StarterAssets
         public ButterflyControlerNEW butterflyController;
         public ButterFlyAttack butterFlyAttack;
         public QSpeel speel;
-        public Intractions intactfirst;
-        public ChestTwo chestTwo;
-        public EButtonEffect ESpell;
+
 
 
         //FootstepControl
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
-        [SerializeField] private ParticleSystem IdleVfx;
-        public Chest chest;
-
-        
-        public EButtonEffect effectE;
-
-        public bool LightContoller;
-
-        public bool QController;
-        public QSpeel speelQ;
-        public CameraShakeLighting lighting;
-
-        public CamShake cam;
-        private float timerIdle;
-        private bool resetIdlevfx;
-
-        public FButtonEffectDistance effectDistance;
-
-        public EnemyDetection detection;
-
-
-        public GameObject Panel;
-
-        private int PanelCounter = 0;
-
-
-        public Text TwoDCounter;
-        private int TwoDCounterValue;
-        public Animator UIanimator;
 
 
 
@@ -278,13 +236,6 @@ namespace StarterAssets
         {
 
 
-            Cursor.visible = false;
-            Panel.SetActive(false);
-
-
-
-            IdleVfx.gameObject.SetActive(false);
-      
 
             if (nav == null)
             {
@@ -344,72 +295,15 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
-            Intract();
-            StaminaControl();
-            idleVfxControl();
-            EscapeButton();
-           // DashRight();
-           // DashLeft();
-            DasBack(); //Back DEĞİL HEPSİ VAR İÇİNDE
+
 
 
         }
-
-
-     private void idleVfxControl()
-        {
-            if (_speed==0)
-            {
-                timerIdle += Time.deltaTime;
-                if (timerIdle > 30&&!resetIdlevfx)
-                {
-                    IdleVfx.gameObject.SetActive(true);
-                    IdleVfx.Play();
-                    resetIdlevfx = true;
-                }
-                
-            }
-            else if (_speed!=0)
-            {
-                timerIdle = 0;
-                IdleVfx.gameObject.SetActive(false);
-                resetIdlevfx = false;
-            }
-        }
-
-
-
-
-
-
-        #region Intaction
-        private void Intract()
-        {
-            if (_input.Intraction)
-            {
-                chest.intract = true;
-             
-
-            }
-
-            if (_input.Intraction && chestTwo.isChestTwo)
-            {
-                chestTwo.Intract = true;
-
-            }
-
-
-
-            _input.Intraction = false;
-        }
-
-        #endregion
-
 
 
         //Die
         #region Die
-        public bool isDead = false;
+        private bool isDead = false;
         [SerializeField]
         private float yourRadius;
         [SerializeField]
@@ -426,6 +320,9 @@ namespace StarterAssets
 
 
         #endregion
+
+
+
 
 
 
@@ -484,7 +381,7 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
-            if (_input.mouseLeft && !isRange && Grounded && isTabing )
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -497,27 +394,27 @@ namespace StarterAssets
                     transform.forward = cameraForward * Time.deltaTime;
                     if (DashRightConditionMet())
                     {
-                        
+                        Debug.Log("DashRightConditionMet");
                         _animator.SetFloat(_animIDSpeed, 400);
                     }
                     else if (DashLeftBackConditionMet()) // Sol arkaya doğru hareket koşulunu ilk kontrol edelim
                     {
-                       
+                        Debug.Log("DashLeftBackConditionMet");
                         _animator.SetFloat(_animIDSpeed, 500);
                     }
                     else if (DashRightBackConditionMet())
                     {
-                       
+                        Debug.Log("DashRightBackConditionMet");
                         _animator.SetFloat(_animIDSpeed, 700);
                     }
                     else if (DashLeftConditionMet())
                     {
-                       
+                        Debug.Log("DashLeftConditionMet");
                         _animator.SetFloat(_animIDSpeed, 300);
                     }
                     else if (DashBackConditionMet())
                     {
-                        
+                        Debug.Log("DashBackConditionMet");
                         _animator.SetFloat(_animIDSpeed, 600);
                     }
 
@@ -536,17 +433,7 @@ namespace StarterAssets
                 }
                 // playerCameraRoot.transform.position = AimTransform.transform.position;
 
-
-              
-                   // _animator.SetBool("Combat", _input.mouseLeft);
-                
-      
-                    _animator.SetBool("AttackOrbball", _input.mouseLeft);
-          
-                   
-               
-             
-
+                _animator.SetBool("AttackOrbball", _input.mouseLeft);
 
 
 
@@ -556,11 +443,10 @@ namespace StarterAssets
             {
 
 
-               // _animator.SetBool("Combat", false);
+
                 _animator.SetBool("AttackOrbball", false);
                 // playerCameraRoot.transform.position = cmfreelook.transform.position;
             }
-            
         }
 
         private IEnumerator WaitForMouseRelease()
@@ -599,7 +485,9 @@ namespace StarterAssets
             InstantiateVfx();
         }
 
-     private IEnumerator Ranged()
+
+
+        private IEnumerator Ranged()
         {
 
 
@@ -616,8 +504,6 @@ namespace StarterAssets
 
 
 
-   
-
         #endregion
 
 
@@ -625,11 +511,11 @@ namespace StarterAssets
 
         private void WindSpeed()
         {
-            if (_input.sprint && !wind.isPlaying&&stamina.Staminabool&&_input.move!=Vector2.zero)
+            if (_input.sprint && !wind.isPlaying)
             {
                 wind.Play();
             }
-            else if ((!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())||!stamina.isSprint)
+            else if (!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())
             {
                 wind.Stop();
             }
@@ -647,52 +533,25 @@ namespace StarterAssets
         #endregion
 
 
-        #region Stanina
-
-        private void StaminaControl()
-        {
-            if (_input.sprint)
-            {
-                stamina.Staminabool = true;
-
-            }
-            else
-            {
-                stamina.Staminabool = false;
-            }
-                    
-                    
-
-
-        }
-
-
-        #endregion
-
-
 
 
 
         #region HAREKET
         private void Move()
         {
-            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack))
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
                 shieldforShield.isFilling = true;
 
-
             }
             else
             {
-               
                 float targetSpeed = 0.0f;
 
-                if (_input.sprint&&stamina.isSprint)
+                if (_input.sprint)
                 {
-
-
                     FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = SprintSpeed;
                     // Sprint olduğunda _animIDSpeed değerini 120 olarak ayarla
@@ -714,7 +573,6 @@ namespace StarterAssets
                     }
                     else if (_input.move == Vector2.zero)
                     {
-                      
                         float finishSpeed = _animator.GetFloat(_animIDSpeed);
                         float LerpFinishSprintToIdle = 0;
                         float LerfRadio = 0.1f;
@@ -726,8 +584,7 @@ namespace StarterAssets
                 }
                 else if (_input.move != Vector2.zero)
                 {
-                   
-               FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
                     targetSpeed = MoveSpeed;
                     float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
                     float LerpTargetSpeedWalk = 100;
@@ -744,7 +601,6 @@ namespace StarterAssets
                 }
                 else if (_input.move == Vector2.zero)
                 {
-                 
                     float finishSpeed = _animator.GetFloat(_animIDSpeed);
                     float LerpFinishSprintToIdle = 0;
                     float LerfRadio = 0.1f;
@@ -757,7 +613,6 @@ namespace StarterAssets
 
                 if (_input.move == Vector2.zero)
                 {
-              
                     targetSpeed = 0.0f;
                     shieldforShield.isFilling = true;
                 }
@@ -844,9 +699,9 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f/* && !DashRightConditionMet()&&!DashLeftConditionMet()&&!DashBackConditionMet()*/)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f /*&& JumpConditionMet()*/)
                 {
-                  _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
                     FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                     if (_hasAnimator)
@@ -884,7 +739,6 @@ namespace StarterAssets
                     {
                         FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                         _animator.SetBool(_animIDFreeFall, true);
-                       
                     }
                 }
 
@@ -897,14 +751,9 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
-
-         
         }
 
         #endregion
-
-
-     
 
         //Sağ Tık
         #region BLOKLAMA
@@ -913,41 +762,32 @@ namespace StarterAssets
 
         private void Blocked()
         {
-            if (_input.Block && Grounded)
+            if (_input.Block && Grounded && !isDead)
             {
-
-                healt.isdamage = false;
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
                 _animator.SetBool("Block", true);
 
 
-                
+
 
 
                 //Shield
                 if (isTabing && shieldforShield.isFilling)
                 {
 
-
                     @event.ishield = false;
                     if (shieldforShield.isFilling)
                     {
 
-
                         shield.ShieldInstantiate();
-                        navFive.uzaklastirfive = true;
-                        navFour.uzaklasyirFour = true;
-                        navthree.uzaklasyirthree = true;
-                        navtwo.uzaklasyirtwo = true;
-                        nav.uzaklastir = true;
                         VfxEnding = false;
                         shieldforShield.isFilling = false;
                         shieldforShield.fillImage.fillAmount -= shieldforShield.decreaseSpeed * Time.deltaTime;
 
                         if (!uzaklastirSet)
                         {
-                          
+                            nav.uzaklastir = true;
                             uzaklastirSet = true;
                         }
                     }
@@ -962,12 +802,9 @@ namespace StarterAssets
 
                     butterflyController.isRightClicked = true;
 
-                    navFive.uzaklastirfive = false;
-                    navFour.uzaklasyirFour = false;
-                    navtwo.uzaklasyirtwo = false;
+
                     nav.uzaklastir = false;
                     uzaklastirSet = false;
-                    navthree.uzaklasyirthree = false;
                 }
 
                 // shieldforShield.shieldTimer += Time.deltaTime / shieldforShield.totalTime;
@@ -980,14 +817,9 @@ namespace StarterAssets
                 _animator.SetBool("Block", false);
                 StartCoroutine(ResetShield());
 
-                navFive.uzaklastirfive = false;
-                navFour.uzaklasyirFour = false;
-                navtwo.uzaklasyirtwo = false;
+              
                 nav.uzaklastir = false;
                 uzaklastirSet = false;
-                navthree.uzaklasyirthree = false;
-
-                healt.isdamage = true;
 
 
             }
@@ -999,9 +831,7 @@ namespace StarterAssets
 
         IEnumerator ResetShield()
         {
-           
             yield return new WaitForSeconds(0.01f);
-            isBlocked = false;
             shield.ShieldDestroy();
         }
 
@@ -1009,8 +839,7 @@ namespace StarterAssets
         private IEnumerator ResetBlock()
         {
             yield return new WaitForSeconds(1.5f);
-          
-        
+            isBlocked = false;
             _animator.SetBool(_animIDBlock, false);
 
         }
@@ -1039,26 +868,27 @@ namespace StarterAssets
 
 
         //Dash
-        #region Dash Sistemi right
+        #region Dash Sistemi
 
         private void DashRight()
         {
             float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
 
-            if (DashRightConditionMet() && _input.Dodge)
+            if (DashRightConditionMet() && _input.jump && !hasLoggedJumpAngle)
             {
-                Debug.Log("takla");
-              //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
 
-                _animator.SetBool("DashRight", true);
+                _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -2f * Gravity);
+
+
+                _animator.SetBool(_animIDashRight, true);
                 isRightDash = true;
-                _input.Dodge = false;
+                _input.jump = false;
                 StartCoroutine(Dashed());
 
 
                 hasLoggedJumpAngle = true;
             }
-            else if (!_input.Dodge)
+            else if (!_input.jump)
             {
 
                 hasLoggedJumpAngle = false;
@@ -1074,101 +904,17 @@ namespace StarterAssets
 
         private IEnumerator Dashed()
         {
-            yield return new WaitForSeconds(1f);
+            yield return
 
             isRightDash = false;
             _animator.SetBool(_animIDashRight, false);
         }
 
-        #endregion
-        #region Dash Sistemi BACK
 
-        private void DashLeft()
-        {
-            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
-
-            if (DashLeftConditionMet() && _input.Dodge)
-            {
-                Debug.Log("takla");
-              //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
-
-                _animator.SetBool("DashLeft", true);
-                isLeftDash = true;
-                _input.Dodge = false;
-                StartCoroutine(DashedLeft());
-
-
-                hasLoggedJumpAngleTwo = true;
-            }
-            else if (!_input.Dodge)
-            {
-
-                hasLoggedJumpAngleTwo = false;
-            }
-        }
-
-        private bool JumpConditionMetTwo()
-        {
-            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
-            return inputAngleJump == 0;
-        }
-
-
-        private IEnumerator DashedLeft()
-        {
-            yield return new WaitForSeconds(1f);
-
-            isLeftDash = false;
-            _animator.SetBool("DashLeft", false);
-        }
-
-
-        #endregion #region Dash Sistemi left
-        #region DashFulll
-        private void DasBack()
-        {
-            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
-
-            if (_input.Dodge)
-            {
-                Debug.Log("takla");
-              //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
-
-                _animator.SetBool("DashBack", true);
-                isLeftDash = true;
-                _input.Dodge = false;
-                StartCoroutine(DashedBack());
-
-
-                hasLoggedJumpAngleTwo = true;
-            }
-            else if (!_input.Dodge)
-            {
-
-                hasLoggedJumpAngleTwo = false;
-            }
-        }
-
-        private bool JumpConditionMetThree()
-        {
-            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
-            return inputAngleJump == 0;
-        }
-
-
-        private IEnumerator DashedBack()
-        {
-            yield return new WaitForSeconds(1f);
-
-            isLeftDash = false;
-            _animator.SetBool("DashBack", false);
-        }
         #endregion
 
 
-
-
-        //yazdığım 2D freeform directional animator
+        //Kendi yazdığım 2D freeform directional animator
         #region Manuel olarak yapılmış 2D freeform directional
         private bool DashBackConditionMet()
         {
@@ -1180,7 +926,6 @@ namespace StarterAssets
         private bool DashRightConditionMet()
         {
             float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
-            
             return inputAngleRight >= 45f && inputAngleRight <= 90f;
         }
 
@@ -1237,8 +982,6 @@ namespace StarterAssets
             if (_input.fire && !isMagicAttack && Grounded)
             {
 
-                StartCoroutine(instantiatewait());
-
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
 
@@ -1265,29 +1008,19 @@ namespace StarterAssets
         }
 
 
-        private IEnumerator instantiatewait()
-        {
-            yield return new WaitForSeconds(0.9f);
-            effectDistance.InstantiateFbuttonparticle();
-            _input.fire = false;
-
-        }
-
         #endregion
 
         //E
         #region ProjectTile
         private void ProjectTile()
         {
-            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f&&effectE.isDoit)
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
             {
-         
-                LightContoller = true;
-              
+
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
-                ESpell.InstantiateESpell();
-                ESpell.Lightimage.fillAmount = 0;
+
+
                 if (cameraForward != Vector3.zero)
                 {
                     transform.forward = cameraForward * Time.deltaTime;
@@ -1297,35 +1030,19 @@ namespace StarterAssets
                 _animator.SetBool(_animIDProjectTile, true);
                 isProjectTileAttack = true;
                 StartCoroutine(ResetProjectTile());
-                StartCoroutine(LİghtBoolResetTime());
-
-                
             }
-      
         }
 
-
-     
 
         private IEnumerator ResetProjectTile()
         {
-            yield return new WaitForSeconds(2f);
-            ESpell.isWaitLight = true;
+            yield return new WaitForSeconds(1.1f);
+
             isProjectTileAttack = false;
             _animator.SetBool(_animIDProjectTile, false);
-            _input.Project_Tile = false;
-           
- 
+
+
         }
-
-
-        private IEnumerator LİghtBoolResetTime()
-        {
-            yield return new WaitForSeconds(5);
-            LightContoller = false;
-        }
-
-  
         #endregion
 
         //Q
@@ -1334,45 +1051,32 @@ namespace StarterAssets
 
         private void Orball()
         {
-            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f&&speelQ.isDoit && !_animator.GetBool(_animIDOrbball))
+            if (_input.Orbball && !isAttacking && Grounded)
             {
-               
-                _animator.SetBool("RangeAttack", true);
-                speel.QSpellImage.fillAmount = 0;
-              
-               // speel.InstantiateQSpell();
-                cameraForward = _mainCamera.transform.forward;
 
-               
+                speel.InstantiateQSpell();
+                cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
-                cam.isShking = true;
+
+
                 if (cameraForward != Vector3.zero)
                 {
                     transform.forward = cameraForward * Time.deltaTime;
                 }
                 Debug.Log("Q");
 
+                _animator.SetBool(_animIDRange, true);
                 isAttacking = true;
 
                 StartCoroutine(ResetAttackFlag());
-                StartCoroutine(ResetFlag());
-           
             }
         }
         private IEnumerator ResetAttackFlag()
         {
 
-            yield return new WaitForSeconds(1.2f);
-            cam.isShking = false;
+            yield return new WaitForSeconds(1.25f);
 
 
-        }  
-        
-        private IEnumerator ResetFlag()
-        {
-
-            yield return new WaitForSeconds(0.1f);
-            cam.isShking = false;
 
             isAttacking = false;
 
@@ -1380,57 +1084,19 @@ namespace StarterAssets
 
         }
 
+        IEnumerator waitqspell()
+        {
+            yield return new WaitForSeconds(5f);
+            speel.destroyspeelq();
+
+        }
+
 
 
         #endregion
 
-        private void OnTriggerEnter(Collider other)
-        {
-
-            if (other.CompareTag("2D"))
-            {
-
-               
-                TwoDCounterValue++;
-                TwoDCounter.text = "" + TwoDCounterValue;
-                UIanimator.SetTrigger("TwoD");
-                Destroy(other.gameObject);
 
 
-                Debug.Log("Collectible collected!");
-            }
-        }
-
-
-        //Escape
-
-
-        public void EscapeButton()
-        {
-            if (_input.Escape)
-            {
-                PanelCounter++;
-
-                if (PanelCounter % 2 == 0)
-                {
-                    Panel.SetActive(false);
-                 
-                   
-                }
-
-                else
-                {
-                    Panel.SetActive(true);
-                   
-                   
-                }
-              
-                _input.Escape = false;
-            }
-
-
-        }
-     
 
 
 

@@ -29,7 +29,7 @@ public class ButterflyControlerNEW : MonoBehaviour
             Transform butterflyTransform = butterflyObject.transform;
             butterflies.Add(butterflyTransform);
 
-            // Rastgele açý
+            // Rastgele açýö
             float angle = Random.Range(0, 360);
             angles.Add(angle);
 
