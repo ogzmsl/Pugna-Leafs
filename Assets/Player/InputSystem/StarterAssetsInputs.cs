@@ -1,141 +1,80 @@
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 
 namespace StarterAssets
 {
-    public class StarterAssetsInputs : MonoBehaviour
-    {
-        [Header("Character Input Values")]
-        public Vector2 move;
-        public Vector2 look;
-        public bool jump;
-        public bool sprint;
-        public bool Orbball;
-        public bool Project_Tile;
-        public bool fire;
-        public bool Block;
-        public bool mouseLeft; // Added for mouse left input
-        public bool Tab;//shield or ButterflyControl
+	public class StarterAssetsInputs : MonoBehaviour
+	{
+		[Header("Character Input Values")]
+		public Vector2 move;
+		public Vector2 look;
+		public bool jump;
+		public bool sprint;
 
-        [Header("Movement Settings")]
-        public bool analogMovement;
+		[Header("Movement Settings")]
+		public bool analogMovement;
 
-        [Header("Mouse Cursor Settings")]
-        public bool cursorLocked = true;
-        public bool cursorInputForLook = true;
+		[Header("Mouse Cursor Settings")]
+		public bool cursorLocked = true;
+		public bool cursorInputForLook = true;
 
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+#if ENABLE_INPUT_SYSTEM
+		public void OnMove(InputValue value)
+		{
+			MoveInput(value.Get<Vector2>());
+		}
 
-         public void TabInput(bool newTabState)
-        {
-        Tab = newTabState;
-        }
+		public void OnLook(InputValue value)
+		{
+			if(cursorInputForLook)
+			{
+				LookInput(value.Get<Vector2>());
+			}
+		}
 
-        public void OnTab(InputValue value)
-        {
-        TabInput(value.isPressed);
-        }
+		public void OnJump(InputValue value)
+		{
+			JumpInput(value.isPressed);
+		}
 
-         public void OrbballInput(bool newFireStateorball)
-        {
-            Orbball = newFireStateorball;
-        }
-
-
-        public void OnOrbball(InputValue value)
-        {
-            OrbballInput(value.isPressed);
-        }
-
-        public void Project_TileInput(bool newFireStateProject_Tile)
-        {
-            Project_Tile = newFireStateProject_Tile;
-        }
-
-        public void OnProject_Tile(InputValue value)
-        {
-            Project_TileInput(value.isPressed);
-        }
-
-        public void FireInput(bool newFireState)
-        {
-            fire = newFireState;
-        }
-
-        public void OnFire(InputValue value)
-        {
-            FireInput(value.isPressed);
-        }
-
-        public void OnBlock(InputValue value)
-        {
-            Block = value.isPressed;
-        }
-
-        public void OnMouseLeft(InputValue value)
-        {
-            MouseLeftInput(value.isPressed);
-        }
-
-        public void MouseLeftInput(bool newState)
-        {
-            mouseLeft = newState;
-        }
-
-        public void OnMove(InputValue value)
-        {
-            MoveInput(value.Get<Vector2>());
-        }
-
-        public void OnLook(InputValue value)
-        {
-            if (cursorInputForLook)
-            {
-                LookInput(value.Get<Vector2>());
-            }
-        }
-
-        public void OnJump(InputValue value)
-        {
-            JumpInput(value.isPressed);
-        }
-
-        public void OnSprint(InputValue value)
-        {
-            SprintInput(value.isPressed);
-        }
+		public void OnSprint(InputValue value)
+		{
+			SprintInput(value.isPressed);
+		}
 #endif
 
-        public void MoveInput(Vector2 newMoveDirection)
-        {
-            move = newMoveDirection;
-        }
 
-        public void LookInput(Vector2 newLookDirection)
-        {
-            look = newLookDirection;
-        }
+		public void MoveInput(Vector2 newMoveDirection)
+		{
+			move = newMoveDirection;
+		} 
 
-        public void JumpInput(bool newJumpState)
-        {
-            jump = newJumpState;
-        }
+		public void LookInput(Vector2 newLookDirection)
+		{
+			look = newLookDirection;
+		}
 
-        public void SprintInput(bool newSprintState)
-        {
-            sprint = newSprintState;
-        }
+		public void JumpInput(bool newJumpState)
+		{
+			jump = newJumpState;
+		}
 
-        private void OnApplicationFocus(bool hasFocus)
-        {
-            SetCursorState(cursorLocked);
-        }
+		public void SprintInput(bool newSprintState)
+		{
+			sprint = newSprintState;
+		}
 
-        private void SetCursorState(bool newState)
-        {
-            Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
-        }
-    }
+		private void OnApplicationFocus(bool hasFocus)
+		{
+			SetCursorState(cursorLocked);
+		}
+
+		private void SetCursorState(bool newState)
+		{
+			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+	}
+	
 }
