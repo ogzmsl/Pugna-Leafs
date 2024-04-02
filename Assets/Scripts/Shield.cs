@@ -58,8 +58,8 @@ public class Shield : MonoBehaviour
 
     IEnumerator ShiledSeconds()
     {
+        shieldInstance.Play();
         yield return new WaitForSeconds(Seconds);
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -74,15 +74,6 @@ public class Shield : MonoBehaviour
 =======
 >>>>>>> parent of d93495c (revert)
         shieldInstance.Pause();
-=======
-       // shieldInstance.Play();
-    
-       shieldInstance.Pause();
->>>>>>> parent of 4e6e600 (NewPlamece)
 
     }
-
-
-
-
 }
