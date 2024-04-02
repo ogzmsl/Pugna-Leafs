@@ -28,6 +28,7 @@ public class GolemNavMesh : MonoBehaviour
     private bool isAtRandomPoint = false;
     public bool isDestroy = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     public GameObject Golem;
 =======
@@ -58,6 +59,9 @@ public class GolemNavMesh : MonoBehaviour
 >>>>>>> Stashed changes
 
 
+=======
+    public GameObject Golem;
+>>>>>>> parent of 0836829 (UPTADE)
 
     /*  public GameObject Goblin;
       Shield shield;
@@ -76,6 +80,7 @@ public class GolemNavMesh : MonoBehaviour
 >>>>>>> parent of d93495c (revert)
     void Start()
     {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
         shield = FindObjectOfType<Shield>();
@@ -87,10 +92,15 @@ public class GolemNavMesh : MonoBehaviour
     }
 
 <<<<<<< Updated upstream
+=======
+
+        Golemagent = GetComponent<NavMeshAgent>();
+    }
+
+>>>>>>> parent of 0836829 (UPTADE)
     private void FixedUpdate()
     {
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -123,10 +133,13 @@ public class GolemNavMesh : MonoBehaviour
         if (isDestroy)
         {
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
         if (isDestroy)
         {
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -134,7 +147,6 @@ public class GolemNavMesh : MonoBehaviour
 
         if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
         {
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -195,8 +207,11 @@ public class GolemNavMesh : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
             {
                 // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
                 fixedRandomAttack = Random.Range(1, 3);
@@ -226,15 +241,17 @@ public class GolemNavMesh : MonoBehaviour
                 Golemagent.speed = 0.8f;
             }
 <<<<<<< HEAD
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 <<<<<<< HEAD
 =======
->>>>>>> parent of c739808 (TapinakFinish)
-=======
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of d93495c (revert)
 =======
->>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
         }
 
         if (Golemagent.velocity.magnitude <= idleSpeedThreshold)
@@ -309,6 +326,7 @@ public class GolemNavMesh : MonoBehaviour
     {
         timer = 0f;
     }
+<<<<<<< HEAD
 =======
 
 
@@ -667,5 +685,7 @@ public class GolemNavMesh : MonoBehaviour
         }
     }
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 }
 

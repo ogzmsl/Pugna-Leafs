@@ -132,7 +132,6 @@ AnimatorController:
     m_Controller: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
   - m_Name: die
     m_Type: 9
@@ -146,8 +145,11 @@ AnimatorController:
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -219,8 +221,11 @@ BlendTree:
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!1102 &1938364606094804040

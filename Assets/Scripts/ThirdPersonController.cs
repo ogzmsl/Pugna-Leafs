@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 ﻿ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
+=======
+﻿using System.Collections;
+using UnityEngine;
+using System;
+using UnityEngine.UI;
+#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+>>>>>>> parent of 0836829 (UPTADE)
 using UnityEngine.InputSystem;
 #endif
 
@@ -97,6 +105,16 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+<<<<<<< HEAD
+=======
+        private int _animIDOrbball;
+        private int _animIDProjectTile;
+        private int _animIDMagicAttack;
+        private int _animIDBlock;
+        private int _animIDRange;
+        private int _animIDashRight;
+        private int _animIDdie;
+>>>>>>> parent of 0836829 (UPTADE)
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -109,6 +127,23 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+<<<<<<< HEAD
+=======
+        private bool isAttacking;
+        private bool isProjectTileAttack;
+        private bool isMagicAttack;
+        private bool isBlocked;
+        private bool isRange;
+        private bool hasLoggedJumpAngle = false;
+        private bool isRightDash;
+        private bool isSpawningVFX = false;
+        public bool AimChance;
+        public GameObject spineAiming;
+        public bool VfxEnding = false;
+        public bool isTabing;
+        public bool isdie = true;
+        private bool uzaklastirSet = false;
+>>>>>>> parent of 0836829 (UPTADE)
 
 <<<<<<< HEAD
 =======
@@ -168,9 +203,30 @@ namespace StarterAssets
         private void Start()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+=======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+            Panel.SetActive(false);
+
+
+
+            IdleVfx.gameObject.SetActive(false);
+      
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+
+
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
 
             if (nav == null)
             {
@@ -217,6 +273,21 @@ namespace StarterAssets
             WindSpeed();
             Die();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+            Intract();
+            StaminaControl();
+            idleVfxControl();
+            EscapeButton();
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
 
 
         }
@@ -302,7 +373,23 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
+<<<<<<< HEAD
             if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+=======
+            if (_input.mouseLeft && !isRange && Grounded && isTabing)
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_input.mouseLeft && !isRange && Grounded && isTabing)
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -355,7 +442,10 @@ namespace StarterAssets
                 // playerCameraRoot.transform.position = AimTransform.transform.position;
 
                 _animator.SetBool("AttackOrbball", _input.mouseLeft);
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
 
 
@@ -460,7 +550,23 @@ namespace StarterAssets
         #region HAREKET
         private void Move()
         {
+<<<<<<< HEAD
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+=======
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
@@ -835,7 +941,22 @@ namespace StarterAssets
         #endregion
 
 
+<<<<<<< HEAD
         //Kendi yazdığım 2D freeform directional animator
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        //Kendi yazdığım 2D freeform directional animator
+=======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+        //yazdığım 2D freeform directional animator
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+        //Kendi yazdığım 2D freeform directional animator
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
         #region Manuel olarak yapılmış 2D freeform directional
         private bool DashBackConditionMet()
         {
@@ -935,7 +1056,23 @@ namespace StarterAssets
         #region ProjectTile
         private void ProjectTile()
         {
+<<<<<<< HEAD
             if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+=======
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
             {
 
                 cameraForward = _mainCamera.transform.forward;
@@ -951,10 +1088,48 @@ namespace StarterAssets
                 _animator.SetBool(_animIDProjectTile, true);
                 isProjectTileAttack = true;
                 StartCoroutine(ResetProjectTile());
+<<<<<<< HEAD
+=======
             }
         }
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+        private void OnTriggerEnter(Collider other)
+        {
+           
+            if (other.CompareTag("2D"))
+            {
+              
+                Destroy(other.gameObject);
+<<<<<<< HEAD
+=======
+
+              
+                Debug.Log("Collectible collected!");
+            }
+        }
+
+>>>>>>> parent of c739808 (TapinakFinish)
+
+              
+                Debug.Log("Collectible collected!");
+>>>>>>> parent of 0836829 (UPTADE)
+            }
+        }
+
+
+<<<<<<< HEAD
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
         private IEnumerator ResetProjectTile()
         {
             yield return new WaitForSeconds(1.1f);
@@ -972,11 +1147,45 @@ namespace StarterAssets
 
         private void Orball()
         {
+<<<<<<< HEAD
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d93495c (revert)
+            if (_input.Orbball && !isAttacking && Grounded)
+            {
+
+                speel.InstantiateQSpell();
+                cameraForward = _mainCamera.transform.forward;
+<<<<<<< HEAD
+=======
+            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
+            {
+=======
+            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
+            {
+>>>>>>> parent of c739808 (TapinakFinish)
+                
+                speel.QSpellImage.fillAmount = 0;
+              
+                speel.InstantiateQSpell();
+                cameraForward = _mainCamera.transform.forward;
+
+                _animator.SetBool(_animIDRange, true);
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
                 cameraForward.y = 0.0f;
 
 
@@ -1016,6 +1225,11 @@ namespace StarterAssets
 
         #endregion
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> parent of 0836829 (UPTADE)
 
 
 

@@ -64,6 +64,7 @@ public class HealtSystem : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
 
           parentAnimator.SetTrigger("die");
@@ -74,15 +75,20 @@ public class HealtSystem : MonoBehaviour
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
         }
         else if (previousHealth > currentHealth)
         {
        
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0836829 (UPTADE)
             parentAnimator.SetTrigger("Damage");
             bloodGoblin.Play();
 
@@ -97,6 +103,7 @@ public class HealtSystem : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
           parentAnimator.SetTrigger("Damage");
             //   bloodGoblin.Play();
@@ -108,6 +115,8 @@ public class HealtSystem : MonoBehaviour
             parentAnimator.SetTrigger("Damage");
             bloodGoblin.Play();
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
             isDamageBlood = true;
             StartCoroutine(waitforblood());
         }

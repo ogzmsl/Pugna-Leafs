@@ -1,5 +1,9 @@
 using UnityEngine;
+<<<<<<< HEAD
 #if ENABLE_INPUT_SYSTEM
+=======
+#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+>>>>>>> parent of 0836829 (UPTADE)
 using UnityEngine.InputSystem;
 #endif
 
@@ -30,11 +34,14 @@ namespace StarterAssets
         public bool Block;
         public bool mouseLeft; // Added for mouse left input
         public bool Tab;//shield or ButterflyControl
+<<<<<<< HEAD
 >>>>>>> parent of d93495c (revert)
 
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -51,6 +58,7 @@ namespace StarterAssets
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
@@ -61,6 +69,10 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 =======
+=======
+#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+
+>>>>>>> parent of 0836829 (UPTADE)
          public void TabInput(bool newTabState)
         {
         Tab = newTabState;
@@ -139,7 +151,10 @@ namespace StarterAssets
         {
             SprintInput(value.isPressed);
         }
+<<<<<<< HEAD
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 #endif
 
 
@@ -158,6 +173,7 @@ namespace StarterAssets
 			jump = newJumpState;
 		}
 
+<<<<<<< HEAD
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
@@ -175,3 +191,16 @@ namespace StarterAssets
 	}
 	
 }
+=======
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            SetCursorState(cursorLocked);
+        }
+
+        private void SetCursorState(bool newState)
+        {
+            Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+        }
+    }
+}
+>>>>>>> parent of 0836829 (UPTADE)

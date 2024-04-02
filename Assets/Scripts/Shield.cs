@@ -64,7 +64,6 @@ public class Shield : MonoBehaviour
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 =======
 
@@ -77,6 +76,7 @@ public class Shield : MonoBehaviour
 =======
 >>>>>>> parent of d93495c (revert)
         shieldInstance.Pause();
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
@@ -84,6 +84,8 @@ public class Shield : MonoBehaviour
        shieldInstance.Pause();
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
     }
 }

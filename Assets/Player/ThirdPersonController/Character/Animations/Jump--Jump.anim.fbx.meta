@@ -93,6 +93,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< HEAD
       events:
       - time: 0.1615599
         functionName: OnLand
@@ -101,6 +102,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> parent of 0836829 (UPTADE)
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

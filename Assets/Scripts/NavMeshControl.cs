@@ -36,16 +36,21 @@ public class NavMeshControl : MonoBehaviour
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0836829 (UPTADE)
     public PlayerBirth birth;
     public Transform newTransform;
     public PlayerHealt playerHealt;
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
 <<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -53,11 +58,14 @@ public class NavMeshControl : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
     public GoblinTetikleme tetikleme;
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
     void Start()
     {
@@ -68,6 +76,7 @@ public class NavMeshControl : MonoBehaviour
     private void FixedUpdate()
     {
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       
     
@@ -92,6 +101,10 @@ public class NavMeshControl : MonoBehaviour
         }
 
 >>>>>>> Stashed changes
+=======
+      
+    
+>>>>>>> parent of 0836829 (UPTADE)
 
         float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
 
@@ -104,7 +117,6 @@ public class NavMeshControl : MonoBehaviour
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
         
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -113,6 +125,7 @@ public class NavMeshControl : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
 
             agent.speed = 0;
@@ -120,6 +133,8 @@ public class NavMeshControl : MonoBehaviour
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -132,20 +147,22 @@ public class NavMeshControl : MonoBehaviour
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
+=======
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
+>>>>>>> parent of d93495c (revert)
 <<<<<<< HEAD
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
-=======
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
->>>>>>> parent of c739808 (TapinakFinish)
-=======
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
->>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
 >>>>>>> parent of d93495c (revert)
 =======
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
->>>>>>> parent of d93495c (revert)
+>>>>>>> parent of 0836829 (UPTADE)
             {
                 agent.isStopped = false;
                 animator.SetInteger("AttackType", 0);
@@ -164,7 +181,6 @@ public class NavMeshControl : MonoBehaviour
                 isAtRandomPoint = false; // Yeni random deðer 
             }
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -194,8 +210,11 @@ public class NavMeshControl : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
                 if (!isRandomAttackSet)
                 {
@@ -293,9 +312,12 @@ public class NavMeshControl : MonoBehaviour
     }
 
 
+<<<<<<< HEAD
 =======
                            
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
 
 

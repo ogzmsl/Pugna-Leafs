@@ -12,11 +12,13 @@ public class QSpeel : MonoBehaviour
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0836829 (UPTADE)
     public GameObject character;
     public float maxDistance = 5f; // Maksimum uzaklýk
     public float minDistance = 1f; // Minimum uzaklýk
@@ -40,6 +42,7 @@ public class QSpeel : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+<<<<<<< HEAD
 =======
     public bool isDoit;
 
@@ -58,6 +61,8 @@ public class QSpeel : MonoBehaviour
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+>>>>>>> parent of 0836829 (UPTADE)
 
     public void InstantiateQSpell()
     {
