@@ -197,11 +197,11 @@ namespace StarterAssets
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
+
+
+
+
 <<<<<<< HEAD
-
-
-
-
 =======
         [SerializeField] private ParticleSystem IdleVfx;
         public Chest chest;
@@ -234,6 +234,8 @@ namespace StarterAssets
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
         private bool IsCurrentDeviceMouse
         {
             get
@@ -269,6 +271,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
@@ -281,6 +284,10 @@ namespace StarterAssets
             IdleVfx.gameObject.SetActive(false);
       
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+
+
+>>>>>>> parent of d93495c (revert)
 
             if (nav == null)
             {
@@ -340,8 +347,8 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
             Intract();
             StaminaControl();
@@ -351,6 +358,8 @@ namespace StarterAssets
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 
 
         }
@@ -438,6 +447,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
 =======
             if (_input.mouseLeft && !isRange && Grounded && isTabing)
@@ -445,6 +455,9 @@ namespace StarterAssets
 =======
             if (_input.mouseLeft && !isRange && Grounded && isTabing)
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+>>>>>>> parent of d93495c (revert)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -496,17 +509,8 @@ namespace StarterAssets
                 }
                 // playerCameraRoot.transform.position = AimTransform.transform.position;
 
-<<<<<<< HEAD
                 _animator.SetBool("AttackOrbball", _input.mouseLeft);
-=======
 
-              
-                
-                    _animator.SetBool("AttackOrbball", _input.mouseLeft);
-               
-             
-
->>>>>>> parent of c739808 (TapinakFinish)
 
 
             }
@@ -612,6 +616,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
 =======
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
@@ -619,6 +624,9 @@ namespace StarterAssets
 =======
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+>>>>>>> parent of d93495c (revert)
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
@@ -995,12 +1003,16 @@ namespace StarterAssets
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Kendi yazdığım 2D freeform directional animator
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
         //yazdığım 2D freeform directional animator
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+        //Kendi yazdığım 2D freeform directional animator
+>>>>>>> parent of d93495c (revert)
         #region Manuel olarak yapılmış 2D freeform directional
         private bool DashBackConditionMet()
         {
@@ -1102,6 +1114,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_input.Project_Tile && !isProjectTileAttack && Grounded)
 =======
             if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
@@ -1109,6 +1122,9 @@ namespace StarterAssets
 =======
             if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+>>>>>>> parent of d93495c (revert)
             {
 
                 cameraForward = _mainCamera.transform.forward;
@@ -1128,6 +1144,7 @@ namespace StarterAssets
         }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1157,6 +1174,8 @@ namespace StarterAssets
 
 
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
         private IEnumerator ResetProjectTile()
         {
             yield return new WaitForSeconds(1.1f);
@@ -1176,11 +1195,15 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d93495c (revert)
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
+<<<<<<< HEAD
 =======
             if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
             {
@@ -1199,6 +1222,8 @@ namespace StarterAssets
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
                 cameraForward.y = 0.0f;
 
 
@@ -1240,30 +1265,6 @@ namespace StarterAssets
 
 
 
-<<<<<<< HEAD
-=======
-        //Escape
-        public void EscapeButton()
-        {
-            if (_input.Escape)
-            {
-                PanelCounter++;
-                if (PanelCounter % 2 == 0)
-                {
-                    Panel.SetActive(false);
-                }
-
-                else
-                {
-                    Panel.SetActive(true);
-                }
-                _input.Escape = false;
-            }
-
-
-        }
-     
->>>>>>> parent of c739808 (TapinakFinish)
 
 
 

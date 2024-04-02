@@ -63,6 +63,9 @@ ModelImporter:
       orientationOffsetY: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d93495c (revert)
       level: 0
       cycleOffset: 0
       loop: 0
@@ -76,6 +79,7 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -96,6 +100,8 @@ ModelImporter:
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -113,11 +119,15 @@ ModelImporter:
     useSRGBMaterialColor: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d93495c (revert)
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -130,6 +140,8 @@ ModelImporter:
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -920,6 +932,7 @@ ModelImporter:
     hasTranslationDoF: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     hasExtraRoot: 0
 =======
     hasExtraRoot: 1
@@ -927,6 +940,9 @@ ModelImporter:
 =======
     hasExtraRoot: 1
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+    hasExtraRoot: 0
+>>>>>>> parent of d93495c (revert)
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

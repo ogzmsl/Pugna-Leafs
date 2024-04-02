@@ -95,6 +95,7 @@
                     "interactions": "",
                     "initialStateCheck": true
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 },
                 {
@@ -118,6 +119,8 @@
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
                 }
             ],
             "bindings": [
@@ -418,6 +421,7 @@
                     "isComposite": false,
                     "isPartOfComposite": false
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 },
                 {
@@ -445,6 +449,8 @@
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
                 }
             ]
         }

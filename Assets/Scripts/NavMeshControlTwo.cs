@@ -71,7 +71,7 @@ public class NavMeshControlTwo : MonoBehaviour
 
         if (isDestroy)
         {
-
+            agent.speed = 0;
             StartCoroutine(GoblinDestroy());
         }
 

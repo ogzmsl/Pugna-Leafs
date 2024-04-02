@@ -16,16 +16,8 @@ namespace StarterAssets
         public bool Project_Tile;
         public bool fire;
         public bool Block;
-<<<<<<< HEAD
         public bool mouseLeft; // Added for mouse left input
         public bool Tab;//shield or ButterflyControl
-=======
-        public bool mouseLeft;
-        public bool Tab;
-        public bool Intraction;
-        public bool Escape;
-
->>>>>>> parent of c739808 (TapinakFinish)
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -36,33 +28,9 @@ namespace StarterAssets
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 
-<<<<<<< HEAD
          public void TabInput(bool newTabState)
         {
         Tab = newTabState;
-=======
-
-        public void OnEscape(InputValue value)
-        {
-            EscapeInput(value.isPressed);
-        }
-
-        public void EscapeInput(bool newEscapeState)
-        {
-            Escape = newEscapeState;
-        }
-
-
-
-
-
-
-
-
-        public void TabInput(bool newTabState)
-        {
-            Tab = newTabState;
->>>>>>> parent of c739808 (TapinakFinish)
         }
 
         public void OnTab(InputValue value)

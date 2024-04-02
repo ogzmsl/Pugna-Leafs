@@ -525,15 +525,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2565218
-        functionName: FootL
+      - time: 0.20924906
+        functionName: PlaySoundsQ
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.40652165
-        functionName: Hit
+      - time: 0.22724994
+        functionName: instantiateQ
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

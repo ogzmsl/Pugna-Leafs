@@ -34,6 +34,7 @@ public class NavMeshControl : MonoBehaviour
     [SerializeField] private HealtSystem healt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     public PlayerBirth birth;
     public Transform newTransform;
@@ -44,6 +45,8 @@ public class NavMeshControl : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 
     void Start()
     {
@@ -66,12 +69,15 @@ public class NavMeshControl : MonoBehaviour
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
         
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -82,6 +88,7 @@ public class NavMeshControl : MonoBehaviour
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
 =======
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
@@ -89,6 +96,9 @@ public class NavMeshControl : MonoBehaviour
 =======
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
+>>>>>>> parent of d93495c (revert)
             {
                 agent.isStopped = false;
                 animator.SetInteger("AttackType", 0);
@@ -109,10 +119,14 @@ public class NavMeshControl : MonoBehaviour
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d93495c (revert)
             else if (mesafeOyuncu < attackDestination)
             {
 
                 agent.isStopped = true;
+<<<<<<< HEAD
 =======
             else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
             {
@@ -127,6 +141,8 @@ public class NavMeshControl : MonoBehaviour
                 agent.isStopped = true;
 
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 
                 if (!isRandomAttackSet)
                 {
@@ -181,22 +197,7 @@ public class NavMeshControl : MonoBehaviour
             targetPosition.y = transform.position.y;
             animator.SetInteger("AttackType", 1);
           
-<<<<<<< HEAD
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
-=======
-           transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
-           
-        }
-       if (effectDistance.isDistanceFButton&&ShieldDistance<100f || playerHealt.PlayerHealthValue < 0.01f)
-        {
-            Vector3 directionToPlayer = (transform.position - Player.position).normalized;
-            Vector3 targetPosition = transform.position + directionToPlayer * 6f;
-            targetPosition.y = transform.position.y;
-            animator.SetFloat("speed", 0f);//idle
-
-   
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed*6);
->>>>>>> parent of c739808 (TapinakFinish)
             
           
 

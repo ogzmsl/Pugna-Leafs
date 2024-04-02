@@ -131,6 +131,7 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - m_Name: die
     m_Type: 9
@@ -142,6 +143,8 @@ AnimatorController:
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -182,7 +185,6 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: speed
     m_Mirror: 0
-<<<<<<< HEAD
   - serializedVersion: 2
     m_Motion: {fileID: 1827226128182048838, guid: 86ee32d6d642dba4ea79b470ea6fdb14,
       type: 3}
@@ -201,6 +203,7 @@ BlendTree:
 <<<<<<< HEAD
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
+<<<<<<< HEAD
 =======
   m_BlendParameter: GolemSpeed
   m_BlendParameterY: speed
@@ -210,6 +213,8 @@ BlendTree:
   m_MaxThreshold: 0.25
   m_UseAutomaticThresholds: 0
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!1102 &1938364606094804040

@@ -59,7 +59,7 @@ public class NavMeshControlthree : MonoBehaviour
 
         if (healt.isDamageBlood)
         {
-
+           
             StartCoroutine(GoblinWait());
 
 
@@ -75,7 +75,7 @@ public class NavMeshControlthree : MonoBehaviour
 
         if (isDestroy)
         {
-
+            agent.speed = 0;
             StartCoroutine(GoblinDestroy());
         }
 

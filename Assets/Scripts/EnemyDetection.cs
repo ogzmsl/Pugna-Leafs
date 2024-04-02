@@ -27,18 +27,22 @@ public class EnemyDetection : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
  
-            float distance = Vector3.Distance(player.position, enemy.transform.position);
+            float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
 
          
             if (distance <= detectionDistance)
             {
                 isDetect = true;
+              
+               
             }
             else if (distance >= detectionDistance)
             {
-              
                 isDetect = false;
+              
             }
         }
+
+       
     }
 }
