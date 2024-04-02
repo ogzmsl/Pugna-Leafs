@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+<<<<<<< HEAD
 	public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
@@ -15,6 +16,21 @@ namespace StarterAssets
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
+=======
+    public class StarterAssetsInputs : MonoBehaviour
+    {
+        [Header("Character Input Values")]
+        public Vector2 move;
+        public Vector2 look;
+        public bool jump;
+        public bool sprint;
+        public bool Orbball;
+        public bool Project_Tile;
+        public bool fire;
+        public bool Block;
+        public bool mouseLeft; // Added for mouse left input
+        public bool Tab;//shield or ButterflyControl
+>>>>>>> parent of d93495c (revert)
 
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
@@ -34,6 +50,7 @@ namespace StarterAssets
 			}
 		}
 
+<<<<<<< HEAD
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
@@ -43,6 +60,86 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+=======
+         public void TabInput(bool newTabState)
+        {
+        Tab = newTabState;
+        }
+
+        public void OnTab(InputValue value)
+        {
+        TabInput(value.isPressed);
+        }
+
+         public void OrbballInput(bool newFireStateorball)
+        {
+            Orbball = newFireStateorball;
+        }
+
+
+        public void OnOrbball(InputValue value)
+        {
+            OrbballInput(value.isPressed);
+        }
+
+        public void Project_TileInput(bool newFireStateProject_Tile)
+        {
+            Project_Tile = newFireStateProject_Tile;
+        }
+
+        public void OnProject_Tile(InputValue value)
+        {
+            Project_TileInput(value.isPressed);
+        }
+
+        public void FireInput(bool newFireState)
+        {
+            fire = newFireState;
+        }
+
+        public void OnFire(InputValue value)
+        {
+            FireInput(value.isPressed);
+        }
+
+        public void OnBlock(InputValue value)
+        {
+            Block = value.isPressed;
+        }
+
+        public void OnMouseLeft(InputValue value)
+        {
+            MouseLeftInput(value.isPressed);
+        }
+
+        public void MouseLeftInput(bool newState)
+        {
+            mouseLeft = newState;
+        }
+
+        public void OnMove(InputValue value)
+        {
+            MoveInput(value.Get<Vector2>());
+        }
+
+        public void OnLook(InputValue value)
+        {
+            if (cursorInputForLook)
+            {
+                LookInput(value.Get<Vector2>());
+            }
+        }
+
+        public void OnJump(InputValue value)
+        {
+            JumpInput(value.isPressed);
+        }
+
+        public void OnSprint(InputValue value)
+        {
+            SprintInput(value.isPressed);
+        }
+>>>>>>> parent of d93495c (revert)
 #endif
 
 

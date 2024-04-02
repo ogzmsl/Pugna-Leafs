@@ -110,6 +110,39 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+<<<<<<< HEAD
+=======
+
+        public PlayerHealt healt;
+
+        public NavMeshControl nav;
+
+
+
+
+
+
+
+
+        //private bool isJumping = false;
+
+        public Transform PlayerTransform;
+        public GoblinAttackOneAnimationEvent @event;
+        public ButterflyControlerNEW butterflyController;
+        public ButterFlyAttack butterFlyAttack;
+        public QSpeel speel;
+
+
+
+        //FootstepControl
+
+        [SerializeField] private ParticleSystem FootVfxLeft;
+        [SerializeField] private ParticleSystem FootVfxRight;
+
+
+
+
+>>>>>>> parent of d93495c (revert)
         private bool IsCurrentDeviceMouse
         {
             get
@@ -134,6 +167,18 @@ namespace StarterAssets
 
         private void Start()
         {
+<<<<<<< HEAD
+=======
+
+
+
+            if (nav == null)
+            {
+                Debug.Log("navigation script bulunamadı");
+            }
+
+
+>>>>>>> parent of d93495c (revert)
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -159,8 +204,824 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+<<<<<<< HEAD
         }
 
+=======
+            Orball();
+            ProjectTile();
+            MagicAttack();
+            Blocked();
+            Mouseleft();
+            ShieldOrButterfly();
+            WindSpeed();
+            Die();
+
+
+
+        }
+
+
+        //Die
+        #region Die
+        private bool isDead = false;
+        [SerializeField]
+        private float yourRadius;
+        [SerializeField]
+        private float yourForce;
+
+        private void Die()
+        {
+            if (healt.die && !isDead)
+            {
+                _animator.SetTrigger("Die 0");
+                isDead = true;
+            }
+        }
+
+
+        #endregion
+
+
+
+
+
+
+        //Tab kontroller
+        #region Shield Or Butterfly 
+
+
+
+
+        private void ShieldOrButterfly()
+        {
+            if (_input.Tab)
+            {
+                _input.Tab = !_input.Tab;
+                Debug.Log("bas");
+                TabCount += 1;
+                TabCountCalculate();
+                Debug.Log(isTabing);
+            }
+        }
+
+
+        private void TabCountCalculate()
+        {
+            if (TabCount % 2 == 0)
+            {
+                isTabing = true;
+                butterflyController.isRightClicked = false;
+            }
+            else if (TabCount % 2 == 1)
+            {
+
+                butterflyController.isRightClicked = true;
+                isTabing = false;
+            }
+
+        }
+
+
+        #endregion
+
+
+
+
+        //Mouse Left
+        #region MOUSELEFT AND PROJECT TİLE
+
+
+        //iki tane aşama olacak
+        //1->mouseleft
+        //2->Açı hesaplatma 
+
+
+
+
+
+        private void Mouseleft()
+        {
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+            {
+                cameraForward = _mainCamera.transform.forward;
+                cameraForward.y = 0.0f;
+
+
+
+                if (cameraForward != Vector3.zero)
+                {
+
+                    transform.forward = cameraForward * Time.deltaTime;
+                    if (DashRightConditionMet())
+                    {
+                        Debug.Log("DashRightConditionMet");
+                        _animator.SetFloat(_animIDSpeed, 400);
+                    }
+                    else if (DashLeftBackConditionMet()) // Sol arkaya doğru hareket koşulunu ilk kontrol edelim
+                    {
+                        Debug.Log("DashLeftBackConditionMet");
+                        _animator.SetFloat(_animIDSpeed, 500);
+                    }
+                    else if (DashRightBackConditionMet())
+                    {
+                        Debug.Log("DashRightBackConditionMet");
+                        _animator.SetFloat(_animIDSpeed, 700);
+                    }
+                    else if (DashLeftConditionMet())
+                    {
+                        Debug.Log("DashLeftConditionMet");
+                        _animator.SetFloat(_animIDSpeed, 300);
+                    }
+                    else if (DashBackConditionMet())
+                    {
+                        Debug.Log("DashBackConditionMet");
+                        _animator.SetFloat(_animIDSpeed, 600);
+                    }
+
+                    if (DashRightConditionMet() || DashLeftConditionMet() || DashBackConditionMet() || DashLeftBackConditionMet() || DashRightBackConditionMet())
+                    {
+                        SprintSpeed = 7;
+                        _speed = 2;
+                    }
+                    else
+                    {
+                        SprintSpeed = 7;
+                        _speed = 4;
+                    }
+
+
+                }
+                // playerCameraRoot.transform.position = AimTransform.transform.position;
+
+                _animator.SetBool("AttackOrbball", _input.mouseLeft);
+
+
+
+
+            }
+            else
+            {
+
+
+
+                _animator.SetBool("AttackOrbball", false);
+                // playerCameraRoot.transform.position = cmfreelook.transform.position;
+            }
+        }
+
+        private IEnumerator WaitForMouseRelease()
+        {
+            yield return new WaitUntil(() => !_input.mouseLeft);
+            isSpawningVFX = false;
+        }
+
+
+        private IEnumerator StopSpawnVFXAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            isSpawningVFX = false;
+        }
+
+
+
+        private IEnumerator SpawnVFXRepeatedly()
+        {
+            if (!isSpawningVFX)
+            {
+                isSpawningVFX = true;
+
+                while (true)
+                {
+                    InstantiateVfx();
+                    yield return new WaitForSeconds(1.0f);
+                }
+            }
+        }
+
+
+        private IEnumerator VFXTimeforMOUSE()
+        {
+            yield return new WaitForSeconds(0.7f);
+            InstantiateVfx();
+        }
+
+
+
+        private IEnumerator Ranged()
+        {
+
+
+
+            yield return new WaitForSeconds(1f);
+
+            isRange = false;
+
+            _animator.SetBool(_animIDOrbball, false);
+
+        }
+
+
+
+
+
+        #endregion
+
+
+        #region Wind
+
+        private void WindSpeed()
+        {
+            if (_input.sprint && !wind.isPlaying)
+            {
+                wind.Play();
+            }
+            else if (!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())
+            {
+                wind.Stop();
+            }
+        }
+
+        #endregion
+
+
+        #region footsttepVFX
+
+
+
+
+
+        #endregion
+
+
+
+
+
+        #region HAREKET
+        private void Move()
+        {
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+            {
+                _speed = 0.0f;
+                _animationBlend = 0.0f;
+                shieldforShield.isFilling = true;
+
+            }
+            else
+            {
+                float targetSpeed = 0.0f;
+
+                if (_input.sprint)
+                {
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
+                    targetSpeed = SprintSpeed;
+                    // Sprint olduğunda _animIDSpeed değerini 120 olarak ayarla
+                    if (_input.move != Vector2.zero)
+                    {
+                        float startSpeed = _animator.GetFloat(_animIDSpeed);
+                        float LerptargetSpeed = 200;
+
+                        shieldforShield.isFilling = true;
+
+
+                        // Lerp oranı
+                        float lerpRatio = 0.1f;
+
+                        // Lineer interpolasyon 
+                        float newSpeed = Mathf.Lerp(startSpeed, LerptargetSpeed, lerpRatio);
+                        _animator.SetFloat(_animIDSpeed, newSpeed);
+
+                    }
+                    else if (_input.move == Vector2.zero)
+                    {
+                        float finishSpeed = _animator.GetFloat(_animIDSpeed);
+                        float LerpFinishSprintToIdle = 0;
+                        float LerfRadio = 0.1f;
+
+                        float newLerfSpeed = Mathf.Lerp(finishSpeed, LerpFinishSprintToIdle, LerfRadio);
+
+                        _animator.SetFloat(_animIDSpeed, newLerfSpeed);
+                    }
+                }
+                else if (_input.move != Vector2.zero)
+                {
+                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
+                    targetSpeed = MoveSpeed;
+                    float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
+                    float LerpTargetSpeedWalk = 100;
+                    shieldforShield.isFilling = true;
+
+
+
+
+                    float lerpRatioWalk = 0.1f;
+
+                    float newspeed = Mathf.Lerp(StartSpeedWalk, LerpTargetSpeedWalk, lerpRatioWalk);
+                    // Sprint olmadığında _animIDSpeed değerini normal hızda ayarla
+                    _animator.SetFloat(_animIDSpeed, newspeed);
+                }
+                else if (_input.move == Vector2.zero)
+                {
+                    float finishSpeed = _animator.GetFloat(_animIDSpeed);
+                    float LerpFinishSprintToIdle = 0;
+                    float LerfRadio = 0.1f;
+
+                    float newLerfSpeed = Mathf.Lerp(finishSpeed, LerpFinishSprintToIdle, LerfRadio);
+
+                    _animator.SetFloat(_animIDSpeed, newLerfSpeed);
+                    shieldforShield.isFilling = true;
+                }
+
+                if (_input.move == Vector2.zero)
+                {
+                    targetSpeed = 0.0f;
+                    shieldforShield.isFilling = true;
+                }
+
+                float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+                float speedOffset = 0.1f;
+                float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+
+                if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+                {
+                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
+                }
+                else
+                {
+                    _speed = targetSpeed;
+                }
+
+                _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+                if (_animationBlend < 0.01f)
+                {
+                    _animationBlend = 0f;
+                    shieldforShield.isFilling = true;
+                }
+
+                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+                if (_input.move != Vector2.zero)
+                {
+                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
+
+                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+                if (!_input.sprint && _hasAnimator)
+                {
+                    // _animator.SetFloat(_animIDSpeed, _animationBlend);
+                    _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                }
+
+                float animationSpeed = 1.0f; // Normal hız
+
+                // Son 21 ile son 2 
+                float normalizedTime = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                if (normalizedTime > 0.81f && normalizedTime < 0.98f) // Son 21 ile son 2 
+                {
+                    animationSpeed = Mathf.Lerp(1.0f, 0.5f, (normalizedTime - 0.81f) / (0.98f - 0.81f)); // Normal hızdan 21 
+                }
+
+
+                // Animasyon hızı
+                _animator.speed = animationSpeed;
+            }
+        }
+
+
+        #endregion
+
+        //Space
+        #region ZIPLAMA
+
+        private void JumpAndGravity()
+        {
+            if (Grounded)
+            {
+
+                _fallTimeoutDelta = FallTimeout;
+
+
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDJump, false);
+                    _animator.SetBool(_animIDFreeFall, false);
+                }
+
+
+                if (_verticalVelocity < 0.0f)
+                {
+                    _verticalVelocity = -2f;
+                }
+
+                // Jump
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f /*&& JumpConditionMet()*/)
+                {
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
+                    if (_hasAnimator)
+                    {
+
+                        _animator.SetBool(_animIDJump, true);
+                    }
+
+
+                    hasLoggedJumpAngle = false;
+                }
+
+
+                if (_jumpTimeoutDelta >= 0.0f)
+                {
+                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
+                    _jumpTimeoutDelta -= Time.deltaTime;
+
+                }
+            }
+            else
+            {
+
+                _jumpTimeoutDelta = JumpTimeout;
+
+
+                if (_fallTimeoutDelta >= 0.0f)
+                {
+                    _fallTimeoutDelta -= Time.deltaTime;
+                }
+                else
+                {
+
+                    if (_hasAnimator)
+                    {
+                        FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
+                        _animator.SetBool(_animIDFreeFall, true);
+                    }
+                }
+
+
+                _input.jump = false;
+            }
+
+
+            if (_verticalVelocity < _terminalVelocity)
+            {
+                _verticalVelocity += Gravity * Time.deltaTime;
+            }
+        }
+
+        #endregion
+
+        //Sağ Tık
+        #region BLOKLAMA
+
+
+
+        private void Blocked()
+        {
+            if (_input.Block && Grounded && !isDead)
+            {
+                cameraForward = _mainCamera.transform.forward;
+                cameraForward.y = 0.0f;
+                _animator.SetBool("Block", true);
+
+
+
+
+
+                //Shield
+                if (isTabing && shieldforShield.isFilling)
+                {
+
+                    @event.ishield = false;
+                    if (shieldforShield.isFilling)
+                    {
+
+                        shield.ShieldInstantiate();
+                        VfxEnding = false;
+                        shieldforShield.isFilling = false;
+                        shieldforShield.fillImage.fillAmount -= shieldforShield.decreaseSpeed * Time.deltaTime;
+
+                        if (!uzaklastirSet)
+                        {
+                            nav.uzaklastir = true;
+                            uzaklastirSet = true;
+                        }
+                    }
+                    if (shieldforShield.fillImage.fillAmount < 0.01)
+                    {
+                        shield.ShieldDestroy();
+                        _animator.SetBool("Block", false);
+                    }
+                }
+                else if (!isTabing)
+                {
+
+                    butterflyController.isRightClicked = true;
+
+
+                    nav.uzaklastir = false;
+                    uzaklastirSet = false;
+                }
+
+                // shieldforShield.shieldTimer += Time.deltaTime / shieldforShield.totalTime;
+
+            }
+            else
+            {
+                @event.ishield = true;
+                VfxEnding = true;
+                _animator.SetBool("Block", false);
+                StartCoroutine(ResetShield());
+
+              
+                nav.uzaklastir = false;
+                uzaklastirSet = false;
+
+
+            }
+
+        }
+
+
+
+
+        IEnumerator ResetShield()
+        {
+            yield return new WaitForSeconds(0.01f);
+            shield.ShieldDestroy();
+        }
+
+
+        private IEnumerator ResetBlock()
+        {
+            yield return new WaitForSeconds(1.5f);
+            isBlocked = false;
+            _animator.SetBool(_animIDBlock, false);
+
+        }
+
+        #endregion
+
+
+        //aim sistemini değiştir
+
+        private void AimChange()
+        {
+
+            float inputAngleLeft = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+        }
+
+        public bool AimLeftConditionmet()
+        {
+            float inputAngleLeft = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+            return inputAngleLeft > -50 && inputAngleLeft < -40;
+
+
+        }
+
+
+
+        //Dash
+        #region Dash Sistemi
+
+        private void DashRight()
+        {
+            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+            if (DashRightConditionMet() && _input.jump && !hasLoggedJumpAngle)
+            {
+
+                _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -2f * Gravity);
+
+
+                _animator.SetBool(_animIDashRight, true);
+                isRightDash = true;
+                _input.jump = false;
+                StartCoroutine(Dashed());
+
+
+                hasLoggedJumpAngle = true;
+            }
+            else if (!_input.jump)
+            {
+
+                hasLoggedJumpAngle = false;
+            }
+        }
+
+        private bool JumpConditionMet()
+        {
+            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return inputAngleJump == 0;
+        }
+
+
+        private IEnumerator Dashed()
+        {
+            yield return
+
+            isRightDash = false;
+            _animator.SetBool(_animIDashRight, false);
+        }
+
+
+        #endregion
+
+
+        //Kendi yazdığım 2D freeform directional animator
+        #region Manuel olarak yapılmış 2D freeform directional
+        private bool DashBackConditionMet()
+        {
+            Vector2 reverseDirection = -_input.move; // Yön vektörünün tersi
+            float inputAngleBack = Mathf.Atan2(reverseDirection.x, reverseDirection.y) * Mathf.Rad2Deg;
+            return Mathf.Abs(inputAngleBack) <= 45f || Mathf.Abs(inputAngleBack) >= 315f;
+        }
+
+        private bool DashRightConditionMet()
+        {
+            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return inputAngleRight >= 45f && inputAngleRight <= 90f;
+        }
+
+        private bool DashLeftConditionMet()
+        {
+            float inputAngleLeft = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return (inputAngleLeft >= -90f && inputAngleLeft <= -45f) || (inputAngleLeft >= 270f && inputAngleLeft <= 315f);
+        }
+
+        private bool DashLeftBackConditionMet()
+        {
+            float inputAngleLeftBack = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return (inputAngleLeftBack >= -135f && inputAngleLeftBack <= -90f);
+        }
+
+        private bool DashRightBackConditionMet()
+        {
+            float inputAngleRightBack = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return (inputAngleRightBack >= 90f && inputAngleRightBack <= 135f);
+        }
+
+
+
+
+
+
+        private bool DashLeftBackDiagonalConditionMet()
+        {
+            Vector2 reverseDirection = -_input.move; // Yön vektörünün tersi
+            float inputAngleBack = Mathf.Atan2(reverseDirection.x, reverseDirection.y) * Mathf.Rad2Deg;
+
+            // Negatif açıyı pozitif bir açıya dönüştürme
+            if (inputAngleBack < 0)
+            {
+                inputAngleBack += 360f;
+            }
+
+            // -45 ve -135 derece aralığını kontrol etme
+            return inputAngleBack >= 315f && inputAngleBack <= 225f;
+        }
+
+
+
+
+
+        #endregion
+
+
+        //F
+        #region MagicAttack
+
+        private void MagicAttack()
+        {
+            if (_input.fire && !isMagicAttack && Grounded)
+            {
+
+                cameraForward = _mainCamera.transform.forward;
+                cameraForward.y = 0.0f;
+
+
+                if (cameraForward != Vector3.zero)
+                {
+                    transform.forward = cameraForward * Time.deltaTime;
+                }
+
+                Debug.Log("F");
+                _animator.SetBool(_animIDMagicAttack, true);
+                isMagicAttack = true;
+
+
+                StartCoroutine(ResetMagicAttack());
+            }
+        }
+        private IEnumerator ResetMagicAttack()
+        {
+            yield return new WaitForSeconds(1.5f);
+
+            isMagicAttack = false;
+            _animator.SetBool(_animIDMagicAttack, false);
+        }
+
+
+        #endregion
+
+        //E
+        #region ProjectTile
+        private void ProjectTile()
+        {
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+            {
+
+                cameraForward = _mainCamera.transform.forward;
+                cameraForward.y = 0.0f;
+
+
+                if (cameraForward != Vector3.zero)
+                {
+                    transform.forward = cameraForward * Time.deltaTime;
+                }
+                Debug.Log("E");
+
+                _animator.SetBool(_animIDProjectTile, true);
+                isProjectTileAttack = true;
+                StartCoroutine(ResetProjectTile());
+            }
+        }
+
+
+        private IEnumerator ResetProjectTile()
+        {
+            yield return new WaitForSeconds(1.1f);
+
+            isProjectTileAttack = false;
+            _animator.SetBool(_animIDProjectTile, false);
+
+
+        }
+        #endregion
+
+        //Q
+        #region Orbball
+
+
+        private void Orball()
+        {
+            if (_input.Orbball && !isAttacking && Grounded)
+            {
+
+                speel.InstantiateQSpell();
+                cameraForward = _mainCamera.transform.forward;
+                cameraForward.y = 0.0f;
+
+
+                if (cameraForward != Vector3.zero)
+                {
+                    transform.forward = cameraForward * Time.deltaTime;
+                }
+                Debug.Log("Q");
+
+                _animator.SetBool(_animIDRange, true);
+                isAttacking = true;
+
+                StartCoroutine(ResetAttackFlag());
+            }
+        }
+        private IEnumerator ResetAttackFlag()
+        {
+
+            yield return new WaitForSeconds(1.25f);
+
+
+
+            isAttacking = false;
+
+            _animator.SetBool(_animIDRange, false);
+
+        }
+
+        IEnumerator waitqspell()
+        {
+            yield return new WaitForSeconds(5f);
+            speel.destroyspeelq();
+
+        }
+
+
+
+        #endregion
+
+
+
+
+
+
+>>>>>>> parent of d93495c (revert)
         private void LateUpdate()
         {
             CameraRotation();

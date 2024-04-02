@@ -60,6 +60,7 @@ public class Shield : MonoBehaviour
     {
         shieldInstance.Play();
         yield return new WaitForSeconds(Seconds);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -73,6 +74,8 @@ public class Shield : MonoBehaviour
 
         shieldInstance.Play();
 
+=======
+>>>>>>> parent of d93495c (revert)
         shieldInstance.Pause();
 <<<<<<< Updated upstream
 =======

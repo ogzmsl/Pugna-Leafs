@@ -9,6 +9,7 @@ public class QSpeel : MonoBehaviour
     [SerializeField] private LayerMask terrainLayerMask;
     public Transform mainCamera;
     private RaycastHit hitInfo;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -55,6 +56,8 @@ public class QSpeel : MonoBehaviour
 
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of d93495c (revert)
 
     public void InstantiateQSpell()
     {

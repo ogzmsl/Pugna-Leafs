@@ -27,6 +27,7 @@ public class GolemNavMesh : MonoBehaviour
     private float timer = 0f;
     private bool isAtRandomPoint = false;
     public bool isDestroy = false;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     public GameObject Golem;
 =======
@@ -68,6 +69,11 @@ public class GolemNavMesh : MonoBehaviour
       private bool spawn;
       public Transform newTransform;*/
 
+=======
+    public GameObject Golem;
+
+
+>>>>>>> parent of d93495c (revert)
     void Start()
     {
 <<<<<<< Updated upstream
@@ -84,6 +90,7 @@ public class GolemNavMesh : MonoBehaviour
     private void FixedUpdate()
     {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -116,6 +123,10 @@ public class GolemNavMesh : MonoBehaviour
         if (isDestroy)
         {
 >>>>>>> parent of d93495c (revert)
+=======
+        if (isDestroy)
+        {
+>>>>>>> parent of d93495c (revert)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -123,6 +134,7 @@ public class GolemNavMesh : MonoBehaviour
 
         if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -140,6 +152,11 @@ public class GolemNavMesh : MonoBehaviour
                 animator.SetInteger("AttackTypeGolem", 0);
                 agent.destination = Player.position;
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+            Golemagent.isStopped = false;
+            animator.SetInteger("AttackTypeGolem", 0);
+            Golemagent.destination = Player.position;
+>>>>>>> parent of d93495c (revert)
 =======
             Golemagent.isStopped = false;
             animator.SetInteger("AttackTypeGolem", 0);
@@ -165,6 +182,7 @@ public class GolemNavMesh : MonoBehaviour
 
             if (!isRandomAttackSet)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
 
@@ -175,6 +193,8 @@ public class GolemNavMesh : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 =======
 >>>>>>> parent of d93495c (revert)
             {
@@ -206,10 +226,13 @@ public class GolemNavMesh : MonoBehaviour
                 Golemagent.speed = 0.8f;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 =======
 >>>>>>> parent of d93495c (revert)
         }

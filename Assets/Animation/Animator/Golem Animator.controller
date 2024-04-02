@@ -132,6 +132,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - m_Name: die
     m_Type: 9
@@ -143,6 +144,8 @@ AnimatorController:
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 =======
 >>>>>>> parent of d93495c (revert)
   m_AnimatorLayers:
@@ -204,6 +207,7 @@ BlendTree:
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   m_BlendParameter: GolemSpeed
   m_BlendParameterY: speed
@@ -213,6 +217,8 @@ BlendTree:
   m_MaxThreshold: 0.25
   m_UseAutomaticThresholds: 0
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 =======
 >>>>>>> parent of d93495c (revert)
   m_NormalizedBlendValues: 0

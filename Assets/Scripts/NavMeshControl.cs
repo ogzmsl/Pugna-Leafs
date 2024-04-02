@@ -33,6 +33,7 @@ public class NavMeshControl : MonoBehaviour
     public GoblinAttackOneAnimationEvent goblin;
     [SerializeField] private HealtSystem healt;
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -55,6 +56,8 @@ public class NavMeshControl : MonoBehaviour
 =======
     public GoblinTetikleme tetikleme;
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of d93495c (revert)
 
     void Start()
     {
@@ -97,6 +100,7 @@ public class NavMeshControl : MonoBehaviour
 
         if (isDestroy)
         {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -114,6 +118,8 @@ public class NavMeshControl : MonoBehaviour
             agent.speed = 0;
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of d93495c (revert)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -122,6 +128,7 @@ public class NavMeshControl : MonoBehaviour
         {
 
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -133,6 +140,9 @@ public class NavMeshControl : MonoBehaviour
 =======
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
+>>>>>>> parent of d93495c (revert)
 =======
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
 >>>>>>> parent of d93495c (revert)
@@ -157,12 +167,16 @@ public class NavMeshControl : MonoBehaviour
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d93495c (revert)
 =======
 >>>>>>> parent of d93495c (revert)
             else if (mesafeOyuncu < attackDestination)
             {
 
                 agent.isStopped = true;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
             else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
@@ -178,6 +192,8 @@ public class NavMeshControl : MonoBehaviour
                 agent.isStopped = true;
 
 >>>>>>> parent of c739808 (TapinakFinish)
+=======
+>>>>>>> parent of d93495c (revert)
 =======
 >>>>>>> parent of d93495c (revert)
 

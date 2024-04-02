@@ -51,6 +51,7 @@ public class HealtSystem : MonoBehaviour
             currentHealth = 0;
             parentAnimator.SetTrigger("die");
             navMesh.isDestroy = true;
+<<<<<<< HEAD
 
           parentAnimator.SetTrigger("die");
             StartCoroutine(waitforDead());
@@ -71,10 +72,13 @@ public class HealtSystem : MonoBehaviour
         navMesh.isDestroy = true;
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of d93495c (revert)
         }
         else if (previousHealth > currentHealth)
         {
        
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
@@ -100,6 +104,10 @@ public class HealtSystem : MonoBehaviour
             RangeCounter++;
 
 >>>>>>> Stashed changes
+=======
+            parentAnimator.SetTrigger("Damage");
+            bloodGoblin.Play();
+>>>>>>> parent of d93495c (revert)
             isDamageBlood = true;
             StartCoroutine(waitforblood());
         }
