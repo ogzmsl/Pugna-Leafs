@@ -8,21 +8,19 @@ public class GoblinAttackOneAnimationEvent : MonoBehaviour
     [SerializeField] private NavMeshControl nav;
     public bool ishield;
     public bool DamageAnim = false;
-    Animator animator;
+    public Animator animator;
 
     private void Start()
     {
-
-
+        // Öncelikle gerekli bileþenleri aldýðýnýzdan emin olun
         animator = GetComponent<Animator>();
-        
         if (playerHealthScript == null)
         {
             Debug.LogError("PlayerHealt scripti yok.");
         }
         if (nav == null)
         {
-            Debug.Log("navmesh scriptti yok");
+            Debug.Log("NavMeshControl scripti yok");
         }
     }
 
@@ -31,22 +29,19 @@ public class GoblinAttackOneAnimationEvent : MonoBehaviour
         if (DamageAnim)
         {
             animator.SetTrigger("Damage");
-            StartCoroutine(damagewait());
+            StartCoroutine(DamageWait());
         }
     }
-    IEnumerator damagewait()
+
+    IEnumerator DamageWait()
     {
         yield return new WaitForSeconds(0.5f);
-
     }
 
-    
     public void OnGoblinAttackAnimationEvent()
     {
-        
         if (playerHealthScript != null)
         {
-      
             Invoke("TakeDamage", 0.85f);
         }
         else
@@ -55,21 +50,13 @@ public class GoblinAttackOneAnimationEvent : MonoBehaviour
         }
     }
 
-
     private void TakeDamage()
     {
-
         if (ishield)
         {
-           
             playerHealthScript.PlayerHealthValue -= 0.1f;
-           
         }
-
-      
         playerHealthScript.PlayerHealthValue = Mathf.Clamp01(playerHealthScript.PlayerHealthValue);
-       
         playerHealthScript.PlayerHealthImage.fillAmount = playerHealthScript.PlayerHealthValue;
-       
     }
 }

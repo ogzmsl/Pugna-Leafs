@@ -1,5 +1,6 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+using StarterAssets;
 using UnityEngine.InputSystem;
 #endif
 
@@ -16,8 +17,13 @@ namespace StarterAssets
         public bool Project_Tile;
         public bool fire;
         public bool Block;
-        public bool mouseLeft; // Added for mouse left input
-        public bool Tab;//shield or ButterflyControl
+        public bool mouseLeft;
+        public bool Tab;
+        public bool Intraction;
+        public bool Escape;
+        public bool Dodge;
+     
+
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -26,23 +32,46 @@ namespace StarterAssets
         public bool cursorLocked = true;
         public bool cursorInputForLook = true;
 
+        public ThirdPersonController controller;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 
-         public void TabInput(bool newTabState)
+
+     
+        public void OnEscape(InputValue value)
         {
-        Tab = newTabState;
+            EscapeInput(value.isPressed);
+        }
+
+        public void EscapeInput(bool newEscapeState)
+        {
+            Escape = newEscapeState;
+        }
+
+        public void TabInput(bool newTabState)
+        {
+            Tab = newTabState;
         }
 
         public void OnTab(InputValue value)
         {
-        TabInput(value.isPressed);
+            TabInput(value.isPressed);
         }
 
-         public void OrbballInput(bool newFireStateorball)
+        public void IntractionInput(bool newIntractionState)
+        {
+            Intraction = newIntractionState;
+        }
+
+        public void OnIntraction(InputValue value)
+        {
+            IntractionInput(value.isPressed);
+        }
+
+        public void OrbballInput(bool newFireStateorball)
         {
             Orbball = newFireStateorball;
         }
-
 
         public void OnOrbball(InputValue value)
         {
@@ -106,6 +135,12 @@ namespace StarterAssets
         {
             SprintInput(value.isPressed);
         }
+
+        public void OnDodge(InputValue value)
+        {
+            DodgeInput(value.isPressed);
+        }
+
 #endif
 
         public void MoveInput(Vector2 newMoveDirection)
@@ -128,14 +163,39 @@ namespace StarterAssets
             sprint = newSprintState;
         }
 
+        public void DodgeInput(bool newDodgeState)
+        {
+            Dodge = newDodgeState;
+        }
+
         private void OnApplicationFocus(bool hasFocus)
         {
-            SetCursorState(cursorLocked);
+            if (controller.Panel.activeSelf == false)
+            {
+                SetCursorState(cursorLocked);
+            }
+           
         }
 
         private void SetCursorState(bool newState)
         {
-            Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+           
+                
+        }
+        private void Update()
+        {
+            if (controller.Panel.activeSelf == true)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else if (controller.Panel.activeSelf == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
+    
+   
 }
