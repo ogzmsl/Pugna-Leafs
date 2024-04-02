@@ -1,292 +1,119 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GolemNavMesh : MonoBehaviour
 {
 
-    public bool uzaklastir;
-    public NavMeshAgent agent;
+    public NavMeshAgent Golemagent;
     public Transform Player;
     public Animator animator;
     public float kovalamaMesafesi = 5f; // Kovalama mesafesi
-    public float kalkan_mesafesi = 2f;
     private float gorunusAcisi = 360; // Görüþ açýsý
     private float idleSpeedThreshold = 0.1f;
     public float patrolRadius = 10f; //devriye
     public float timeAtRandomPoint = 10f;
-    public float attackDestination = 1.5f;
+    public float attackDestination = 3f;
 
-    public bool isRandomAttackSet = false;
-    public int fixedRandomAttack;
+    private bool isRandomAttackSet = false;
+    private int fixedRandomAttack;
 
-    public bool GoblinDamage = false;
-    public delegate void GoblinAttackEventHandler();
-    public static event GoblinAttackEventHandler OnGoblinAttack;
+    public bool GoblemDamage = false;
+    public delegate void GOlemAttackEventHandler();
+    public static event GOlemAttackEventHandler OnGolemAttack;
 
 
     private float timer = 0f;
-    public bool isAtRandomPoint = false;
+    private bool isAtRandomPoint = false;
     public bool isDestroy = false;
-    public GameObject Goblin;
-    Shield shield;
-    public GoblinAttackOneAnimationEvent goblin;
-    [SerializeField] private HealtSystem healt;
-    public PlayerBirth birth;
-    public PlayerHealt playerHealt;
-    private float mesafeOyuncu = 0f;
-    private bool spawn;
-    public Transform newTransform;
-    public FButtonEffectDistance effectDistance;
-
-    //Range
-    public float RangeTimer = 0;
-    private int AtakSayisi = 0;
-    private bool Atak;
-
-    public ParticleSystem RangeVfx;
-
-    public GolemTetikleme tetikleme;
-
-    private bool Sersemleme = false;
-
-
+    public GameObject Golem;
 
 
     void Start()
     {
-        shield = FindObjectOfType<Shield>();
-        agent = GetComponent<NavMeshAgent>();
-       
 
+        Golemagent = GetComponent<NavMeshAgent>();
     }
-
-
-
-
-
-
-
-
-
-    //Range Ýþlemleri
-
-    public void Range()
-    {
-
-        if (healt.RangeCounter % 5 == 0&&healt.RangeCounter!=0)
-        {
-
-            RangeVfx.Play();
-
-
-            //burada range iþlemleri yapýlacak
-
-
-        }
-
-        else
-        {
-            RangeVfx.Stop();
-        }
-        if (healt.RangeCounter % 8 == 0 && healt.RangeCounter != 0)
-        {
-            Sersemleme = true;
-        }
-
-
-
-
-
-        
-        
-    }
-
-
-    private IEnumerator WaitforSersemleme()
-    {
-        yield return new WaitForSeconds(7);
-        animator.SetBool("Injurned", false);
-        healt.RangeCounter++;
-        Sersemleme = false;
-    }
-
-
-
-
 
     private void FixedUpdate()
     {
 
-        if (Sersemleme)
-        {
-            animator.SetBool("Injurned", true);
-            StartCoroutine(WaitforSersemleme());
-        }
-
-        Range();
-
-
-
-        if (birth.goblinOneSpawn)
-        {
-            transform.position = newTransform.position;
-            birth.goblinOneSpawn=false;
-        }
-   
-
-
-        UpdatePlayerDistance();
-
-        float ShieldDistance = Vector3.Distance(Goblin.transform.position, Player.transform.position);
-
-
         if (isDestroy)
         {
-            agent.isStopped = true;
             StartCoroutine(GoblinDestroy());
         }
 
+        float mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
 
-        
-
-        if (!healt.isDamageBlood)
+        if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
         {
-            
-
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination && !isDestroy&&tetikleme.GolemTetiklemeBool&&!Sersemleme)
-            {
-                agent.isStopped = false;
-                animator.SetInteger("AttackTypeGolem", 0);
-                agent.destination = Player.position;
+            Golemagent.isStopped = false;
+            animator.SetInteger("AttackTypeGolem", 0);
+            Golemagent.destination = Player.position;
 
 
-                Vector3 lookAtPlayer = new Vector3(Player.position.x - transform.position.x, 0, Player.position.z - transform.position.z);
-                Quaternion rotation = Quaternion.LookRotation(lookAtPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+            Vector3 lookAtPlayer = new Vector3(Player.position.x - transform.position.x, 0, Player.position.z - transform.position.z);
+            Quaternion rotation = Quaternion.LookRotation(lookAtPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
 
-                animator.SetFloat("GolemSpeed", 0.5f); //Koþma
-                ResetTimer();
-                gorunusAcisi = 360;
-                agent.speed = 5f;
-                isRandomAttackSet = false; // Yeni random deðer 
-                isAtRandomPoint = false; // Yeni random deðer 
-            }
-
-            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01f&&tetikleme.GolemTetiklemeBool&&!Sersemleme) 
-            {
-                agent.isStopped = true;
-
-                if (!isRandomAttackSet)
-                {
-                    // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
-                    fixedRandomAttack = Random.Range(1, 3);
-                    animator.SetInteger("AttackTypeGolem", fixedRandomAttack);
-                    isRandomAttackSet = true;
-                  
-                }
-
-
-               
-                    
-
-                Debug.Log(fixedRandomAttack);
-
-                if (fixedRandomAttack == 1)
-                {
-                    OnGoblinAttack?.Invoke();
-                }
-
-                gorunusAcisi = 360;
-            }
-            else
-            {
-                if (!isAtRandomPoint && !isDestroy)
-                {
-
-                    MoveToRandomPoint();
-                    isAtRandomPoint = true;
-                    isRandomAttackSet = false;
-                    agent.speed = 0.8f;
-                }
-            }
-
-            if (agent.velocity.magnitude <= idleSpeedThreshold && !isDestroy&&!Sersemleme)
-            {
-                animator.SetFloat("GolemSpeed", 0.25f); // Walk 
-
-
-                UpdateTimer();
-            }
-
-
-
-        }
-        else if (healt.isDamageBlood && !isDestroy)
-        {
-
-            StartCoroutine(GoblinWait());
+            animator.SetFloat("GolemSpeed", 0.5f); // Walk 
+            ResetTimer();
+            gorunusAcisi = 360;
+            Golemagent.speed = 2f;
+            isRandomAttackSet = false; // Yeni random deðer 
+            isAtRandomPoint = false; // Yeni random deðer 
         }
 
-        if (uzaklastir && ShieldDistance < 1.85f)
+        else if (mesafeOyuncu < attackDestination)
         {
-            Vector3 directionToPlayer = (transform.position - Player.position).normalized;
-            Vector3 targetPosition = transform.position + directionToPlayer * 3f;
-            targetPosition.y = transform.position.y;
-            animator.SetInteger("AttackTypeGolem", fixedRandomAttack);
+            Golemagent.isStopped = true;
 
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
-
-
-
-          if (transform.position == targetPosition)
+            if (!isRandomAttackSet)
             {
-                uzaklastir = false;
+                // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
+                fixedRandomAttack = Random.Range(1, 3);
+                isRandomAttackSet = true;
             }
 
-        }
+            animator.SetInteger("AttackTypeGolem", 1);
 
-        if (effectDistance.isDistanceFButton && ShieldDistance < 5f || playerHealt.PlayerHealthValue < 0.01f)
+            Debug.Log(fixedRandomAttack);
+
+            if (fixedRandomAttack == 1)
+            {
+                OnGolemAttack?.Invoke();
+            }
+
+            gorunusAcisi = 360;
+        }
+        else
         {
-            Vector3 directionToPlayer = (transform.position - Player.position).normalized;
-            Vector3 targetPosition = transform.position + directionToPlayer * 6f;
-            targetPosition.y = transform.position.y;
-            animator.SetFloat("speed", 0f);//idle
+            if (!isAtRandomPoint)
+            {
 
-
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed * 6);
-
+                MoveToRandomPoint();
+                isAtRandomPoint = true;
+                isRandomAttackSet = false;
+                Golemagent.speed = 0.8f;
+            }
         }
 
+        if (Golemagent.velocity.magnitude <= idleSpeedThreshold)
+        {
+            animator.SetFloat("GolemSpeed", 0.5f); // Walk 
 
+            UpdateTimer();
+        }
 
     }
-
-    void UpdatePlayerDistance()
-    {
-        // Her güncelleme sýrasýnda oyuncu ile mesafeyi güncelle
-        mesafeOyuncu = Vector3.Distance(transform.position, Player.position);
-    }
-
-    IEnumerator GoblinWait()
-    {
-        yield return new WaitForSeconds(0.3f);
-        agent.speed = 0f;
-        agent.isStopped = true;
-    }
-
-
-
 
 
     IEnumerator GoblinDestroy()
     {
         yield return new WaitForSeconds(1.7f);
-
-        Destroy(Goblin);
-
+        Destroy(Golem);
     }
-
 
 
 
@@ -294,7 +121,7 @@ public class GolemNavMesh : MonoBehaviour
     void MoveToRandomPoint()
     {
 
-        animator.SetFloat("GolemSpeed", 0.25f); // Walk speed
+        animator.SetFloat("GolemSpeed", 0.5f); // Walk speed
 
 
         Vector3 randomPoint = Random.insideUnitSphere * patrolRadius + transform.position;
@@ -306,13 +133,13 @@ public class GolemNavMesh : MonoBehaviour
 
     IEnumerator MoveToRandomPointCoroutine(Vector3 destination)
     {
-        agent.destination = destination;
+        Golemagent.destination = destination;
 
 
-        yield return new WaitUntil(() => agent.remainingDistance < 0.1f);
+        yield return new WaitUntil(() => Golemagent.remainingDistance < 0.1f);
 
 
-        animator.SetFloat("GolemSpeed", 0.5f);
+        animator.SetFloat("GolemSpeed", 0f);
         isAtRandomPoint = false;
     }
 
@@ -344,7 +171,4 @@ public class GolemNavMesh : MonoBehaviour
     {
         timer = 0f;
     }
-
-
-
 }

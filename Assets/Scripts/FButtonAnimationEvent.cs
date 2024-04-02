@@ -16,11 +16,11 @@ public class FButtonAnimationEvent : MonoBehaviour
     public MouseLeftAnimationEvent mouseLeftAnimationEvent;
 
     private float currentAngle = 0f;
-    public bool isDamaging = false;
+    private bool isDamaging = false; 
 
     void Update()
     {
-        
+        // orbitSpeed'i zamanla arttýr
         if (orbitSpeed < maxOrbitSpeed)
         {
             orbitSpeed += orbitSpeedIncreaseRate * Time.deltaTime;
@@ -34,7 +34,7 @@ public class FButtonAnimationEvent : MonoBehaviour
         Vector3 fireDirection = mouseLeftAnimationEvent.hitInfo.point - characterTransform.position;
         fireDirection.Normalize();
 
-        Vector3 orbitPosition = characterTransform.position;
+        Vector3 orbitPosition = characterTransform.position + Quaternion.Euler(0, currentAngle, 0) * (Vector3.right * orbitRadius);
 
         GameObject instantiatedPrefab = Instantiate(prefabToInstantiate, orbitPosition, Quaternion.identity);
 
@@ -60,7 +60,7 @@ public class FButtonAnimationEvent : MonoBehaviour
 
 
         BoxCollider boxCollider = instantiatedPrefab.AddComponent<BoxCollider>();
-        boxCollider.size = new Vector3(2f, 2f, 2f);
+        boxCollider.size = new Vector3(1f, 1f, 1f);
         boxCollider.isTrigger = true;
 
 
@@ -81,9 +81,8 @@ public class FButtonAnimationEvent : MonoBehaviour
             HealtSystem enemyHealthSystem = hit.collider.GetComponent<HealtSystem>();
             if (enemyHealthSystem != null)
             {
-                enemyHealthSystem.TakeDamage(30);
+                enemyHealthSystem.TakeDamage(100);
             }
-          
 
             // Reset the DamageOlabilir flag
             isDamaging = false;
