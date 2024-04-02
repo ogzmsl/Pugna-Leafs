@@ -63,7 +63,6 @@ ModelImporter:
       orientationOffsetY: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
       level: 0
       cycleOffset: 0
       loop: 0
@@ -80,8 +79,6 @@ ModelImporter:
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
-=======
->>>>>>> parent of c739808 (TapinakFinish)
       level: 0.1
       cycleOffset: 0.1
       loop: 0
@@ -96,9 +93,6 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -119,7 +113,6 @@ ModelImporter:
     useSRGBMaterialColor: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
@@ -128,17 +121,12 @@ ModelImporter:
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
-=======
->>>>>>> parent of c739808 (TapinakFinish)
     sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -932,11 +920,7 @@ ModelImporter:
     hasTranslationDoF: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
     hasExtraRoot: 0
-=======
-    hasExtraRoot: 1
->>>>>>> parent of c739808 (TapinakFinish)
 =======
     hasExtraRoot: 1
 >>>>>>> parent of c739808 (TapinakFinish)

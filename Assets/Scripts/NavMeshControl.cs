@@ -41,9 +41,6 @@ public class NavMeshControl : MonoBehaviour
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -69,10 +66,6 @@ public class NavMeshControl : MonoBehaviour
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        
->>>>>>> parent of c739808 (TapinakFinish)
 =======
         
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -89,11 +82,7 @@ public class NavMeshControl : MonoBehaviour
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
-=======
-            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
->>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -120,18 +109,10 @@ public class NavMeshControl : MonoBehaviour
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             else if (mesafeOyuncu < attackDestination)
             {
 
                 agent.isStopped = true;
-=======
-            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
-            {
-
-                agent.isStopped = true;
-
->>>>>>> parent of c739808 (TapinakFinish)
 =======
             else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
             {

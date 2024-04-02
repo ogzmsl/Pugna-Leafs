@@ -231,9 +231,6 @@ namespace StarterAssets
 
         
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -272,12 +269,9 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 
 
 =======
-=======
->>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
             Panel.SetActive(false);
@@ -354,9 +348,6 @@ namespace StarterAssets
             idleVfxControl();
             EscapeButton();
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -447,11 +438,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
-=======
-            if (_input.mouseLeft && !isRange && Grounded && isTabing)
->>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (_input.mouseLeft && !isRange && Grounded && isTabing)
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -520,6 +507,7 @@ namespace StarterAssets
              
 
 >>>>>>> parent of c739808 (TapinakFinish)
+
 
             }
             else
@@ -624,11 +612,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
-=======
-            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
->>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -1011,11 +995,8 @@ namespace StarterAssets
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         //Kendi yazdığım 2D freeform directional animator
 =======
-=======
->>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
         //yazdığım 2D freeform directional animator
@@ -1121,11 +1102,7 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             if (_input.Project_Tile && !isProjectTileAttack && Grounded)
-=======
-            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
->>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -1153,10 +1130,7 @@ namespace StarterAssets
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
         private void OnTriggerEnter(Collider other)
@@ -1167,16 +1141,7 @@ namespace StarterAssets
               
                 Destroy(other.gameObject);
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
-
-              
-                Debug.Log("Collectible collected!");
-            }
-        }
-
->>>>>>> parent of c739808 (TapinakFinish)
 
               
                 Debug.Log("Collectible collected!");
@@ -1211,7 +1176,6 @@ namespace StarterAssets
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
@@ -1224,10 +1188,6 @@ namespace StarterAssets
             if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
             {
 >>>>>>> parent of c739808 (TapinakFinish)
-=======
-            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
-            {
->>>>>>> parent of c739808 (TapinakFinish)
                 
                 speel.QSpellImage.fillAmount = 0;
               
@@ -1236,9 +1196,6 @@ namespace StarterAssets
 
                 _animator.SetBool(_animIDRange, true);
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)

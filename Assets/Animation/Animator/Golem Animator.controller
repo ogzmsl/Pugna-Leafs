@@ -139,9 +139,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -186,7 +183,6 @@ BlendTree:
     m_DirectBlendParameter: speed
     m_Mirror: 0
 <<<<<<< HEAD
-<<<<<<< HEAD
   - serializedVersion: 2
     m_Motion: {fileID: 1827226128182048838, guid: 86ee32d6d642dba4ea79b470ea6fdb14,
       type: 3}
@@ -210,11 +206,6 @@ BlendTree:
   m_BlendParameterY: speed
   m_MinThreshold: 0
 =======
->>>>>>> parent of c739808 (TapinakFinish)
-=======
-  m_BlendParameter: GolemSpeed
-  m_BlendParameterY: speed
-  m_MinThreshold: 0
 >>>>>>> parent of c739808 (TapinakFinish)
   m_MaxThreshold: 0.25
   m_UseAutomaticThresholds: 0

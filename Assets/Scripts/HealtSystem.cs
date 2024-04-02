@@ -68,9 +68,6 @@ public class HealtSystem : MonoBehaviour
 
         //navMesh.isDestroy = true;
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -87,9 +84,6 @@ public class HealtSystem : MonoBehaviour
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)

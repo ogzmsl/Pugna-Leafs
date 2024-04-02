@@ -42,9 +42,6 @@ public class GolemNavMesh : MonoBehaviour
     private bool spawn;
     public Transform newTransform;
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -59,12 +56,9 @@ public class GolemNavMesh : MonoBehaviour
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         if (isDestroy)
         {
 =======
-=======
->>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
         if (birth.goblinOneSpawn)
@@ -84,9 +78,6 @@ public class GolemNavMesh : MonoBehaviour
         {
 
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -99,13 +90,10 @@ public class GolemNavMesh : MonoBehaviour
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
             Golemagent.isStopped = false;
             animator.SetInteger("AttackTypeGolem", 0);
             Golemagent.destination = Player.position;
 =======
-=======
->>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 
@@ -207,9 +195,6 @@ public class GolemNavMesh : MonoBehaviour
 
             if (transform.position == targetPosition)
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -218,7 +203,6 @@ public class GolemNavMesh : MonoBehaviour
                 fixedRandomAttack = Random.Range(1, 3);
                 isRandomAttackSet = true;
             }
-<<<<<<< HEAD
 <<<<<<< HEAD
 
             animator.SetInteger("AttackTypeGolem", 1);
@@ -243,8 +227,6 @@ public class GolemNavMesh : MonoBehaviour
                 isRandomAttackSet = false;
                 Golemagent.speed = 0.8f;
             }
-=======
->>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
