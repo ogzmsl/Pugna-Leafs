@@ -62,6 +62,11 @@ public class Shield : MonoBehaviour
         yield return new WaitForSeconds(Seconds);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        shieldInstance.Play();
+    
+>>>>>>> parent of c739808 (TapinakFinish)
 =======
         shieldInstance.Play();
     

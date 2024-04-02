@@ -28,6 +28,9 @@ public class QSpeel : MonoBehaviour
 
     
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
