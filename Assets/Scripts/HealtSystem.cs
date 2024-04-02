@@ -67,6 +67,9 @@ public class HealtSystem : MonoBehaviour
             StartCoroutine(waitforDead());
 
         //navMesh.isDestroy = true;
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
         }
         else if (previousHealth > currentHealth)
@@ -80,6 +83,9 @@ public class HealtSystem : MonoBehaviour
             //   bloodGoblin.Play();
 
 
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
             isDamageBlood = true;
             StartCoroutine(waitforblood());

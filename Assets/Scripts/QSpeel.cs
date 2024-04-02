@@ -27,6 +27,9 @@ public class QSpeel : MonoBehaviour
 
 
     
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
 
     public void InstantiateQSpell()

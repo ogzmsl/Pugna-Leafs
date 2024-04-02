@@ -230,6 +230,9 @@ namespace StarterAssets
         
 
         
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
         private bool IsCurrentDeviceMouse
         {
@@ -265,9 +268,12 @@ namespace StarterAssets
         private void Start()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
             Panel.SetActive(false);
 
 
@@ -341,6 +347,9 @@ namespace StarterAssets
             StaminaControl();
             idleVfxControl();
             EscapeButton();
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
 
 
@@ -428,7 +437,11 @@ namespace StarterAssets
         private void Mouseleft()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+=======
+            if (_input.mouseLeft && !isRange && Grounded && isTabing)
+>>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (_input.mouseLeft && !isRange && Grounded && isTabing)
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -494,7 +507,6 @@ namespace StarterAssets
              
 
 >>>>>>> parent of c739808 (TapinakFinish)
-
 
 
             }
@@ -599,7 +611,11 @@ namespace StarterAssets
         private void Move()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+=======
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+>>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -978,8 +994,11 @@ namespace StarterAssets
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Kendi yazdığım 2D freeform directional animator
 =======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
         //yazdığım 2D freeform directional animator
 >>>>>>> parent of c739808 (TapinakFinish)
         #region Manuel olarak yapılmış 2D freeform directional
@@ -1082,7 +1101,11 @@ namespace StarterAssets
         private void ProjectTile()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+=======
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
+>>>>>>> parent of c739808 (TapinakFinish)
 =======
             if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -1106,7 +1129,10 @@ namespace StarterAssets
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
         private void OnTriggerEnter(Collider other)
         {
            
@@ -1114,6 +1140,15 @@ namespace StarterAssets
             {
               
                 Destroy(other.gameObject);
+<<<<<<< HEAD
+=======
+
+              
+                Debug.Log("Collectible collected!");
+            }
+        }
+
+>>>>>>> parent of c739808 (TapinakFinish)
 
               
                 Debug.Log("Collectible collected!");
@@ -1140,6 +1175,7 @@ namespace StarterAssets
         private void Orball()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
@@ -1148,6 +1184,10 @@ namespace StarterAssets
 =======
             if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
             {
+=======
+            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
+            {
+>>>>>>> parent of c739808 (TapinakFinish)
                 
                 speel.QSpellImage.fillAmount = 0;
               
@@ -1155,6 +1195,9 @@ namespace StarterAssets
                 cameraForward = _mainCamera.transform.forward;
 
                 _animator.SetBool(_animIDRange, true);
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
                 cameraForward.y = 0.0f;
 

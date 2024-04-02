@@ -41,6 +41,9 @@ public class GolemNavMesh : MonoBehaviour
     private float mesafeOyuncu = 0f;
     private bool spawn;
     public Transform newTransform;
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
     void Start()
     {
@@ -52,9 +55,12 @@ public class GolemNavMesh : MonoBehaviour
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (isDestroy)
         {
 =======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
         if (birth.goblinOneSpawn)
         {
             transform.position = newTransform.position;
@@ -71,6 +77,9 @@ public class GolemNavMesh : MonoBehaviour
         if (isDestroy)
         {
 
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
             StartCoroutine(GoblinDestroy());
         }
@@ -80,10 +89,13 @@ public class GolemNavMesh : MonoBehaviour
         if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             Golemagent.isStopped = false;
             animator.SetInteger("AttackTypeGolem", 0);
             Golemagent.destination = Player.position;
 =======
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
 
 
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination && !isDestroy)
@@ -182,6 +194,9 @@ public class GolemNavMesh : MonoBehaviour
 
 
             if (transform.position == targetPosition)
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
             {
                 // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
@@ -198,6 +213,7 @@ public class GolemNavMesh : MonoBehaviour
             {
                 OnGolemAttack?.Invoke();
             }
+<<<<<<< HEAD
 
             gorunusAcisi = 360;
         }
@@ -211,6 +227,8 @@ public class GolemNavMesh : MonoBehaviour
                 isRandomAttackSet = false;
                 Golemagent.speed = 0.8f;
             }
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
         }

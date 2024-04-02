@@ -114,6 +114,9 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
                 }
             ],
@@ -438,6 +441,9 @@
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
                 }
             ]

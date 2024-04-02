@@ -138,6 +138,9 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> parent of c739808 (TapinakFinish)
+=======
 >>>>>>> parent of c739808 (TapinakFinish)
   m_AnimatorLayers:
   - serializedVersion: 5
@@ -172,6 +175,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 1827226128182048838, guid: 0e2abb3cb512b3b40becbbb3e4ff918c,
       type: 3}
+<<<<<<< HEAD
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -183,6 +187,9 @@ BlendTree:
     m_Motion: {fileID: 1827226128182048838, guid: 86ee32d6d642dba4ea79b470ea6fdb14,
       type: 3}
     m_Threshold: 1
+=======
+    m_Threshold: 0.25
+>>>>>>> parent of c739808 (TapinakFinish)
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -191,12 +198,15 @@ BlendTree:
   m_BlendParameter: GolemSpeed
   m_BlendParameterY: speed
   m_MinThreshold: 0
+<<<<<<< HEAD
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
 =======
   m_BlendParameter: GolemSpeed
   m_BlendParameterY: speed
   m_MinThreshold: 0
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
   m_MaxThreshold: 0.25
   m_UseAutomaticThresholds: 0
 >>>>>>> parent of c739808 (TapinakFinish)
