@@ -95,10 +95,7 @@
                     "interactions": "",
                     "initialStateCheck": true
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 4e6e600 (NewPlamece)
                 },
                 {
                     "name": "Intraction",
@@ -119,32 +116,11 @@
                     "initialStateCheck": false
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
-=======
-                },
-                {
-                    "name": "Dodge",
-                    "type": "Button",
-                    "id": "5b35ddee-105a-4f25-9718-875fb249e0e1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "AnyKey",
-                    "type": "Button",
-                    "id": "a4e8d5f9-fcdb-4a05-a5a6-f41b8d91d537",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
->>>>>>> parent of 4e6e600 (NewPlamece)
                 }
             ],
             "bindings": [
@@ -445,10 +421,7 @@
                     "isComposite": false,
                     "isPartOfComposite": false
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 4e6e600 (NewPlamece)
                 },
                 {
                     "name": "",
@@ -473,36 +446,11 @@
                     "isPartOfComposite": false
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
-=======
-                },
-                {
-                    "name": "",
-                    "id": "c626a13e-e66b-439e-8e29-e4ea75bcf26f",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "db35aeae-eeda-4efc-af2d-c208a66641f8",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AnyKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
->>>>>>> parent of 4e6e600 (NewPlamece)
                 }
             ]
         }
