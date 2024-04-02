@@ -19,7 +19,7 @@ public class Stamina : MonoBehaviour
     {
         if (Staminabool)
         {
-            StaminaImage.fillAmount -= Time.fixedDeltaTime/50;
+            StaminaImage.fillAmount -= Time.fixedDeltaTime/20;
            
         }
         else if (!Staminabool&&StaminaImage.fillAmount<1)

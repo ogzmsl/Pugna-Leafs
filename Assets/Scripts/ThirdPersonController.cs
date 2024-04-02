@@ -197,10 +197,40 @@ namespace StarterAssets
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
+<<<<<<< HEAD
 
 
 
 
+=======
+        [SerializeField] private ParticleSystem IdleVfx;
+        public Chest chest;
+
+        
+        public EButtonEffect effectE;
+
+        public bool LightContoller;
+
+        public bool QController;
+        public QSpeel speelQ;
+        public CameraShakeLighting lighting;
+
+        public CamShake cam;
+        private float timerIdle;
+        private bool resetIdlevfx;
+
+        public FButtonEffectDistance effectDistance;
+
+        public EnemyDetection detection;
+
+
+        public GameObject Panel;
+
+        private int PanelCounter = 0;
+        
+
+        
+>>>>>>> parent of c739808 (TapinakFinish)
         private bool IsCurrentDeviceMouse
         {
             get
@@ -234,8 +264,17 @@ namespace StarterAssets
 
         private void Start()
         {
+<<<<<<< HEAD
 
 
+=======
+            Panel.SetActive(false);
+
+
+
+            IdleVfx.gameObject.SetActive(false);
+      
+>>>>>>> parent of c739808 (TapinakFinish)
 
             if (nav == null)
             {
@@ -295,7 +334,14 @@ namespace StarterAssets
             ShieldOrButterfly();
             WindSpeed();
             Die();
+<<<<<<< HEAD
 
+=======
+            Intract();
+            StaminaControl();
+            idleVfxControl();
+            EscapeButton();
+>>>>>>> parent of c739808 (TapinakFinish)
 
 
         }
@@ -381,7 +427,11 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
+<<<<<<< HEAD
             if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+=======
+            if (_input.mouseLeft && !isRange && Grounded && isTabing)
+>>>>>>> parent of c739808 (TapinakFinish)
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
@@ -433,8 +483,17 @@ namespace StarterAssets
                 }
                 // playerCameraRoot.transform.position = AimTransform.transform.position;
 
+<<<<<<< HEAD
                 _animator.SetBool("AttackOrbball", _input.mouseLeft);
+=======
 
+              
+                
+                    _animator.SetBool("AttackOrbball", _input.mouseLeft);
+               
+             
+
+>>>>>>> parent of c739808 (TapinakFinish)
 
 
 
@@ -539,7 +598,11 @@ namespace StarterAssets
         #region HAREKET
         private void Move()
         {
+<<<<<<< HEAD
             if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+=======
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+>>>>>>> parent of c739808 (TapinakFinish)
             {
                 _speed = 0.0f;
                 _animationBlend = 0.0f;
@@ -914,7 +977,11 @@ namespace StarterAssets
         #endregion
 
 
+<<<<<<< HEAD
         //Kendi yazdığım 2D freeform directional animator
+=======
+        //yazdığım 2D freeform directional animator
+>>>>>>> parent of c739808 (TapinakFinish)
         #region Manuel olarak yapılmış 2D freeform directional
         private bool DashBackConditionMet()
         {
@@ -1014,7 +1081,11 @@ namespace StarterAssets
         #region ProjectTile
         private void ProjectTile()
         {
+<<<<<<< HEAD
             if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+=======
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded&&ESpell.Lightimage.fillAmount>=0.98f)
+>>>>>>> parent of c739808 (TapinakFinish)
             {
 
                 cameraForward = _mainCamera.transform.forward;
@@ -1034,6 +1105,23 @@ namespace StarterAssets
         }
 
 
+<<<<<<< HEAD
+=======
+        private void OnTriggerEnter(Collider other)
+        {
+           
+            if (other.CompareTag("2D"))
+            {
+              
+                Destroy(other.gameObject);
+
+              
+                Debug.Log("Collectible collected!");
+            }
+        }
+
+
+>>>>>>> parent of c739808 (TapinakFinish)
         private IEnumerator ResetProjectTile()
         {
             yield return new WaitForSeconds(1.1f);
@@ -1051,11 +1139,23 @@ namespace StarterAssets
 
         private void Orball()
         {
+<<<<<<< HEAD
             if (_input.Orbball && !isAttacking && Grounded)
             {
 
                 speel.InstantiateQSpell();
                 cameraForward = _mainCamera.transform.forward;
+=======
+            if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount>0.99f)
+            {
+                
+                speel.QSpellImage.fillAmount = 0;
+              
+                speel.InstantiateQSpell();
+                cameraForward = _mainCamera.transform.forward;
+
+                _animator.SetBool(_animIDRange, true);
+>>>>>>> parent of c739808 (TapinakFinish)
                 cameraForward.y = 0.0f;
 
 
@@ -1097,6 +1197,30 @@ namespace StarterAssets
 
 
 
+<<<<<<< HEAD
+=======
+        //Escape
+        public void EscapeButton()
+        {
+            if (_input.Escape)
+            {
+                PanelCounter++;
+                if (PanelCounter % 2 == 0)
+                {
+                    Panel.SetActive(false);
+                }
+
+                else
+                {
+                    Panel.SetActive(true);
+                }
+                _input.Escape = false;
+            }
+
+
+        }
+     
+>>>>>>> parent of c739808 (TapinakFinish)
 
 
 

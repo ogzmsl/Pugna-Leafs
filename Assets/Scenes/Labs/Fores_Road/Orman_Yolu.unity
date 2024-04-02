@@ -1850,7 +1850,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1829646497}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!4 &58355819
 Transform:
   m_ObjectHideFlags: 0
@@ -6869,7 +6868,6 @@ MonoBehaviour:
   currentValue: 0
   speed: 0.5
   birth: {fileID: 1630396705}
-  Goblin: {fileID: 0}
 --- !u!114 &210382693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7664,7 +7662,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1408311062}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!136 &244816607
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -45405,10 +45402,6 @@ MonoBehaviour:
   goblin: {fileID: 1819723411}
   healt: {fileID: 1262173068}
   effectDistance: {fileID: 1630396710}
-  birth: {fileID: 0}
-  newTransform: {fileID: 0}
-  playerHealt: {fileID: 0}
-  tetikleme: {fileID: 0}
 --- !u!195 &1034415188
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -46092,10 +46085,6 @@ MonoBehaviour:
   goblin: {fileID: 1819723411}
   healt: {fileID: 1294017089}
   effectDistance: {fileID: 1630396710}
-  birth: {fileID: 0}
-  newTransform: {fileID: 0}
-  playerHealt: {fileID: 0}
-  tetikleme: {fileID: 0}
 --- !u!195 &1061291501
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -48126,7 +48115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1109412785
 Transform:
   m_ObjectHideFlags: 0
@@ -49973,7 +49962,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1957958149}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!4 &1163239215
 Transform:
   m_ObjectHideFlags: 0
@@ -52627,7 +52615,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1034415185}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!136 &1262173069
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -53986,7 +53973,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1061291498}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!136 &1294017090
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -54241,7 +54227,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1582381790}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!4 &1309217894
 Transform:
   m_ObjectHideFlags: 0
@@ -57900,9 +57885,6 @@ MonoBehaviour:
   goblin: {fileID: 1819723411}
   healt: {fileID: 244816606}
   effectDistance: {fileID: 1630396710}
-  playerHealt: {fileID: 0}
-  birth: {fileID: 0}
-  newTransform: {fileID: 0}
 --- !u!114 &1408311064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74153,9 +74135,6 @@ MonoBehaviour:
   goblin: {fileID: 1819723411}
   healt: {fileID: 1309217893}
   effectDistance: {fileID: 1630396710}
-  playerHealt: {fileID: 0}
-  birth: {fileID: 0}
-  newTransform: {fileID: 0}
 --- !u!4 &1582381792
 Transform:
   m_ObjectHideFlags: 0
@@ -75809,11 +75788,6 @@ MonoBehaviour:
   dieControl: 0
   navMesh: {fileID: 1819723409}
   Spawn: 0
-  goblinOneSpawn: 0
-  goblinTwoSpawn: 0
-  goblinThreeSpawn: 0
-  goblinFourSpawn: 0
-  goblinFiveSpawn: 0
   birthParticlePrefab: {fileID: 5710629524178148133, guid: da70b3b2bf79e1d4fba23913c3af19cf,
     type: 3}
   CamWait: 0
@@ -75939,9 +75913,6 @@ MonoBehaviour:
   cam: {fileID: 1893744722}
   effectDistance: {fileID: 1630396710}
   detection: {fileID: 1630396709}
-  Panel: {fileID: 0}
-  TwoDCounter: {fileID: 0}
-  UIanimator: {fileID: 0}
   isDead: 0
   yourRadius: 10
   yourForce: 150
@@ -76004,8 +75975,6 @@ MonoBehaviour:
   isWaitLight: 0
   isSpellingLight: 0
   Lightimage: {fileID: 2085209563}
-  distanceToCharacter: 0
-  isDoit: 0
 --- !u!114 &1630396712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76033,10 +76002,6 @@ MonoBehaviour:
   controller: {fileID: 1630396708}
   isQWait: 0
   sarsizni: 0
-  isDoit: 0
-  distanceToCharacter: 0
-  offset: 0
-  QspeelAudio: {fileID: 0}
 --- !u!114 &1630396713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76079,12 +76044,9 @@ MonoBehaviour:
   mouseLeft: 0
   Tab: 0
   Intraction: 0
-  Escape: 0
-  Dodge: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
-  controller: {fileID: 0}
 --- !u!114 &1630396715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82078,10 +82040,6 @@ MonoBehaviour:
   birth: {fileID: 1630396705}
   playerHealt: {fileID: 210382692}
   newTransform: {fileID: 1216904956}
-  effectDistance: {fileID: 0}
-  RangeTimer: 0
-  RangeVfx: {fileID: 0}
-  tetikleme: {fileID: 0}
 --- !u!4 &1819723410
 Transform:
   m_ObjectHideFlags: 0
@@ -82410,9 +82368,6 @@ MonoBehaviour:
   goblin: {fileID: 1819723411}
   healt: {fileID: 58355818}
   effectDistance: {fileID: 1630396710}
-  birth: {fileID: 0}
-  newTransform: {fileID: 0}
-  playerHealt: {fileID: 0}
 --- !u!4 &1829646499
 Transform:
   m_ObjectHideFlags: 0
@@ -91972,7 +91927,6 @@ MonoBehaviour:
   isDamageBlood: 0
   enemy: {fileID: 1819723408}
   deadanimationtime: 2
-  RangeCounter: 0
 --- !u!4 &1943599504
 Transform:
   m_ObjectHideFlags: 0
@@ -97380,9 +97334,6 @@ MonoBehaviour:
   goblin: {fileID: 1819723411}
   healt: {fileID: 1163239214}
   effectDistance: {fileID: 1630396710}
-  playerHealt: {fileID: 0}
-  birth: {fileID: 0}
-  newTransform: {fileID: 0}
 --- !u!4 &1957958151
 Transform:
   m_ObjectHideFlags: 0

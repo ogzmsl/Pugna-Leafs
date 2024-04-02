@@ -25,9 +25,6 @@ public class EButtonEffect : MonoBehaviour
     public bool isSpellingLight;
     public Image Lightimage;
 
-    public float distanceToCharacter;
-    public bool isDoit;
-
     private void Start()
     {
         isWaitLight = true;
@@ -44,10 +41,10 @@ public class EButtonEffect : MonoBehaviour
         {
             // Debug.Log("Target: " + hitInfo.transform.name);
         }
-        //bekleme süresi 30
+
         if (isWaitLight)
         {
-            Lightimage.fillAmount += Time.fixedDeltaTime / 5;
+            Lightimage.fillAmount += Time.fixedDeltaTime / 70;
             
         }
 
@@ -61,35 +58,6 @@ public class EButtonEffect : MonoBehaviour
             isWaitLight = false;
         }
     }
-
-
-
-    private void Update()
-    {
-        distanceToCharacter = Vector3.Distance(character.transform.position, hitInfo.point);
-
-
-        if (distanceToCharacter >= minDistance && distanceToCharacter <= maxDistance)
-        {
-
-            Vector3 spawnPosition = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
-            RaycastHit groundHit;
-            isDoit = true;
-
-           // Debug.Log(distanceToCharacter + "yapabilir");
-            if (Physics.Raycast(new Vector3(spawnPosition.x, 100, spawnPosition.z), Vector3.down, out groundHit, Mathf.Infinity, terrainLayerMask))
-            {
-                spawnPosition.y = groundHit.point.y;
-            }
-        }
-        else
-        {
-            isDoit = false;
-           // Debug.Log(distanceToCharacter + "yapamaz");
-        }
-    }
-
-
 
     private IEnumerator WaitForAnimations()
     {

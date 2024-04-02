@@ -27,9 +27,21 @@ public class GolemNavMesh : MonoBehaviour
     private float timer = 0f;
     private bool isAtRandomPoint = false;
     public bool isDestroy = false;
+<<<<<<< HEAD
     public GameObject Golem;
 
 
+=======
+    public GameObject Goblin;
+    Shield shield;
+    public GoblinAttackOneAnimationEvent goblin;
+    [SerializeField] private HealtSystem healt;
+    public PlayerBirth birth;
+    public PlayerHealt playerHealt;
+    private float mesafeOyuncu = 0f;
+    private bool spawn;
+    public Transform newTransform;
+>>>>>>> parent of c739808 (TapinakFinish)
     void Start()
     {
 
@@ -39,8 +51,27 @@ public class GolemNavMesh : MonoBehaviour
     private void FixedUpdate()
     {
 
+<<<<<<< HEAD
         if (isDestroy)
         {
+=======
+        if (birth.goblinOneSpawn)
+        {
+            transform.position = newTransform.position;
+            birth.goblinOneSpawn=false;
+        }
+   
+
+
+        UpdatePlayerDistance();
+
+        float ShieldDistance = Vector3.Distance(Goblin.transform.position, Player.transform.position);
+
+
+        if (isDestroy)
+        {
+
+>>>>>>> parent of c739808 (TapinakFinish)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -48,33 +79,116 @@ public class GolemNavMesh : MonoBehaviour
 
         if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
         {
+<<<<<<< HEAD
             Golemagent.isStopped = false;
             animator.SetInteger("AttackTypeGolem", 0);
             Golemagent.destination = Player.position;
+=======
+
+
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination && !isDestroy)
+            {
+                agent.isStopped = false;
+                animator.SetInteger("AttackTypeGolem", 0);
+                agent.destination = Player.position;
+>>>>>>> parent of c739808 (TapinakFinish)
 
 
             Vector3 lookAtPlayer = new Vector3(Player.position.x - transform.position.x, 0, Player.position.z - transform.position.z);
             Quaternion rotation = Quaternion.LookRotation(lookAtPlayer);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
 
+<<<<<<< HEAD
             animator.SetFloat("GolemSpeed", 0.5f); // Walk 
             ResetTimer();
             gorunusAcisi = 360;
             Golemagent.speed = 2f;
             isRandomAttackSet = false; // Yeni random deðer 
             isAtRandomPoint = false; // Yeni random deðer 
+=======
+                animator.SetFloat("GolemSpeed", 0.5f); //Koþma
+                ResetTimer();
+                gorunusAcisi = 360;
+                agent.speed = 6f;
+                isRandomAttackSet = false; // Yeni random deðer 
+                isAtRandomPoint = false; // Yeni random deðer 
+            }
+
+            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01f) 
+            {
+                agent.isStopped = true;
+
+                if (!isRandomAttackSet)
+                {
+                    // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
+                    fixedRandomAttack = Random.Range(1, 3);
+                    animator.SetInteger("AttackTypeGolem", fixedRandomAttack);
+                    isRandomAttackSet = true;
+                  
+                }
+
+
+               
+                    
+
+                Debug.Log(fixedRandomAttack);
+
+                if (fixedRandomAttack == 1)
+                {
+                    OnGoblinAttack?.Invoke();
+                }
+
+                gorunusAcisi = 360;
+            }
+            else
+            {
+                if (!isAtRandomPoint && !isDestroy)
+                {
+
+                    MoveToRandomPoint();
+                    isAtRandomPoint = true;
+                    isRandomAttackSet = false;
+                    agent.speed = 0.8f;
+                }
+            }
+
+            if (agent.velocity.magnitude <= idleSpeedThreshold && !isDestroy)
+            {
+                animator.SetFloat("GolemSpeed", 0.5f); // Walk 
+
+
+                UpdateTimer();
+            }
+
+
+
+        }
+        else if (healt.isDamageBlood && !isDestroy)
+        {
+
+            StartCoroutine(GoblinWait());
+>>>>>>> parent of c739808 (TapinakFinish)
         }
 
         else if (mesafeOyuncu < attackDestination)
         {
             Golemagent.isStopped = true;
 
+<<<<<<< HEAD
             if (!isRandomAttackSet)
+=======
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
+
+
+
+            if (transform.position == targetPosition)
+>>>>>>> parent of c739808 (TapinakFinish)
             {
                 // Koþul saðlandýðýnda bir kez oluþturulan randomAttack deðeri
                 fixedRandomAttack = Random.Range(1, 3);
                 isRandomAttackSet = true;
             }
+<<<<<<< HEAD
 
             animator.SetInteger("AttackTypeGolem", 1);
 
@@ -97,6 +211,8 @@ public class GolemNavMesh : MonoBehaviour
                 isRandomAttackSet = false;
                 Golemagent.speed = 0.8f;
             }
+=======
+>>>>>>> parent of c739808 (TapinakFinish)
         }
 
         if (Golemagent.velocity.magnitude <= idleSpeedThreshold)

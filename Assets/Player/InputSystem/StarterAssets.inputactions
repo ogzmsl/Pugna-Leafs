@@ -94,6 +94,27 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+<<<<<<< HEAD
+=======
+                },
+                {
+                    "name": "Intraction",
+                    "type": "Button",
+                    "id": "03ced3c1-3000-41dc-b004-be8990013300",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "5ad29310-de40-4a8e-9083-28833673ae96",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+>>>>>>> parent of c739808 (TapinakFinish)
                 }
             ],
             "bindings": [
@@ -393,6 +414,31 @@
                     "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
+<<<<<<< HEAD
+=======
+                },
+                {
+                    "name": "",
+                    "id": "0743a04e-d26a-45a3-b978-e2fc31ba35ab",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Intraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7176644-6e63-4a8c-a0ba-d0b35f7f7599",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+>>>>>>> parent of c739808 (TapinakFinish)
                 }
             ]
         }

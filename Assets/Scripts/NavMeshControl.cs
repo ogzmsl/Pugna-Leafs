@@ -33,6 +33,14 @@ public class NavMeshControl : MonoBehaviour
     public GoblinAttackOneAnimationEvent goblin;
     [SerializeField] private HealtSystem healt;
 
+<<<<<<< HEAD
+=======
+    public PlayerBirth birth;
+    public Transform newTransform;
+    public PlayerHealt playerHealt;
+
+
+>>>>>>> parent of c739808 (TapinakFinish)
 
     void Start()
     {
@@ -53,6 +61,10 @@ public class NavMeshControl : MonoBehaviour
 
         if (isDestroy)
         {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> parent of c739808 (TapinakFinish)
             StartCoroutine(GoblinDestroy());
         }
 
@@ -61,7 +73,11 @@ public class NavMeshControl : MonoBehaviour
         {
 
 
+<<<<<<< HEAD
             if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination)
+=======
+            if (mesafeOyuncu <= kovalamaMesafesi && IsPlayerInSight() && mesafeOyuncu > attackDestination&&!isDestroy)
+>>>>>>> parent of c739808 (TapinakFinish)
             {
                 agent.isStopped = false;
                 animator.SetInteger("AttackType", 0);
@@ -80,10 +96,18 @@ public class NavMeshControl : MonoBehaviour
                 isAtRandomPoint = false; // Yeni random deðer 
             }
 
+<<<<<<< HEAD
             else if (mesafeOyuncu < attackDestination)
             {
 
                 agent.isStopped = true;
+=======
+            else if (mesafeOyuncu < attackDestination && !isDestroy && playerHealt.PlayerHealthImage.fillAmount >= 0.01)
+            {
+
+                agent.isStopped = true;
+
+>>>>>>> parent of c739808 (TapinakFinish)
 
                 if (!isRandomAttackSet)
                 {
@@ -138,7 +162,22 @@ public class NavMeshControl : MonoBehaviour
             targetPosition.y = transform.position.y;
             animator.SetInteger("AttackType", 1);
           
+<<<<<<< HEAD
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
+=======
+           transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * agent.speed);
+           
+        }
+       if (effectDistance.isDistanceFButton&&ShieldDistance<100f || playerHealt.PlayerHealthValue < 0.01f)
+        {
+            Vector3 directionToPlayer = (transform.position - Player.position).normalized;
+            Vector3 targetPosition = transform.position + directionToPlayer * 6f;
+            targetPosition.y = transform.position.y;
+            animator.SetFloat("speed", 0f);//idle
+
+   
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * agent.speed*6);
+>>>>>>> parent of c739808 (TapinakFinish)
             
           
 

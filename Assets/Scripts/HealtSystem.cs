@@ -15,7 +15,17 @@ public class HealtSystem : MonoBehaviour
    public  bool isDead;
     NavMeshControl navMesh;
     public ParticleSystem bloodGoblin;
+<<<<<<< HEAD
     public bool isDamageBlood;
+=======
+    public bool isDamageBlood = false;
+    public GameObject enemy;
+    [SerializeField] private float deadanimationtime;
+
+    
+
+
+>>>>>>> parent of c739808 (TapinakFinish)
 
     void Start()
     {
@@ -49,14 +59,28 @@ public class HealtSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+<<<<<<< HEAD
             parentAnimator.SetTrigger("die");
             navMesh.isDestroy = true;
+=======
+          parentAnimator.SetTrigger("die");
+            StartCoroutine(waitforDead());
+
+        //navMesh.isDestroy = true;
+>>>>>>> parent of c739808 (TapinakFinish)
         }
         else if (previousHealth > currentHealth)
         {
        
+<<<<<<< HEAD
             parentAnimator.SetTrigger("Damage");
             bloodGoblin.Play();
+=======
+          parentAnimator.SetTrigger("Damage");
+            //   bloodGoblin.Play();
+
+
+>>>>>>> parent of c739808 (TapinakFinish)
             isDamageBlood = true;
             StartCoroutine(waitforblood());
         }
