@@ -9,9 +9,13 @@ public class QSpeel : MonoBehaviour
     [SerializeField] private LayerMask terrainLayerMask;
     public Transform mainCamera;
     private RaycastHit hitInfo;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+
+>>>>>>> Stashed changes
     public GameObject character;
     public float maxDistance = 5f; // Maksimum uzaklýk
     public float minDistance = 1f; // Minimum uzaklýk
@@ -27,6 +31,7 @@ public class QSpeel : MonoBehaviour
     public bool sarsizni;
 
 
+<<<<<<< Updated upstream
     
 <<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -34,6 +39,22 @@ public class QSpeel : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+    public bool isDoit;
+
+    public float distanceToCharacter;
+    public float offset;
+    public AudioSource QspeelAudio;
+
+
+    public void PlaySoundsQ()
+    {
+        QspeelAudio.Play();
+    }
+
+
+
+>>>>>>> Stashed changes
 
     public void InstantiateQSpell()
     {

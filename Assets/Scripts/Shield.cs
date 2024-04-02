@@ -60,20 +60,27 @@ public class Shield : MonoBehaviour
     {
         shieldInstance.Play();
         yield return new WaitForSeconds(Seconds);
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+
+>>>>>>> Stashed changes
         shieldInstance.Play();
     
->>>>>>> parent of c739808 (TapinakFinish)
-=======
+
         shieldInstance.Play();
-    
->>>>>>> parent of c739808 (TapinakFinish)
-=======
->>>>>>> parent of d93495c (revert)
+
         shieldInstance.Pause();
+<<<<<<< Updated upstream
+=======
+
+    
+       shieldInstance.Pause();
+
+>>>>>>> Stashed changes
 
     }
 }

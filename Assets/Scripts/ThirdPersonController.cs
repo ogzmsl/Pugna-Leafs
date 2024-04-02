@@ -197,16 +197,12 @@ namespace StarterAssets
 
         [SerializeField] private ParticleSystem FootVfxLeft;
         [SerializeField] private ParticleSystem FootVfxRight;
-
-
-
-
-<<<<<<< HEAD
+<<<<<<< Updated upstream
 =======
         [SerializeField] private ParticleSystem IdleVfx;
         public Chest chest;
 
-        
+
         public EButtonEffect effectE;
 
         public bool LightContoller;
@@ -227,15 +223,45 @@ namespace StarterAssets
         public GameObject Panel;
 
         private int PanelCounter = 0;
-        
 
-        
-<<<<<<< HEAD
->>>>>>> parent of c739808 (TapinakFinish)
-=======
->>>>>>> parent of c739808 (TapinakFinish)
-=======
->>>>>>> parent of d93495c (revert)
+
+        public Text TwoDCounter;
+        private int TwoDCounterValue;
+        public Animator UIanimator;
+>>>>>>> Stashed changes
+
+
+
+
+
+        /*  [SerializeField] private ParticleSystem IdleVfx;
+          public Chest chest;
+
+
+          public EButtonEffect effectE;
+
+          public bool LightContoller;
+
+          public bool QController;
+          public QSpeel speelQ;
+          public CameraShakeLighting lighting;
+
+          public CamShake cam;
+          private float timerIdle;
+          private bool resetIdlevfx;
+
+          public FButtonEffectDistance effectDistance;
+
+          public EnemyDetection detection;
+
+
+          public GameObject Panel;
+
+          private int PanelCounter = 0;*/
+
+
+
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -269,11 +295,9 @@ namespace StarterAssets
 
         private void Start()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
+<<<<<<< Updated upstream
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -288,6 +312,20 @@ namespace StarterAssets
 
 
 >>>>>>> parent of d93495c (revert)
+=======
+
+            Cursor.visible = false;
+
+            //Panel.SetActive(false);
+
+
+
+            // IdleVfx.gameObject.SetActive(false);
+
+
+
+
+>>>>>>> Stashed changes
 
             if (nav == null)
             {
@@ -348,23 +386,90 @@ namespace StarterAssets
             WindSpeed();
             Die();
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> Stashed changes
             Intract();
             StaminaControl();
             idleVfxControl();
             EscapeButton();
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+
+
+
+            // DashRight();
+            // DashLeft();
+            DasBack(); //Back DEĞİL HEPSİ VAR İÇİNDE
+
+>>>>>>> Stashed changes
 
 
         }
 
 
+<<<<<<< Updated upstream
+=======
+        private void idleVfxControl()
+        {
+            if (_speed == 0)
+            {
+                timerIdle += Time.deltaTime;
+                if (timerIdle > 30 && !resetIdlevfx)
+                {
+                    IdleVfx.gameObject.SetActive(true);
+                    IdleVfx.Play();
+                    resetIdlevfx = true;
+                }
+
+            }
+            else if (_speed != 0)
+            {
+                timerIdle = 0;
+                IdleVfx.gameObject.SetActive(false);
+                resetIdlevfx = false;
+            }
+        }
+
+
+
+
+
+
+        #region Intaction
+        private void Intract()
+        {
+            if (_input.Intraction)
+            {
+                chest.intract = true;
+
+
+            }
+
+            if (_input.Intraction && chestTwo.isChestTwo)
+            {
+                chestTwo.Intract = true;
+
+            }
+
+
+
+            _input.Intraction = false;
+        }
+
+        #endregion
+
+
+
+>>>>>>> Stashed changes
         //Die
         #region Die
         private bool isDead = false;
@@ -445,6 +550,7 @@ namespace StarterAssets
 
         private void Mouseleft()
         {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -461,12 +567,29 @@ namespace StarterAssets
             {
                 cameraForward = _mainCamera.transform.forward;
                 cameraForward.y = 0.0f;
+=======
+
+            if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+
+                if (_input.mouseLeft && !isRange && Grounded && isTabing)
+
+                    if (_input.mouseLeft && !isRange && Grounded && isTabing)
+
+                        if (_input.mouseLeft && !isRange && Grounded && !isDead && isTabing)
+
+                            if (_input.mouseLeft && !isRange && Grounded && isTabing)
+
+                            {
+                                cameraForward = _mainCamera.transform.forward;
+                                cameraForward.y = 0.0f;
+>>>>>>> Stashed changes
 
 
 
-                if (cameraForward != Vector3.zero)
-                {
+                                if (cameraForward != Vector3.zero)
+                                {
 
+<<<<<<< Updated upstream
                     transform.forward = cameraForward * Time.deltaTime;
                     if (DashRightConditionMet())
                     {
@@ -493,35 +616,84 @@ namespace StarterAssets
                         Debug.Log("DashBackConditionMet");
                         _animator.SetFloat(_animIDSpeed, 600);
                     }
+=======
+                                    transform.forward = cameraForward * Time.deltaTime;
+                                    if (DashRightConditionMet())
+                                    {
+>>>>>>> Stashed changes
 
-                    if (DashRightConditionMet() || DashLeftConditionMet() || DashBackConditionMet() || DashLeftBackConditionMet() || DashRightBackConditionMet())
-                    {
-                        SprintSpeed = 7;
-                        _speed = 2;
-                    }
-                    else
-                    {
-                        SprintSpeed = 7;
-                        _speed = 4;
-                    }
+                                        _animator.SetFloat(_animIDSpeed, 400);
+                                    }
+                                    else if (DashLeftBackConditionMet()) // Sol arkaya doğru hareket koşulunu ilk kontrol edelim
+                                    {
+
+                                        _animator.SetFloat(_animIDSpeed, 500);
+                                    }
+                                    else if (DashRightBackConditionMet())
+                                    {
+
+                                        _animator.SetFloat(_animIDSpeed, 700);
+                                    }
+                                    else if (DashLeftConditionMet())
+                                    {
+
+                                        _animator.SetFloat(_animIDSpeed, 300);
+                                    }
+                                    else if (DashBackConditionMet())
+                                    {
+
+                                        _animator.SetFloat(_animIDSpeed, 600);
+                                    }
+
+                                    if (DashRightConditionMet() || DashLeftConditionMet() || DashBackConditionMet() || DashLeftBackConditionMet() || DashRightBackConditionMet())
+                                    {
+                                        SprintSpeed = 7;
+                                        _speed = 2;
+                                    }
+                                    else
+                                    {
+                                        SprintSpeed = 7;
+                                        _speed = 4;
+                                    }
 
 
-                }
-                // playerCameraRoot.transform.position = AimTransform.transform.position;
+                                }
+                                // playerCameraRoot.transform.position = AimTransform.transform.position;
 
+<<<<<<< Updated upstream
                 _animator.SetBool("AttackOrbball", _input.mouseLeft);
+=======
+
+
+                                // _animator.SetBool("Combat", _input.mouseLeft);
+
+
+                                _animator.SetBool("AttackOrbball", _input.mouseLeft);
+
+>>>>>>> Stashed changes
 
 
 
-            }
-            else
-            {
 
 
 
+<<<<<<< Updated upstream
                 _animator.SetBool("AttackOrbball", false);
                 // playerCameraRoot.transform.position = cmfreelook.transform.position;
             }
+=======
+
+                            }
+                            else
+                            {
+
+
+                                // _animator.SetBool("Combat", false);
+                                _animator.SetBool("AttackOrbball", false);
+                                // playerCameraRoot.transform.position = cmfreelook.transform.position;
+                            }
+
+>>>>>>> Stashed changes
         }
 
         private IEnumerator WaitForMouseRelease()
@@ -547,7 +719,7 @@ namespace StarterAssets
 
                 while (true)
                 {
-                    InstantiateVfx();
+                   // InstantiateVfx();
                     yield return new WaitForSeconds(1.0f);
                 }
             }
@@ -557,11 +729,14 @@ namespace StarterAssets
         private IEnumerator VFXTimeforMOUSE()
         {
             yield return new WaitForSeconds(0.7f);
-            InstantiateVfx();
+           // InstantiateVfx();
         }
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
         private IEnumerator Ranged()
         {
 
@@ -579,6 +754,11 @@ namespace StarterAssets
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
         #endregion
 
 
@@ -586,11 +766,19 @@ namespace StarterAssets
 
         private void WindSpeed()
         {
+<<<<<<< Updated upstream
             if (_input.sprint && !wind.isPlaying)
             {
                 wind.Play();
             }
             else if (!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet())
+=======
+            if (_input.sprint && !wind.isPlaying && stamina.Staminabool && _input.move != Vector2.zero)
+            {
+                wind.Play();
+            }
+            else if ((!_input.sprint && wind.isPlaying || DashBackConditionMet() || DashLeftBackDiagonalConditionMet() || DashLeftConditionMet() || DashRightConditionMet()) || !stamina.isSprint)
+>>>>>>> Stashed changes
             {
                 wind.Stop();
             }
@@ -608,12 +796,39 @@ namespace StarterAssets
         #endregion
 
 
+<<<<<<< Updated upstream
+=======
+        #region Stanina
+
+        private void StaminaControl()
+        {
+            if (_input.sprint)
+            {
+                stamina.Staminabool = true;
+
+            }
+            else
+            {
+                stamina.Staminabool = false;
+            }
+
+
+
+
+        }
+
+
+        #endregion
+
+
+>>>>>>> Stashed changes
 
 
 
         #region HAREKET
         private void Move()
         {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -646,26 +861,71 @@ namespace StarterAssets
                     {
                         float startSpeed = _animator.GetFloat(_animIDSpeed);
                         float LerptargetSpeed = 200;
+=======
 
-                        shieldforShield.isFilling = true;
+            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+
+                if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+
+                    if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange))
+
+                        if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack) || _animator.GetBool(_animIDRange) || isDead)
+
+                            if (_animator.GetBool(_animIDProjectTile) || _animator.GetBool(_animIDMagicAttack))
+
+                            {
+                                _speed = 0.0f;
+                                _animationBlend = 0.0f;
+                                shieldforShield.isFilling = true;
 
 
-                        // Lerp oranı
-                        float lerpRatio = 0.1f;
+                            }
+                            else
+                            {
 
-                        // Lineer interpolasyon 
-                        float newSpeed = Mathf.Lerp(startSpeed, LerptargetSpeed, lerpRatio);
-                        _animator.SetFloat(_animIDSpeed, newSpeed);
+                                float targetSpeed = 0.0f;
 
+                                if (_input.sprint && stamina.isSprint)
+                                {
+
+
+                                    FootVfxLeft.gameObject.SetActive(true); FootVfxRight.gameObject.SetActive(true);
+                                    targetSpeed = SprintSpeed;
+                                    // Sprint olduğunda _animIDSpeed değerini 120 olarak ayarla
+                                    if (_input.move != Vector2.zero)
+                                    {
+                                        float startSpeed = _animator.GetFloat(_animIDSpeed);
+                                        float LerptargetSpeed = 200;
+>>>>>>> Stashed changes
+
+                                        shieldforShield.isFilling = true;
+
+
+                                        // Lerp oranı
+                                        float lerpRatio = 0.1f;
+
+                                        // Lineer interpolasyon 
+                                        float newSpeed = Mathf.Lerp(startSpeed, LerptargetSpeed, lerpRatio);
+                                        _animator.SetFloat(_animIDSpeed, newSpeed);
+
+<<<<<<< Updated upstream
                     }
                     else if (_input.move == Vector2.zero)
                     {
                         float finishSpeed = _animator.GetFloat(_animIDSpeed);
                         float LerpFinishSprintToIdle = 0;
                         float LerfRadio = 0.1f;
+=======
+                                    }
+                                    else if (_input.move == Vector2.zero)
+                                    {
+>>>>>>> Stashed changes
 
-                        float newLerfSpeed = Mathf.Lerp(finishSpeed, LerpFinishSprintToIdle, LerfRadio);
+                                        float finishSpeed = _animator.GetFloat(_animIDSpeed);
+                                        float LerpFinishSprintToIdle = 0;
+                                        float LerfRadio = 0.1f;
 
+<<<<<<< Updated upstream
                         _animator.SetFloat(_animIDSpeed, newLerfSpeed);
                     }
                 }
@@ -676,12 +936,28 @@ namespace StarterAssets
                     float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
                     float LerpTargetSpeedWalk = 100;
                     shieldforShield.isFilling = true;
+=======
+                                        float newLerfSpeed = Mathf.Lerp(finishSpeed, LerpFinishSprintToIdle, LerfRadio);
+
+                                        _animator.SetFloat(_animIDSpeed, newLerfSpeed);
+                                    }
+                                }
+                                else if (_input.move != Vector2.zero)
+                                {
+
+                                    FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
+                                    targetSpeed = MoveSpeed;
+                                    float StartSpeedWalk = _animator.GetFloat(_animIDSpeed);
+                                    float LerpTargetSpeedWalk = 100;
+                                    shieldforShield.isFilling = true;
+>>>>>>> Stashed changes
 
 
 
 
-                    float lerpRatioWalk = 0.1f;
+                                    float lerpRatioWalk = 0.1f;
 
+<<<<<<< Updated upstream
                     float newspeed = Mathf.Lerp(StartSpeedWalk, LerpTargetSpeedWalk, lerpRatioWalk);
                     // Sprint olmadığında _animIDSpeed değerini normal hızda ayarla
                     _animator.SetFloat(_animIDSpeed, newspeed);
@@ -691,72 +967,93 @@ namespace StarterAssets
                     float finishSpeed = _animator.GetFloat(_animIDSpeed);
                     float LerpFinishSprintToIdle = 0;
                     float LerfRadio = 0.1f;
+=======
+                                    float newspeed = Mathf.Lerp(StartSpeedWalk, LerpTargetSpeedWalk, lerpRatioWalk);
+                                    // Sprint olmadığında _animIDSpeed değerini normal hızda ayarla
+                                    _animator.SetFloat(_animIDSpeed, newspeed);
+                                }
+                                else if (_input.move == Vector2.zero)
+                                {
+>>>>>>> Stashed changes
 
-                    float newLerfSpeed = Mathf.Lerp(finishSpeed, LerpFinishSprintToIdle, LerfRadio);
+                                    float finishSpeed = _animator.GetFloat(_animIDSpeed);
+                                    float LerpFinishSprintToIdle = 0;
+                                    float LerfRadio = 0.1f;
 
-                    _animator.SetFloat(_animIDSpeed, newLerfSpeed);
-                    shieldforShield.isFilling = true;
-                }
+                                    float newLerfSpeed = Mathf.Lerp(finishSpeed, LerpFinishSprintToIdle, LerfRadio);
 
+<<<<<<< Updated upstream
                 if (_input.move == Vector2.zero)
                 {
                     targetSpeed = 0.0f;
                     shieldforShield.isFilling = true;
                 }
+=======
+                                    _animator.SetFloat(_animIDSpeed, newLerfSpeed);
+                                    shieldforShield.isFilling = true;
+                                }
+>>>>>>> Stashed changes
 
-                float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-                float speedOffset = 0.1f;
-                float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+                                if (_input.move == Vector2.zero)
+                                {
 
-                if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
-                {
-                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
-                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
-                }
-                else
-                {
-                    _speed = targetSpeed;
-                }
+                                    targetSpeed = 0.0f;
+                                    shieldforShield.isFilling = true;
+                                }
 
-                _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-                if (_animationBlend < 0.01f)
-                {
-                    _animationBlend = 0f;
-                    shieldforShield.isFilling = true;
-                }
+                                float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+                                float speedOffset = 0.1f;
+                                float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
-                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+                                if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+                                {
+                                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+                                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
+                                }
+                                else
+                                {
+                                    _speed = targetSpeed;
+                                }
 
-                if (_input.move != Vector2.zero)
-                {
-                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
-                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                }
+                                _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+                                if (_animationBlend < 0.01f)
+                                {
+                                    _animationBlend = 0f;
+                                    shieldforShield.isFilling = true;
+                                }
 
-                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+                                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+                                if (_input.move != Vector2.zero)
+                                {
+                                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+                                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                                }
 
-                if (!_input.sprint && _hasAnimator)
-                {
-                    // _animator.SetFloat(_animIDSpeed, _animationBlend);
-                    _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-                }
+                                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-                float animationSpeed = 1.0f; // Normal hız
+                                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
-                // Son 21 ile son 2 
-                float normalizedTime = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-                if (normalizedTime > 0.81f && normalizedTime < 0.98f) // Son 21 ile son 2 
-                {
-                    animationSpeed = Mathf.Lerp(1.0f, 0.5f, (normalizedTime - 0.81f) / (0.98f - 0.81f)); // Normal hızdan 21 
-                }
+                                if (!_input.sprint && _hasAnimator)
+                                {
+                                    // _animator.SetFloat(_animIDSpeed, _animationBlend);
+                                    _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                                }
+
+                                float animationSpeed = 1.0f; // Normal hız
+
+                                // Son 21 ile son 2 
+                                float normalizedTime = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                                if (normalizedTime > 0.81f && normalizedTime < 0.98f) // Son 21 ile son 2 
+                                {
+                                    animationSpeed = Mathf.Lerp(1.0f, 0.5f, (normalizedTime - 0.81f) / (0.98f - 0.81f)); // Normal hızdan 21 
+                                }
 
 
-                // Animasyon hızı
-                _animator.speed = animationSpeed;
-            }
+                                // Animasyon hızı
+                                _animator.speed = animationSpeed;
+                            }
         }
 
 
@@ -826,6 +1123,10 @@ namespace StarterAssets
                     {
                         FootVfxLeft.gameObject.SetActive(false); FootVfxRight.gameObject.SetActive(false);
                         _animator.SetBool(_animIDFreeFall, true);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                     }
                 }
 
@@ -838,10 +1139,21 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
         }
 
         #endregion
 
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
         //Sağ Tık
         #region BLOKLAMA
 
@@ -874,7 +1186,11 @@ namespace StarterAssets
 
                         if (!uzaklastirSet)
                         {
+<<<<<<< Updated upstream
                             nav.uzaklastir = true;
+=======
+
+>>>>>>> Stashed changes
                             uzaklastirSet = true;
                         }
                     }
@@ -918,6 +1234,10 @@ namespace StarterAssets
 
         IEnumerator ResetShield()
         {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             yield return new WaitForSeconds(0.01f);
             shield.ShieldDestroy();
         }
@@ -926,7 +1246,12 @@ namespace StarterAssets
         private IEnumerator ResetBlock()
         {
             yield return new WaitForSeconds(1.5f);
+<<<<<<< Updated upstream
             isBlocked = false;
+=======
+
+
+>>>>>>> Stashed changes
             _animator.SetBool(_animIDBlock, false);
 
         }
@@ -963,6 +1288,11 @@ namespace StarterAssets
 
             if (DashRightConditionMet() && _input.jump && !hasLoggedJumpAngle)
             {
+<<<<<<< Updated upstream
+=======
+                Debug.Log("takla");
+                //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
+>>>>>>> Stashed changes
 
                 _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -2f * Gravity);
 
@@ -998,6 +1328,7 @@ namespace StarterAssets
         }
 
 
+<<<<<<< Updated upstream
         #endregion
 
 
@@ -1013,6 +1344,91 @@ namespace StarterAssets
 =======
         //Kendi yazdığım 2D freeform directional animator
 >>>>>>> parent of d93495c (revert)
+=======
+        private void DashLeft()
+        {
+            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+            if (DashLeftConditionMet() && _input.Dodge)
+            {
+                Debug.Log("takla");
+                //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
+
+                _animator.SetBool("DashLeft", true);
+                isLeftDash = true;
+                _input.Dodge = false;
+                StartCoroutine(DashedLeft());
+
+
+                hasLoggedJumpAngleTwo = true;
+            }
+            else if (!_input.Dodge)
+            {
+
+                hasLoggedJumpAngleTwo = false;
+            }
+        }
+
+        private bool JumpConditionMetTwo()
+        {
+            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return inputAngleJump == 0;
+        }
+
+
+        private IEnumerator DashedLeft()
+        {
+            yield return new WaitForSeconds(1f);
+
+            isLeftDash = false;
+            _animator.SetBool("DashLeft", false);
+        }
+
+
+        #endregion #region Dash Sistemi left
+        #region DashFulll
+        private void DasBack()
+        {
+            float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+
+            if (_input.Dodge)
+            {
+                Debug.Log("takla");
+                //  _verticalVelocity = Mathf.Sqrt(_JumpDashHeight * -1f * Gravity);
+
+                _animator.SetBool("DashBack", true);
+                isLeftDash = true;
+                _input.Dodge = false;
+                StartCoroutine(DashedBack());
+
+
+                hasLoggedJumpAngleTwo = true;
+            }
+            else if (!_input.Dodge)
+            {
+
+                hasLoggedJumpAngleTwo = false;
+            }
+        }
+
+        private bool JumpConditionMetThree()
+        {
+            float inputAngleJump = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+            return inputAngleJump == 0;
+        }
+
+
+        private IEnumerator DashedBack()
+        {
+            yield return new WaitForSeconds(1f);
+
+            isLeftDash = false;
+            _animator.SetBool("DashBack", false);
+        }
+        #endregion
+
+
+>>>>>>> Stashed changes
         #region Manuel olarak yapılmış 2D freeform directional
         private bool DashBackConditionMet()
         {
@@ -1024,6 +1440,10 @@ namespace StarterAssets
         private bool DashRightConditionMet()
         {
             float inputAngleRight = Mathf.Atan2(_input.move.x, _input.move.y) * Mathf.Rad2Deg;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             return inputAngleRight >= 45f && inputAngleRight <= 90f;
         }
 
@@ -1112,6 +1532,7 @@ namespace StarterAssets
         #region ProjectTile
         private void ProjectTile()
         {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1150,41 +1571,91 @@ namespace StarterAssets
 =======
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
-        private void OnTriggerEnter(Collider other)
-        {
-           
-            if (other.CompareTag("2D"))
-            {
-              
-                Destroy(other.gameObject);
-<<<<<<< HEAD
 =======
 
-              
+            if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+
+                if (_input.Project_Tile && !isProjectTileAttack && Grounded && ESpell.Lightimage.fillAmount >= 0.98f)
+
+
+                    if (_input.Project_Tile && !isProjectTileAttack && Grounded && ESpell.Lightimage.fillAmount >= 0.98f)
+
+                        if (_input.Project_Tile && !isProjectTileAttack && Grounded)
+
+                            if (_input.Project_Tile && !isProjectTileAttack && Grounded && ESpell.Lightimage.fillAmount >= 0.98f && effectE.isDoit)
+
+                            {
+
+                                LightContoller = true;
+
+                                cameraForward = _mainCamera.transform.forward;
+                                cameraForward.y = 0.0f;
+                                ESpell.InstantiateESpell();
+                                ESpell.Lightimage.fillAmount = 0;
+                                if (cameraForward != Vector3.zero)
+                                {
+                                    transform.forward = cameraForward * Time.deltaTime;
+                                }
+                                Debug.Log("E");
+
+                                _animator.SetBool(_animIDProjectTile, true);
+                                isProjectTileAttack = true;
+                                StartCoroutine(ResetProjectTile());
+                                StartCoroutine(LİghtBoolResetTime());
+
+
+                            }
+
+        }
+
+
+>>>>>>> Stashed changes
+        private void OnTriggerEnter(Collider other)
+        {
+
+            if (other.CompareTag("2D"))
+            {
+
+                Destroy(other.gameObject);
+
+
                 Debug.Log("Collectible collected!");
             }
         }
 
->>>>>>> parent of c739808 (TapinakFinish)
 
-              
-                Debug.Log("Collectible collected!");
-            }
-        }
-
-
+<<<<<<< Updated upstream
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+
+>>>>>>> Stashed changes
         private IEnumerator ResetProjectTile()
         {
             yield return new WaitForSeconds(1.1f);
 
             isProjectTileAttack = false;
             _animator.SetBool(_animIDProjectTile, false);
+<<<<<<< Updated upstream
 
 
         }
+=======
+            _input.Project_Tile = false;
+
+
+        }
+
+
+        private IEnumerator LİghtBoolResetTime()
+        {
+            yield return new WaitForSeconds(5);
+            LightContoller = false;
+        }
+
+
+>>>>>>> Stashed changes
         #endregion
 
         //Q
@@ -1193,6 +1664,7 @@ namespace StarterAssets
 
         private void Orball()
         {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1228,9 +1700,160 @@ namespace StarterAssets
 
 
                 if (cameraForward != Vector3.zero)
+=======
+
+            if (_input.Orbball && !isAttacking && Grounded)
+
+                if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount > 0.99f && speelQ.isDoit && !_animator.GetBool(_animIDOrbball))
+
+>>>>>>> Stashed changes
                 {
-                    transform.forward = cameraForward * Time.deltaTime;
+
+                    _animator.SetBool("RangeAttack", true);
+                    speel.QSpellImage.fillAmount = 0;
+
+                    // speel.InstantiateQSpell();
+                    cameraForward = _mainCamera.transform.forward;
+
+                    if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount > 0.99f)
+                    {
+
+                        if (_input.Orbball && !isAttacking && Grounded && speel.QSpellImage.fillAmount > 0.99f)
+                        {
+
+
+                            speel.QSpellImage.fillAmount = 0;
+
+                            speel.InstantiateQSpell();
+                            cameraForward = _mainCamera.transform.forward;
+
+                            _animator.SetBool(_animIDRange, true);
+
+                            cameraForward.y = 0.0f;
+                            cam.isShking = true;
+                            if (cameraForward != Vector3.zero)
+                            {
+                                transform.forward = cameraForward * Time.deltaTime;
+                            }
+                            Debug.Log("Q");
+
+                            isAttacking = true;
+
+                            StartCoroutine(ResetAttackFlag());
+                            StartCoroutine(ResetFlag());
+
+                        }
+                    }
+                     IEnumerator ResetAttackFlag()
+                    {
+
+                        yield return new WaitForSeconds(1.2f);
+                        cam.isShking = false;
+
+
+                    }
+
+                     IEnumerator ResetFlag()
+                    {
+
+                        yield return new WaitForSeconds(0.1f);
+                        cam.isShking = false;
+
+                        isAttacking = false;
+
+                        _animator.SetBool(_animIDRange, false);
+
+                    }
+
+
+
+                    #endregion
+
+                    /* private void OnTriggerEnter(Collider other)
+                     {
+
+                         if (other.CompareTag("2D"))
+                         {
+
+
+                             TwoDCounterValue++;
+                             TwoDCounter.text = "" + TwoDCounterValue;
+                             UIanimator.SetTrigger("TwoD");
+                             Destroy(other.gameObject);
+
+
+                             Debug.Log("Collectible collected!");
+                         }
+                     }*/
+
+
+                    //Escape
+
+
+                   
+
+
+
+
+                     void LateUpdate()
+                    {
+                        CameraRotation();
+                    }
+
+                    
+
+                    
+
+                     void CameraRotation()
+                    {
+
+                        if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
+                        {
+
+                            float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+
+                            _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                            _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                        }
+
+
+                        _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+                        _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+
+
+                        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
+                            _cinemachineTargetYaw, 0.0f);
+                    }
+
+
+
+
+
+                     static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+                    {
+                        if (lfAngle < -360f) lfAngle += 360f;
+                        if (lfAngle > 360f) lfAngle -= 360f;
+                        return Mathf.Clamp(lfAngle, lfMin, lfMax);
+                    }
+
+
+
+                     void InstantiateVfx()
+                    {
+                        if (vfxPrefab != null)
+                        {
+                            Vector3 fireRot = PlayerTransform.forward;
+                            GameObject vfxInstance = Instantiate(vfxPrefab, ProjectTilePoint.position, Quaternion.LookRotation(fireRot));
+                            Destroy(vfxInstance, 2.0f);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("VFX Prefab not assigned in the Unity Editor!");
+                        }
+                    }
+
                 }
+<<<<<<< Updated upstream
                 Debug.Log("Q");
 
                 _animator.SetBool(_animIDRange, true);
@@ -1250,6 +1873,8 @@ namespace StarterAssets
 
             _animator.SetBool(_animIDRange, false);
 
+=======
+>>>>>>> Stashed changes
         }
 
         IEnumerator waitqspell()
@@ -1260,6 +1885,7 @@ namespace StarterAssets
         }
 
 
+<<<<<<< Updated upstream
 
         #endregion
 
@@ -1274,6 +1900,52 @@ namespace StarterAssets
         }
 
         private void AssignAnimationIDs()
+=======
+        void GroundedCheck()
+        {
+
+            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+                transform.position.z);
+            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+                QueryTriggerInteraction.Ignore);
+
+
+            if (_hasAnimator)
+            {
+                _animator.SetBool(_animIDGrounded, Grounded);
+            }
+        }
+
+
+
+
+        void EscapeButton()
+        {
+            if (_input.Escape)
+            {
+                PanelCounter++;
+
+                if (PanelCounter % 2 == 0)
+                {
+                    Panel.SetActive(false);
+
+
+                }
+
+                else
+                {
+                    Panel.SetActive(true);
+
+
+                }
+
+                _input.Escape = false;
+            }
+
+
+        }
+        void AssignAnimationIDs()
+>>>>>>> Stashed changes
         {
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
@@ -1289,69 +1961,5 @@ namespace StarterAssets
             _animIDdie = Animator.StringToHash("Die");
 
         }
+    } }
 
-        private void GroundedCheck()
-        {
-
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-                transform.position.z);
-            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
-                QueryTriggerInteraction.Ignore);
-
-
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDGrounded, Grounded);
-            }
-        }
-
-        private void CameraRotation()
-        {
-
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
-            {
-
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
-            }
-
-
-            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
-
-
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
-                _cinemachineTargetYaw, 0.0f);
-        }
-
-
-
-
-
-        private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
-        {
-            if (lfAngle < -360f) lfAngle += 360f;
-            if (lfAngle > 360f) lfAngle -= 360f;
-            return Mathf.Clamp(lfAngle, lfMin, lfMax);
-        }
-
-
-
-        private void InstantiateVfx()
-        {
-            if (vfxPrefab != null)
-            {
-                Vector3 fireRot = PlayerTransform.forward;
-                GameObject vfxInstance = Instantiate(vfxPrefab, ProjectTilePoint.position, Quaternion.LookRotation(fireRot));
-                Destroy(vfxInstance, 2.0f);
-            }
-            else
-            {
-                Debug.LogWarning("VFX Prefab not assigned in the Unity Editor!");
-            }
-        }
-
-    }
-}

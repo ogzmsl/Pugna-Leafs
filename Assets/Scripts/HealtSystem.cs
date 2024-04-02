@@ -51,11 +51,11 @@ public class HealtSystem : MonoBehaviour
             currentHealth = 0;
             parentAnimator.SetTrigger("die");
             navMesh.isDestroy = true;
-<<<<<<< HEAD
-=======
+
           parentAnimator.SetTrigger("die");
             StartCoroutine(waitforDead());
 
+<<<<<<< Updated upstream
         //navMesh.isDestroy = true;
 <<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
@@ -63,24 +63,43 @@ public class HealtSystem : MonoBehaviour
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+
+          parentAnimator.SetTrigger("die");
+            StartCoroutine(waitforDead());
+
+        navMesh.isDestroy = true;
+
+>>>>>>> Stashed changes
         }
         else if (previousHealth > currentHealth)
         {
        
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             parentAnimator.SetTrigger("Damage");
             bloodGoblin.Play();
-<<<<<<< HEAD
-=======
+
           parentAnimator.SetTrigger("Damage");
             //   bloodGoblin.Play();
 
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of c739808 (TapinakFinish)
 =======
 >>>>>>> parent of d93495c (revert)
+=======
+          parentAnimator.SetTrigger("Damage");
+            //   bloodGoblin.Play();
+
+            RangeCounter++;
+
+>>>>>>> Stashed changes
             isDamageBlood = true;
             StartCoroutine(waitforblood());
         }

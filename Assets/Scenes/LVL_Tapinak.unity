@@ -7654,7 +7654,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786837967}
-  m_LocalRotation: {x: 0.0014695482, y: 0.9767054, z: -0.21447536, w: 0.0066922163}
+  m_LocalRotation: {x: 0.0014695555, y: 0.9767054, z: -0.21447536, w: 0.00669225}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14557,7 +14557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268788823}
-  m_LocalRotation: {x: 0.0014695445, y: 0.9767054, z: -0.2144754, w: 0.0066922}
+  m_LocalRotation: {x: 0.0014695593, y: 0.9767054, z: -0.2144754, w: 0.006692267}
   m_LocalPosition: {x: 0.2597616, y: 3.6745734, z: 9.196345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18372,10 +18372,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1904b62ca9628e241885fc3026a8289f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   PlayerHealthImage: {fileID: 1851037130}
   PlayerHealthValue: 1
   control: {fileID: 0}
   die: 0
+  globalVolume: {fileID: 0}
+  system: {fileID: 0}
+  isdamage: 0
+  animator: {fileID: 0}
+  hit: {fileID: 0}
+  vinyetbool: 0
+  currentValue: 0
+  speed: 0.5
+  birth: {fileID: 0}
+  Goblin: {fileID: 0}
 --- !u!114 &1851037130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18759,6 +18770,7 @@ MonoBehaviour:
   maxLifetime: 5
   particleForce: 150
   mouseLeftAnimationEvent: {fileID: 1941225623}
+  isDamaging: 0
 --- !u!114 &1941225620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18947,9 +18959,13 @@ MonoBehaviour:
   Block: 0
   mouseLeft: 0
   Tab: 0
+  Intraction: 0
+  Escape: 0
+  Dodge: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+  controller: {fileID: 0}
 --- !u!114 &1941225626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19002,6 +19018,8 @@ MonoBehaviour:
     type: 3}
   ProjectTilePoint: {fileID: 1299739264}
   wind: {fileID: 922160163}
+  _speed: 0
+  _animationBlend: 0
   _verticalVelocity: 0
   _JumpDashHeight: 1.2
   _HorizontalJumpVelocit: 2
@@ -19011,6 +19029,7 @@ MonoBehaviour:
   maincameratransform: {fileID: 0}
   playerCameraRoot: {fileID: 1469430856}
   cmfreelook: {fileID: 0}
+  _input: {fileID: 0}
   AimChance: 0
   spineAiming: {fileID: 0}
   VfxEnding: 0
@@ -19018,8 +19037,36 @@ MonoBehaviour:
   isdie: 1
   healt: {fileID: 1851037129}
   nav: {fileID: 0}
+  navtwo: {fileID: 0}
+  navthree: {fileID: 0}
+  navFour: {fileID: 0}
+  navFive: {fileID: 0}
+  isDamaged: 0
+  stamina: {fileID: 0}
   PlayerTransform: {fileID: 965854679}
   event: {fileID: 0}
+  butterflyController: {fileID: 0}
+  butterFlyAttack: {fileID: 0}
+  speel: {fileID: 0}
+  intactfirst: {fileID: 0}
+  chestTwo: {fileID: 0}
+  ESpell: {fileID: 0}
+  FootVfxLeft: {fileID: 0}
+  FootVfxRight: {fileID: 0}
+  IdleVfx: {fileID: 0}
+  chest: {fileID: 0}
+  effectE: {fileID: 0}
+  LightContoller: 0
+  QController: 0
+  speelQ: {fileID: 0}
+  lighting: {fileID: 0}
+  cam: {fileID: 0}
+  effectDistance: {fileID: 0}
+  detection: {fileID: 0}
+  Panel: {fileID: 0}
+  TwoDCounter: {fileID: 0}
+  UIanimator: {fileID: 0}
+  isDead: 0
   yourRadius: 10
   yourForce: 150
 --- !u!143 &1941225628
@@ -19050,7 +19097,7 @@ Animator:
   m_GameObject: {fileID: 1941225617}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 361dfd2e9aacc24489d6351fdad85176, type: 3}
-  m_Controller: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
